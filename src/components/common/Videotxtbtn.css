@@ -1,0 +1,50 @@
+.videotxtbtn-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* make it circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.15); /* translucent background */
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
+  /* Optional filter for extra glow */
+  filter: drop-shadow(0 4px 10px rgba(255, 255, 255, 0.1));
+
+  /* Smooth animation for hover & click */
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.videotxtbtn-container p {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "League Gothic", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  z-index: 2; /* above background */
+  pointer-events: none; /* text doesn’t block button interaction */
+}
+
+/* Hover effect - interactive */
+.videotxtbtn-container:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Click effect - button pressed */
+.videotxtbtn-container:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}

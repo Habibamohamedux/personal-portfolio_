@@ -1,0 +1,12 @@
+.secondrytitle{
+    color: #FDFDFD;
+leading-trim: both;
+text-edge: cap;
+-webkit-text-stroke-width: 0.1px;
+-webkit-text-stroke-color: #FFF;
+font-family: "League Gothic";
+font-size: 48px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 72px */
+}

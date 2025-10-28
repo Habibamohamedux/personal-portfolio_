@@ -1,22 +1,13 @@
-import React from 'react';
-import './Herohome.css';
-import Textgenration from '../common/Textgenration.jsx';
-import Video from "../../assets/motiongraphics/HabibaSaad_MOTIONGRAPHICS_Y3_SHOWREEL01_001.mp4";
-import Arrowbtndown from '../common/Arrowbtndown.jsx';
+import React, { Component, useDebugValue } from 'react';
+import './arrowbtndown.css';
 
-const Herohome = () => {
-  return (
-    <div className="herohome-container">
-      <video className="herohome-video" src={Video} autoPlay loop muted playsInline></video>
-
-      <div className="herohome-overlay">
-        <Textgenration />
-      </div>
-
-      {/* Arrow button above video, positioned absolutely */}
-      <Arrowbtndown />
-    </div>
-  );
+const Arrowbtndown = () => {
+    return (
+        <div className="arrow-btn-down">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="22" viewBox="0 0 15 22" fill="none">
+  <path d="M8.36377 1C8.36377 0.447715 7.91605 2.41411e-08 7.36377 0C6.81148 -2.41411e-08 6.36377 0.447715 6.36377 1L7.36377 1L8.36377 1ZM6.65666 21.7071C7.04719 22.0976 7.68035 22.0976 8.07088 21.7071L14.4348 15.3431C14.8254 14.9526 14.8254 14.3195 14.4348 13.9289C14.0443 13.5384 13.4111 13.5384 13.0206 13.9289L7.36377 19.5858L1.70691 13.9289C1.31639 13.5384 0.683226 13.5384 0.292701 13.9289C-0.0978232 14.3195 -0.0978233 14.9526 0.292701 15.3431L6.65666 21.7071ZM7.36377 1L6.36377 1L6.36377 21L7.36377 21L8.36377 21L8.36377 1L7.36377 1Z" fill="white"/>
+</svg>
+        </div>
+       );
 };
-
-export default Herohome;
+export default Arrowbtndown;

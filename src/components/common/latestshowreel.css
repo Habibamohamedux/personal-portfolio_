@@ -1,0 +1,64 @@
+.latestshowreel {
+  padding: 50px 100px;
+  display: flex;
+  flex-direction: column;
+  background-color: #00040b;
+  position: relative;
+  z-index: 2;
+}
+
+.latestshowreel-video {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.latestshowreel-video video {
+  width: 100%;
+  border-radius: 25px;
+  box-shadow: 0 4px 56px rgba(22,25,95,0.7);
+  background: linear-gradient(0deg, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.51) 100%);
+}
+
+/* Overlay */
+.video-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 25px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.video-overlay.visible {
+  opacity: 1;
+}
+
+/* Shapes */
+.latestshowreel .shape {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.5s ease;
+  z-index: 1;
+  animation: float 4s ease-in-out infinite alternate;
+  opacity: 50%;
+    mix-blend-mode: color-dodge;
+
+}
+
+
+/* Corner placement */
+.latestshowreel .shape1 { top: -100px; left: -80px; }
+.latestshowreel .shape2 { top: -100px; right: -80px; }
+.latestshowreel .shape3 { bottom: -100px; left: -80px; }
+.latestshowreel .shape4 { bottom: -100px; right: -80px; }
+

@@ -13,28 +13,36 @@
   -webkit-backdrop-filter: blur(10px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
 
-  /* 🔥 Position above video */
+  /* Position above video */
   position: absolute;
-  bottom: 40px;         /* distance from bottom */
-  left: 50%;            /* center horizontally */
+  bottom: 40px;
+  left: 50%;
   transform: translateX(-50%);
-  z-index: 3;           /* above overlay */
+  z-index: 3;
   overflow: hidden;
 }
 
 .arrow-btn-down svg {
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
+/* Hover effect */
 .arrow-btn-down:hover {
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
   transform: translateX(-50%) scale(1.05); /* keep centered while scaling */
 }
 
-.arrow-btn-down:hover svg {
-  transform: translateY(6px); /* arrow moves down smoothly */
+
+/* 🔥 Click effect */
+.arrow-btn-down:active {
+  transform: translateX(-50%) scale(0.9); /* shrink button slightly */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* reduce shadow for pressed look */
+}
+
+.arrow-btn-down:active svg {
+  transform:  scale(0.95); /* arrow moves down a bit more */
 }
