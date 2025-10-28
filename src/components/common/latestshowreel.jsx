@@ -90,7 +90,7 @@ const Latestshowreel = () => {
 <img src={Shape3} className="shape shape3" alt="shape3"/>
 <img src={Shape4} className="shape shape4" alt="shape4"/> 
 </div>
-    <Minititle Minititle="A brief look into my creative process — from concept sketches to high-fidelity motion and interactive design." />
+    <Minititle minititle="A brief look into my creative process — from concept sketches to high-fidelity motion and interactive design." />
 
     </div>
     
