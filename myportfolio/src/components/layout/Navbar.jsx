@@ -1,85 +1,114 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
-import BurgerMenu from "../../assets/burger.svg";
 import Languagebtn from "../../assets/langauge.svg"; // fix spelling if needed
 import Logo from "../../assets/logo.svg";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
+  const [languageMenu, setLanguageMenu] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState("EN");
+  const menuRef = useRef();
 
   useEffect(() => {
     setFadeIn(true);
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setLanguageMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleLanguageSelect = (lang) => {
+    setSelectedLanguage(lang);
+    setLanguageMenu(false);
+  };
 
   return (
     <>
       <nav className={`navbar ${fadeIn ? "fade-in" : ""}`}>
         <ul className="nav-list">
-          <li>
-            <img src={Languagebtn} alt="Language" className="nav-icon" />
+          <li className="language-container">
+            <div
+              className="language-toggle"
+              onClick={() => setLanguageMenu(!languageMenu)}
+            >
+              <img src={Languagebtn} alt="Language" className="nav-icon" />
+              <span className="lang-label">{selectedLanguage}</span>
+            </div>
+
+            {languageMenu && (
+              <ul ref={menuRef} className="language-menu">
+                {["EN", "AR", "DE", "FR"].map((lang) => (
+                  <li
+                    key={lang}
+                    onClick={() => handleLanguageSelect(lang)}
+                    className={selectedLanguage === lang ? "active" : ""}
+                  >
+                    {lang === "EN"
+                      ? "English"
+                      : lang === "AR"
+                      ? "العربية"
+                      : lang === "DE"
+                      ? "Deutsch"
+                      : "Français"}
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
+
           <li>
             <img src={Logo} alt="Logo" className="nav-logo" />
           </li>
+
           <li>
-            <img
-              src={BurgerMenu}
-              alt="Menu"
-              className="nav-icon burger-toggle"
+            <div
+              className={`burger ${menuOpen ? "open" : ""}`}
               onClick={() => setMenuOpen(!menuOpen)}
-            />
+              aria-label="Toggle menu"
+            >
+              <span className="line line1"></span>
+              <span className="line line2"></span>
+              <span className="line line3"></span>
+            </div>
           </li>
         </ul>
       </nav>
 
-      {/* Overlay menu */}
-      <div className={`side-menu ${menuOpen ? "open" : ""}`}>
-        <div className="menu-header">
-          <span className="menu-location">EG</span>
-          <span className="menu-time">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-          <img
-            src={BurgerMenu}
-            alt="Close"
-            className="close-btn"
-            onClick={() => setMenuOpen(false)}
-          />
-        </div>
+      {/* Fullscreen Glass Menu */}
+      <div className={`fullscreen-menu ${menuOpen ? "open" : ""}`}>
+        <div className="fullscreen-content">
+          <div className="fullscreen-header">
+            <img src={Logo} alt="Logo" className="fullscreen-logo" />
+            <div
+              className="close-btn-alt"
+              onClick={() => setMenuOpen(false)}
+              role="button"
+            >
+              <span className="line line1"></span>
+              <span className="line line2"></span>
+            </div>
+          </div>
 
-        <div className="menu-content">
-          <p className="menu-section">SERVICES OVERVIEW</p>
-          <ul className="menu-items">
+          <ul className="fullscreen-links">
+            <li>Home</li>
             <li>About</li>
             <li>Portfolio</li>
             <li>Services</li>
             <li>Courses & Tutorials</li>
             <li>Blogs & News</li>
-              <li>Contact</li>
+            <li>Contact</li>
           </ul>
 
-          <div className="menu-description">
-            <h4>Interaction Design</h4>
-            <p>
-              Engaging animations and micro-interactions are the secret to
-              dynamic user experiences. I design interactions that breathe life
-              into your digital products.
-            </p>
-          </div>
-
-          <div className="menu-footer">
-            <h4>Webflow</h4>
-            <p>
-              As an expert, I bring your designs to life with scalable, visually
-              striking websites without compromising flexibility.
-            </p>
+          <div className="fullscreen-footer">
+            <p>© 2025 Habiba Saad. All Rights Reserved.</p>
           </div>
         </div>
       </div>
-
-      {/* Overlay background */}
-      {menuOpen && <div className="menu-overlay" onClick={() => setMenuOpen(false)}></div>}
     </>
   );
 };
-
 export default Navbar;
