@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <>
 
-  
+            <Navbar />
             <Herohome />
 
         </>

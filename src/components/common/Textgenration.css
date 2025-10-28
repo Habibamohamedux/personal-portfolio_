@@ -1,37 +1,88 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap');
 
 .text-generation-container {
-  display: inline-flex;
-  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 0 30px rgba(43, 110, 255, 0.1);
-  transition: all 0.4s ease-in-out;
-  animation: glassPulse 4s ease-in-out infinite alternate;
+  background: rgba(255, 255, 255, 0.03);
+  width: 100%;
+padding: 20px 0px;
+
+
+  backdrop-filter: blur(120px) saturate(300%);
+  -webkit-backdrop-filter: blur(120px) saturate(300%);
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.12),
+    0 15px 45px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease-in-out;
+  animation: glassPulse 6s ease-in-out infinite alternate;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
 }
 
+/* ✨ Stabilize width for multilingual text */
+.text-generation-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: min(90%, 800px);
+  min-height: 200px;
+  text-align: center;
+  position: relative;
+}
+
+/* Hover: gentle depth */
 .text-generation-container:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 40px rgba(43, 110, 255, 0.25);
+  transform: scale(1.02);
+  box-shadow:
+    inset 0 0 18px rgba(255, 255, 255, 0.15),
+    0 18px 60px rgba(0, 0, 0, 0.35);
 }
 
+/* 🌈 Title */
 .text-generation-title {
   color: #ffffff;
   font-family: "Poppins", sans-serif;
-  font-size: 64px;
+  font-size: clamp(32px, 5vw, 64px);
   font-weight: 700;
-  line-height: 140%;
-  text-align: center;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  line-height: 1.4;
+  margin: 0;
+  text-shadow: 0 2px 15px rgba(63, 63, 63, 0.25);
   white-space: nowrap;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* Cool fade transitions */
+/* 🌟 Dynamic asterisk color */
+.text-generation-star {
+  font-size: 1.1em;
+  margin-left: 4px;
+  transition: color 0.6s ease-in-out;
+}
+
+/* 💬 Subtitle */
+.text-generation-subtitle {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 2vw, 22px);
+  max-width: 700px;
+  text-align: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ✨ Arabic text */
+.arabic-font {
+  font-family: "Tajawal", sans-serif;
+  direction: rtl;
+  letter-spacing: 0.5px;
+}
+
+/* 🌬 Fade animations */
 .fade-in {
   opacity: 1;
   transform: translateY(0);
@@ -42,48 +93,43 @@
   transform: translateY(-15px);
 }
 
-/* Star color accent (if used separately) */
-.text-generation-star {
-  color: #2b6eff;
-}
-
-/* Subtle glowing animation for the glass */
+/* 🌊 Soft glass pulse animation */
 @keyframes glassPulse {
   0% {
-    box-shadow: 0 0 25px rgba(43, 110, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+      inset 0 0 10px rgba(255, 255, 255, 0.05),
+      0 10px 30px rgba(0, 0, 0, 0.2);
   }
   100% {
-    box-shadow: 0 0 35px rgba(43, 110, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow:
+      inset 0 0 20px rgba(255, 255, 255, 0.1),
+      0 10px 50px rgba(0, 0, 0, 0.35);
   }
 }
 
-/* Responsive design */
-@media (max-width: 1024px) {
-  .text-generation-title {
-    font-size: 48px;
-  }
-  .text-generation-container {
-    padding: 30px 45px;
-  }
-}
-
+/* 📱 Responsive tweaks */
 @media (max-width: 768px) {
-  .text-generation-title {
-    font-size: 36px;
-  }
   .text-generation-container {
-    padding: 24px 36px;
+    padding: 24px;
+
+  }
+
+  .text-generation-title {
+    font-size: clamp(26px, 6vw, 40px);
+    white-space: normal;
+  }
+
+  .text-generation-subtitle {
+    font-size: clamp(14px, 3.2vw, 18px);
   }
 }
 
 @media (max-width: 480px) {
   .text-generation-title {
-    font-size: 26px;
-    white-space: normal;
+    font-size: 24px;
   }
-  .text-generation-container {
-    padding: 18px 24px;
+
+  .text-generation-subtitle {
+    font-size: 15px;
   }
 }
