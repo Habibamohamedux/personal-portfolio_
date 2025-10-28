@@ -1,0 +1,35 @@
+.toolstags {
+  display: flex;
+  width: 120px;
+  height: 36px;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1); /* glass effect */
+  color: #fff;
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.3px;
+  backdrop-filter: blur(10px); /* key for glass effect */
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.toolstags:hover {
+  transform: scale(1.05); /* subtle zoom */
+  background: rgba(255, 255, 255, 0.2); /* brighter glass */
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.toolstags:active {
+  transform: scale(0.95); /* click effect */
+  background: rgba(255, 255, 255, 0.25); /* slightly stronger */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
