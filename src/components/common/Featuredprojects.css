@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Outfit:wght@100..900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Outfit', sans-serif;
+  background: radial-gradient(circle at top left, #0b1120, #0a0e18);
+  color: #fff;
+}
+
+h6, h5, h4, h3, h2, h1, p {
+  margin: 0;
+  padding: 0;
+}
+
+.featured-projects {
+  width: 100%;
+  padding: 80px 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.featured-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+  width: 100%;
+}
+
+/* LEFT IMAGES SECTION */
+.featured-images {
+  display: flex;
+  gap: 20px;
+  flex: 1.2;
+}
+
+.featured-left img {
+  width: 100%;
+  border-radius: 20px;
+  height: auto;
+  object-fit: cover;
+}
+
+.featured-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.featured-right img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* RIGHT CONTENT SECTION */
+.featured-projects-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .featured-layout {
+    flex-direction: column;
+  }
+
+  .featured-images {
+    flex-direction: column;
+  }
+
+  .featured-projects-content {
+    text-align: left;
+  }
+}
