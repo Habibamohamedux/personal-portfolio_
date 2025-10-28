@@ -308,3 +308,43 @@
     gap: 18px;
   }
 }
+/* ------------------ Soft Elegant Glow for Fullscreen Links ------------------ */
+.fullscreen-links li {
+  font-family: var(--font-main);
+  font-size: 48px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  color: #fff;
+  position: relative;
+  text-shadow: 0 0 1px rgba(255,255,255,0.2);
+}
+
+/* Hover: soft white glow */
+.fullscreen-links li:hover {
+  transform: translateY(-2px);
+  text-shadow: 
+    0 0 2px rgba(255,255,255,0.3),
+    0 0 4px rgba(255,255,255,0.25),
+    0 0 6px rgba(255,255,255,0.2);
+  animation: softGlow 1.5s ease-in-out infinite alternate;
+}
+
+/* Smooth gentle glow animation */
+@keyframes softGlow {
+  0% {
+    text-shadow: 0 0 2px rgba(255,255,255,0.3),
+                 0 0 4px rgba(255,255,255,0.25),
+                 0 0 6px rgba(255,255,255,0.2);
+  }
+  50% {
+    text-shadow: 0 0 3px rgba(255,255,255,0.35),
+                 0 0 5px rgba(255,255,255,0.3),
+                 0 0 7px rgba(255,255,255,0.25);
+  }
+  100% {
+    text-shadow: 0 0 2px rgba(255,255,255,0.3),
+                 0 0 4px rgba(255,255,255,0.25),
+                 0 0 6px rgba(255,255,255,0.2);
+  }
+}

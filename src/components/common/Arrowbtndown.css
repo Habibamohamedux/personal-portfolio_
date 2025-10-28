@@ -1,0 +1,40 @@
+.arrow-btn-down {
+  display: flex;
+  width: 60px;
+  height: 60px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  /* 🔥 Position above video */
+  position: absolute;
+  bottom: 40px;         /* distance from bottom */
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%);
+  z-index: 3;           /* above overlay */
+  overflow: hidden;
+}
+
+.arrow-btn-down svg {
+  transition: transform 0.3s ease;
+}
+
+.arrow-btn-down:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  transform: translateX(-50%) scale(1.05); /* keep centered while scaling */
+}
+
+.arrow-btn-down:hover svg {
+  transform: translateY(6px); /* arrow moves down smoothly */
+}
