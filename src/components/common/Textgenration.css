@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+.text-generation-container {
+  display: inline-flex;
+  padding: 40px 60px;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 0 30px rgba(43, 110, 255, 0.1);
+  transition: all 0.4s ease-in-out;
+  animation: glassPulse 4s ease-in-out infinite alternate;
+}
+
+.text-generation-container:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(43, 110, 255, 0.25);
+}
+
+.text-generation-title {
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 140%;
+  text-align: center;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  white-space: nowrap;
+}
+
+/* Cool fade transitions */
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-15px);
+}
+
+/* Star color accent (if used separately) */
+.text-generation-star {
+  color: #2b6eff;
+}
+
+/* Subtle glowing animation for the glass */
+@keyframes glassPulse {
+  0% {
+    box-shadow: 0 0 25px rgba(43, 110, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 35px rgba(43, 110, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .text-generation-title {
+    font-size: 48px;
+  }
+  .text-generation-container {
+    padding: 30px 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-generation-title {
+    font-size: 36px;
+  }
+  .text-generation-container {
+    padding: 24px 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-generation-title {
+    font-size: 26px;
+    white-space: normal;
+  }
+  .text-generation-container {
+    padding: 18px 24px;
+  }
+}
