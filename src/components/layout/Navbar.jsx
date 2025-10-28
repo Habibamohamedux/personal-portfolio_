@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
-import Languagebtn from "../../assets/langauge.svg"; // fix spelling if needed
+import Languagebtn from "../../assets/language.svg"; // fix spelling if needed
 import Logo from "../../assets/logo.svg";
 
 const Navbar = () => {
@@ -29,8 +29,9 @@ const Navbar = () => {
   return (
     <>
       <nav className={`navbar ${fadeIn ? "fade-in" : ""}`}>
-        <ul className="nav-list">
-          <li className="language-container">
+        <div className="nav-list">
+          {/* Left: Language */}
+          <div className="language-container" ref={menuRef}>
             <div
               className="language-toggle"
               onClick={() => setLanguageMenu(!languageMenu)}
@@ -40,7 +41,7 @@ const Navbar = () => {
             </div>
 
             {languageMenu && (
-              <ul ref={menuRef} className="language-menu">
+              <ul className="language-menu">
                 {["EN", "AR", "DE", "FR"].map((lang) => (
                   <li
                     key={lang}
@@ -58,27 +59,25 @@ const Navbar = () => {
                 ))}
               </ul>
             )}
-          </li>
+          </div>
 
-          <li>
-            <img src={Logo} alt="Logo" className="nav-logo" />
-          </li>
+          {/* Center: Logo */}
+          <img src={Logo} alt="Logo" className="nav-logo" />
 
-          <li>
-            <div
-              className={`burger ${menuOpen ? "open" : ""}`}
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
-            >
-              <span className="line line1"></span>
-              <span className="line line2"></span>
-              <span className="line line3"></span>
-            </div>
-          </li>
-        </ul>
+          {/* Right: Burger */}
+          <div
+            className={`burger ${menuOpen ? "open" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className="line line1"></span>
+            <span className="line line2"></span>
+            <span className="line line3"></span>
+          </div>
+        </div>
       </nav>
 
-      {/* Fullscreen Glass Menu */}
+      {/* Fullscreen Menu */}
       <div className={`fullscreen-menu ${menuOpen ? "open" : ""}`}>
         <div className="fullscreen-content">
           <div className="fullscreen-header">
@@ -94,13 +93,19 @@ const Navbar = () => {
           </div>
 
           <ul className="fullscreen-links">
-            <li>Home</li>
-            <li>About</li>
-            <li>Portfolio</li>
-            <li>Services</li>
-            <li>Courses & Tutorials</li>
-            <li>Blogs & News</li>
-            <li>Contact</li>
+            {[
+              "Home",
+              "About",
+              "Portfolio",
+              "Services",
+              "Courses & Tutorials",
+              "Blogs & News",
+              "Contact",
+            ].map((item) => (
+              <li key={item} onClick={() => setMenuOpen(false)}>
+                {item}
+              </li>
+            ))}
           </ul>
 
           <div className="fullscreen-footer">
@@ -111,4 +116,5 @@ const Navbar = () => {
     </>
   );
 };
+
 export default Navbar;
