@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './secondrytitle.css';
+import './Secondrytitle.css';
 const secondrytitle = (props) => {
     return (
         <h2 className='secondrytitle'>{props.secondaryTitle}</h2>

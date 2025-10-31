@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './latestshowreel.css';
-import Secondrytitle from './secondrytitle.jsx';
+import Secondrytitle from './Secondrytitle.jsx';
 import Videotxtbtn from './Videotxtbtn.jsx';
 import Video from "../../assets/motiongraphics/HabibaSaad_MOTIONGRAPHICS_Y3_SHOWREEL01_001.mp4";
 import Shape1 from "../../assets/shapes/shape1.svg";
