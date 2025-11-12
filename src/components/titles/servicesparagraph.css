@@ -1,0 +1,23 @@
+.servicesparagraph {
+    color: #d7d7d7;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    text-transform: uppercase; /* Makes text uppercase */
+    transition: all 0.3s ease; /* Smooth animation for hover/click */
+    cursor: pointer; /* Indicates interactivity */
+}
+
+/* Hover effect */
+.servicesparagraph:hover {
+    color: #ffffff; /* Example: changes to gold on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Click (active) effect */
+.servicesparagraph:active {
+    color: #ffcbcb; /* Example: changes to orange when clicked */
+    transform: scale(0.95); /* Slight shrink effect */
+}

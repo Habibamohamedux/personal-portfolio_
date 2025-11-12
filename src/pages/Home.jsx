@@ -5,6 +5,7 @@ import Navbar from "../components/layout/Navbar.jsx";
 import Latestshowreel from "../components/common/latestshowreel.jsx";
 import Featuredprojects from "../components/common/Featuredprojects.jsx";
 import Frontenddevelopment from "../components/layout/frontenddevelopment.jsx";
+import Servicescards from "../components/layout/servicescards.jsx";
 
 
 
@@ -17,6 +18,7 @@ const Home = () => {
             <Latestshowreel />
             <Featuredprojects />
      <Frontenddevelopment />
+     <Servicescards />
 
         </>
       );

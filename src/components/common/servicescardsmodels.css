@@ -1,0 +1,26 @@
+.uppertext{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 4px;
+
+}
+.bottomtext{
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 20px;
+}.uppertext-holder{
+    width: 50%;
+    display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 12px;
+}
+.bottomtext-holder{
+    display: flex;
+    width: 50%;
+flex-direction: column;
+align-items: flex-start;
+gap: 19px;
+}

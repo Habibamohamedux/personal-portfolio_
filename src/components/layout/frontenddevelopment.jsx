@@ -7,7 +7,7 @@ import Centertitle from "../titles/centertitle";
 import Toolstags from "../titles/tools-tags";
 import Safari from "../common/safari";
 
-// 🧠 Tool logos
+//  Tool logos
 import css from "../../assets/tools/css3.svg";
 import html from "../../assets/tools/html5.svg";
 import js from "../../assets/tools/javascript.svg";
@@ -15,7 +15,7 @@ import reactLogo from "../../assets/tools/react.svg";
 import nodejs from "../../assets/tools/nodejs.svg";
 import github from "../../assets/tools/github.svg";
 
-// 🖼️ Tab images
+// Tab images
 import csstab from "../../assets/coding/css.webp";
 import githubtab from "../../assets/coding/github.png";
 import htmltab from "../../assets/coding/html.jpg";
