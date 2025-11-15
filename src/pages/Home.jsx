@@ -5,7 +5,8 @@ import Navbar from "../components/layout/Navbar.jsx";
 import Latestshowreel from "../components/common/latestshowreel.jsx";
 import Featuredprojects from "../components/common/Featuredprojects.jsx";
 import Frontenddevelopment from "../components/layout/frontenddevelopment.jsx";
-import Servicescards from "../components/layout/servicescards.jsx";
+import Servicescards from "../components/layout/ServicesCards.jsx";
+import Courses from "../components/layout/Courses.jsx";
 
 
 
@@ -19,7 +20,7 @@ const Home = () => {
             <Featuredprojects />
      <Frontenddevelopment />
      <Servicescards />
-
+<Courses />
         </>
       );
 }
