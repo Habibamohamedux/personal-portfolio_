@@ -1,9 +1,15 @@
 import React from "react";
 import "./Testimonials.css";
 
-const TestimonialCard = ({ bgColor, textColor, stars, title, description, author }) => {
+const TestimonialCard = ({ bgColor, textColor, stars, title, description, author, image }) => {
     return (
-        <div className="testimonial-card" style={{ background: bgColor, color: textColor }}>
+        <div
+            className="testimonial-card"
+            style={{
+                background: `url(${image}) center/cover no-repeat, ${bgColor}`,
+                color: textColor
+            }}
+        >
             <div className="stars">
                 {"★".repeat(stars)}
             </div>

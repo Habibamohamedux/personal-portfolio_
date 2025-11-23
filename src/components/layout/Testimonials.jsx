@@ -3,100 +3,96 @@ import Secondrytitle from "../common/Secondrytitle.jsx";
 import TestimonialCard from "./TestimonialCard.jsx";
 import "./Testimonials.css";
 
+import heltrex01 from '../../assets/freelance/heltrex01.jpg';
+import heltrex02 from '../../assets/freelance/heltrex02.jpg';
+import moblink01 from '../../assets/freelance/moblink01.jpg';
+import moblink02 from '../../assets/freelance/moblink02.jpg';
+
 const Testimonials = () => {
-    const testimonialsData = [
+  const testimonialsData = [
+    {
+      cards: [
         {
-            bg: "rgba(77,124,255,0.85)",
-            cards: [
-                {
-                    bgColor: "rgba(175,198,249,0.35)",
-                    textColor: "white",
-                    stars: 5,
-                    title: "Her work is incredibly professional!",
-                    description:
-                        "She completely surprised me by transforming and rebranding our company’s website into something modern and powerful.",
-                    author: "Sherif R. — CEO, Helirex"
-                },
-                {
-                    bgColor: "rgba(12,14,18,0.55)",
-                    textColor: "white",
-                    stars: 5,
-                    title: "Impressive speed and quality.",
-                    description:
-                        "She built an entire coded website in less than a week, helping me meet an important deadline.",
-                    author: "Wael A. — Web Client"
-                }
-            ]
+          bgColor: "rgba(175,198,249,0.35)",
+          textColor: "white",
+          stars: 5,
+          title: "Her work is incredibly professional!",
+          description:
+            "She completely surprised me by transforming and rebranding our company’s website into something modern and powerful.",
+          author: "Sherif R. — CEO, Helirex",
+          images: [heltrex01, heltrex02]
         },
         {
-            bg: "rgba(50,79,255,0.85)",
-            cards: [
-                {
-                    bgColor: "rgba(195,212,255,0.35)",
-                    textColor: "white",
-                    stars: 5,
-                    title: "Amazing communication skills!",
-                    description:
-                        "She listens carefully, understands deeply, and delivers exactly what I imagine.",
-                    author: "Noura M. — Business Owner"
-                },
-                {
-                    bgColor: "rgba(15,17,24,0.55)",
-                    textColor: "white",
-                    stars: 4,
-                    title: "Very impressive results!",
-                    description:
-                        "High-quality work, professional workflow, and very smooth experience.",
-                    author: "Omar S. — Client"
-                }
-            ]
+          bgColor: "rgba(12,14,18,0.55)",
+          textColor: "white",
+          stars: 5,
+          title: "Impressive speed and quality.",
+          description:
+            "She built an entire coded website in less than a week, helping me meet an important deadline.",
+          author: "Wael A. — Web Client",
+          images: [moblink01, moblink02]
         }
-    ];
+      ]
+    }
+  ];
 
-    const [current, setCurrent] = useState(0);
+  const [currentCard, setCurrentCard] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    // Auto switch every 5 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrent(prev => (prev + 1) % testimonialsData.length);
-        }, 5000);
+  // Switch cards every 5s
+  useEffect(() => {
+    const cardInterval = setInterval(() => {
+      setCurrentCard(prev => (prev === testimonialsData[0].cards.length - 1 ? 0 : prev + 1));
+      setCurrentImageIndex(0);
+    }, 5000);
+    return () => clearInterval(cardInterval);
+  }, []);
 
-        return () => clearInterval(interval);
-    }, []);
+  // Slideshow for section background every 3s
+  useEffect(() => {
+    const images = testimonialsData[0].cards[currentCard].images;
+    const imageInterval = setInterval(() => {
+      setCurrentImageIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+    }, 3000);
+    return () => clearInterval(imageInterval);
+  }, [currentCard]);
 
-    return (
-        <>
-            <Secondrytitle secondaryTitle="Testimonials" />
+  const currentCardData = testimonialsData[0].cards[currentCard];
+  const currentBg = currentCardData.images[currentImageIndex];
 
-            <section
-                className="testimonials-section"
-                style={{ background: testimonialsData[current].bg }}
-            >
-                {/* Left Switch Buttons */}
-                <div className="switch-buttons">
-                    {testimonialsData.map((_, index) => (
-                        <div
-                            key={index}
-                            className={`switch-dot ${current === index ? "active" : ""}`}
-                            onClick={() => setCurrent(index)}
-                        ></div>
-                    ))}
-                </div>
+  return (
+    <div className="testimonials-container">
+      <Secondrytitle secondaryTitle="Testimonials" />
 
-                {/* Center Sticky Title */}
-                <div className="center-title">
-                    HEAR OTHER’S <br /> THOUGHTS
-                </div>
+      <section
+        className="testimonials-section"
+        style={{ "--bg-image": `url(${currentBg})` }}
+      >
+        <div className="overlay"></div>
 
-                {/* Cards */}
-                <div className="cards-container">
-                    {testimonialsData[current].cards.map((card, idx) => (
-                        <TestimonialCard key={idx} {...card} />
-                    ))}
-                </div>
-            </section>
-        </>
-    );
+        <div className="switch-buttons">
+          {testimonialsData[0].cards.map((_, index) => (
+            <div
+              key={index}
+              className={`switch-dot ${currentCard === index ? "active" : ""}`}
+              onClick={() => {
+                setCurrentCard(index);
+                setCurrentImageIndex(0);
+              }}
+            ></div>
+          ))}
+        </div>
+
+        <div className="center-title">
+          HEAR OTHER’S <br /> THOUGHTS
+        </div>
+
+        <div className="cards-container">
+          <TestimonialCard {...currentCardData} />
+        </div>
+      </section>
+    </div>
+  );
 };
 
 export default Testimonials;

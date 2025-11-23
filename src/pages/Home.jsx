@@ -8,6 +8,8 @@ import Frontenddevelopment from "../components/layout/frontenddevelopment.jsx";
 import Servicescards from "../components/layout/ServicesCards.jsx";
 import Courses from "../components/layout/Courses.jsx";
 import Testimonials from "../components/layout/Testimonials.jsx";
+import Blog from "../components/layout/Blog.jsx";
+
 const Home = () => {
     return (
         <>
@@ -20,6 +22,7 @@ const Home = () => {
      <Servicescards />
 <Courses />
 <Testimonials />
+<Blog />
         </>
       );
 }

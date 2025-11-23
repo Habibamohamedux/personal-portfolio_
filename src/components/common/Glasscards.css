@@ -17,6 +17,8 @@
   width: 100%;
   object-fit: cover;
   border-radius: 16px;
+  max-width: 545px;
+  min-width: 250px;
 }
 .glasscard-content {
   display: flex;
@@ -37,9 +39,18 @@
   line-height: 1.6;
   opacity: 0.8;
   color: #cfcfcf;
-    font-family: "Poppins", sans-serif;
-      text-align: center;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
 
+  /* Truncate text */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+
+  /* Optional: smooth transition for opacity/color changes */
+  transition: opacity 0.4s ease, color 0.4s ease;
 }
 
 .glasscard-btn {
