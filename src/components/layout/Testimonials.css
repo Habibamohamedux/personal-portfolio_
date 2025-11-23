@@ -1,0 +1,125 @@
+/* MAIN SECTION */
+.testimonials-section {
+    position: relative;
+    padding: 120px 60px 180px;
+    min-height: 650px;
+    border-radius: 20px;
+    transition: background 0.6s cubic-bezier(.4,0,.2,1);
+    backdrop-filter: blur(20px);
+}
+
+/* LEFT CIRCLES */
+.switch-buttons {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.switch-dot {
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.4);
+    transition: 0.3s;
+}
+
+.switch-dot.active {
+    background: #4DA0FF;
+    transform: scale(1.25);
+}
+
+/* GLASS TITLE */
+.center-title {
+    position: sticky;
+    top: 120px;
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+    padding: 22px 55px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 14px;
+    font-family: "League Gothic", sans-serif;
+    font-size: 45px;
+    color: white;
+    letter-spacing: 1px;
+    backdrop-filter: blur(20px);
+}
+
+/* CARDS SECTION */
+.cards-container {
+    display: flex;
+    gap: 25px;
+    margin-top: 180px;
+}
+
+/* EACH CARD */
+.testimonial-card {
+    flex: 1;
+    padding: 40px;
+    border-radius: 18px;
+    min-height: 260px;
+    backdrop-filter: blur(25px);
+    transform: translateY(25px);
+    opacity: 0;
+    animation: fadeUp 0.7s forwards;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Hover interaction */
+.testimonial-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+/* Stars */
+.stars {
+    font-size: 18px;
+    margin-bottom: 15px;
+    background: rgba(255,255,255,0.25);
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 10px; /* ⭐ Rounded stars container */
+}
+
+/* TEXT */
+.testimonial-title {
+    font-size: 30px;
+    font-family: "League Gothic", sans-serif;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.testimonial-desc,
+.testimonial-author {
+    font-family: "Poppins", sans-serif;
+}
+
+/* Entrance Animation */
+@keyframes fadeUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 950px) {
+    .cards-container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .center-title {
+        font-size: 34px;
+        padding: 16px 30px;
+    }
+}

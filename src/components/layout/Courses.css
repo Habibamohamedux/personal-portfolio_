@@ -1,0 +1,12 @@
+.courses-section{
+    padding: 50px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.courses-content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
