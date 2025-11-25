@@ -9,6 +9,7 @@ import Servicescards from "../components/layout/ServicesCards.jsx";
 import Courses from "../components/layout/Courses.jsx";
 import Testimonials from "../components/layout/Testimonials.jsx";
 import Blog from "../components/layout/Blog.jsx";
+import Socialmedia from "../components/layout/Socialmedia.jsx";
 
 const Home = () => {
     return (
@@ -23,6 +24,7 @@ const Home = () => {
 <Courses />
 <Testimonials />
 <Blog />
+<Socialmedia />
         </>
       );
 }

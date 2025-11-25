@@ -1,10 +1,11 @@
 import React from "react";
 import "./Courses.css"; 
 import Secondrytitle from "../common/Secondrytitle.jsx";
-import Glasscards from '../common/Glasscards';
+import Glasscards from '../common/Glasscards2';
 import blog01 from '../../assets/Blogs/blogs01.jpg';
 import blog02 from '../../assets/Blogs/blogs02.jpg';
 import blog03 from '../../assets/Blogs/blogs03.jpg';
+import Calltoaction from "../common/Calltoaction.jsx";
 const Blog = () => {
     return (
         <div className="courses-section">
@@ -30,6 +31,7 @@ const Blog = () => {
                     paragraph="Master the art of digital marketing with strategies for SEO, social media, and content marketing to grow your online presence." 
                 />
             </div>
+                    <Calltoaction cta="View More" />
         </div>
      );
 }
