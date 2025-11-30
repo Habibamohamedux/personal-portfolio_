@@ -1,0 +1,123 @@
+
+
+* {
+  box-sizing: border-box;
+}
+
+.getintouch-section {
+  width: 100%;
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* GLASS CONTAINER */
+.glass-form {
+  width: 100%;
+  max-width: 900px;
+
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 26px;
+  backdrop-filter: blur(20px);
+
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.04),
+    0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* FLEX ROWS */
+.row {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+}
+
+/* FIELD BLOCK */
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffffc7;
+}
+
+label span {
+  color: #ff4e4e;
+}
+
+/* INPUTS */
+input,
+textarea {
+  width: 100%;
+  border-radius: 14px;
+  padding: 16px 20px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+
+  font-size: 1rem;
+
+  transition: 0.25s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+input:focus,
+textarea:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+textarea {
+  height: 160px;
+  resize: none;
+}
+
+/* CHECKBOX ROW */
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.checkbox-row input {
+  width: 18px;
+  height: 18px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+  .row {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-form {
+    padding: 25px;
+  }
+
+  input,
+  textarea {
+    padding: 14px 16px;
+  }
+}

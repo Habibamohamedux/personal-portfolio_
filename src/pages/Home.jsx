@@ -10,7 +10,7 @@ import Courses from "../components/layout/Courses.jsx";
 import Testimonials from "../components/layout/Testimonials.jsx";
 import Blog from "../components/layout/Blog.jsx";
 import Socialmedia from "../components/layout/Socialmedia.jsx";
-
+import Getintouch from "../components/layout/Getintouch.jsx";
 const Home = () => {
     return (
         <>
@@ -25,6 +25,7 @@ const Home = () => {
 <Testimonials />
 <Blog />
 <Socialmedia />
+<Getintouch />
         </>
       );
 }
