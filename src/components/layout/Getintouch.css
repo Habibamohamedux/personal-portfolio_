@@ -1,23 +1,23 @@
-
-
-* {
-  box-sizing: border-box;
+.getintouch-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  padding: 60px 40px;
+  align-items: flex-start;
 }
 
-.getintouch-section {
-  width: 100%;
-  padding: 60px 0;
+/* LEFT FORM SIDE */
+.left-side {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 30px;
 }
 
-/* GLASS CONTAINER */
+/* GLASS FORM */
 .glass-form {
   width: 100%;
-  max-width: 900px;
-
-  padding: 40px;
+  padding: 35px;
 
   display: flex;
   flex-direction: column;
@@ -25,99 +25,126 @@
 
   background: rgba(255, 255, 255, 0.05);
   border-radius: 26px;
-  backdrop-filter: blur(20px);
-
+  backdrop-filter: blur(18px);
   box-shadow:
     inset 0 0 20px rgba(255, 255, 255, 0.04),
     0 10px 40px rgba(0, 0, 0, 0.45);
 }
 
-/* FLEX ROWS */
 .row {
   display: flex;
-  gap: 25px;
-  width: 100%;
+  gap: 20px;
 }
 
-/* FIELD BLOCK */
 .field {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 label {
-  font-size: 0.9rem;
-  letter-spacing: 1px;
+  color: #ffffffba;
   text-transform: uppercase;
-  color: #ffffffc7;
+  font-size: 0.9rem;
 }
 
-label span {
-  color: #ff4e4e;
-}
-
-/* INPUTS */
 input,
 textarea {
-  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 14px;
   padding: 16px 20px;
-
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
   color: white;
-
   font-size: 1rem;
-
   transition: 0.25s ease;
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+textarea {
+  height: 150px;
+  resize: none;
 }
 
 input:focus,
 textarea:focus {
+  border-color: rgba(255, 255, 255, 0.45);
   background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-textarea {
-  height: 160px;
-  resize: none;
-}
-
-/* CHECKBOX ROW */
+/* CHECKBOX */
 .checkbox-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-top: 10px;
+  gap: 12px;
 }
 
-.checkbox-row input {
-  width: 18px;
-  height: 18px;
+/* RIGHT SIDE GLASS PHONE HOLDER */
+.right-side {
+  flex: 0.9;
+  display: flex;
+  justify-content: center;
 }
 
-/* RESPONSIVE */
-@media (max-width: 850px) {
-  .row {
+/* GLASS PHONE CONTAINER */
+.phones-glass {
+  width: 100%;
+  max-width: 420px;
+  height: 680px;
+  position: relative; /* IMPORTANT for absolute children */
+
+  overflow: hidden;
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+
+  box-shadow:
+    inset 0 0 25px rgba(255, 255, 255, 0.07),
+    inset 0 0 45px rgba(255, 255, 255, 0.03),
+    0 25px 60px rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* PHONE CARDS */
+.phone-card {
+  width: 150px;
+  height: 300px;
+  position: absolute;
+
+  object-fit: cover;
+  border-radius: 28px;
+
+  /* OUTER SHADOW */
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.55),
+    0 5px 15px rgba(0, 0, 0, 0.35);
+
+  /* INNER GLOW */
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+
+  opacity: 0.92;
+  transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 950px) {
+  .getintouch-wrapper {
     flex-direction: column;
-    gap: 18px;
-  }
-}
-
-@media (max-width: 480px) {
-  .glass-form {
-    padding: 25px;
+    padding: 40px 20px;
   }
 
-  input,
-  textarea {
-    padding: 14px 16px;
+  .right-side {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .phones-glass {
+    max-width: 100%;
+    height: auto;
+    padding: 20px;
   }
 }
