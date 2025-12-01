@@ -1,5 +1,5 @@
 import React from "react";
-import "./ServicesCards.css"; 
+import "./servicescards.css"; 
 import Secondrytitle from "../common/Secondrytitle.jsx";
 import shape1 from "../../assets/servicesshapes/shape1.png";
 import shape2 from "../../assets/servicesshapes/shape2.png";
