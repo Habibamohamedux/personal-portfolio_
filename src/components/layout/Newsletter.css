@@ -1,0 +1,184 @@
+.newsletter-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #0c2c63;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0px 100px;}
+
+.newsletter-wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.newsletter-header {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	flex-wrap: wrap;
+	animation: slideDown 560ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+/* subtle entrance */
+@keyframes slideDown {
+	from { opacity: 0; transform: translateY(-12px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+.newsletter-container {
+	width: 100%;
+	
+}
+
+.newsletter-glass {
+	position: relative;
+	border-radius: 16px;
+	padding: 2rem;
+	background: rgba(255,255,255,0.04);
+	border: 1px solid rgba(255,255,255,0.08);
+	box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+	-webkit-backdrop-filter: blur(10px) saturate(120%);
+	backdrop-filter: blur(10px) saturate(120%);
+}
+
+.newsletter-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem; /* rem spacing */
+	color: #ffffff;
+}
+
+.newsletter-title {
+	font-size: 30px; /* px for heading */
+	line-height: 1.2;
+	font-weight: 700;
+	font-family: "Poppins", sans-serif;
+	margin: 0; /* remove margins */
+}
+
+.newsletter-subtitle {
+	color: rgba(255,255,255,0.85);
+	max-width: 58ch;
+	text-align: center;
+	font-size: 16px; /* px */
+	font-family: "Poppins", sans-serif;
+	margin: 0; /* remove margins */
+}
+
+.newsletter-form {
+	display: flex;
+	gap: 24px;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.newsletter-input {
+	flex: 1 1 22.5rem; /* rem-based flex basis */
+	min-width: 200px;
+	padding: 0.75rem 1rem;
+	border-radius: 999px;
+	border: 1px solid rgba(255,255,255,0.08);
+	background: rgba(255,255,255,0.02);
+	color: #fff;
+	outline: none;
+	font-size: 16px; /* px */
+	font-family: "Poppins", sans-serif;
+}
+
+.newsletter-input::placeholder {
+	color: rgba(255,255,255,0.6);
+}
+
+/* style when CTA replaces the subscribe button */
+.newsletter-form .cta-btn {
+	padding: 0.75rem 1.25rem;
+	border-radius: 999px;
+	font-size: 15px; /* px */
+	font-family: "League Gothic", sans-serif;
+}
+
+.newsletter-cta-button {
+	display: flex;
+	padding: 10px 30px;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	border-radius: 30px;
+	background: rgba(255, 255, 255, 0.05);
+	box-shadow: 
+		0 4px 4px rgba(0, 0, 0, 0.25), 
+		0 4px 4px rgba(230, 216, 216, 0.25) inset,
+		0 4px 7.7px rgba(0, 0, 0, 0.25);
+	color: #FFF;
+	font-family: "League Gothic", sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 150%;
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.newsletter-cta-button:hover {
+	background: rgba(255, 255, 255, 0.1);
+	box-shadow: 
+		0 8px 16px rgba(0,0,0,0.3), 
+		0 4px 6px rgba(255,255,255,0.2) inset;
+	transform: translateY(-2px);
+}
+
+.newsletter-cta-button:active {
+	background: rgba(255, 255, 255, 0.15);
+	box-shadow: 
+		0 2px 4px rgba(0,0,0,0.2) inset,
+		0 2px 4px rgba(255,255,255,0.1) inset;
+	transform: translateY(1px);
+}
+
+@media (max-width: 640px) {
+	.newsletter-button { width: 100%; flex: 0 0 auto; }
+	.newsletter-form { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+	.newsletter-form .cta-btn { width: 100%; }
+	.newsletter-cta-button { width: 100%; }
+	.newsletter-input { width: 100%; }
+	.newsletter-glass { padding: 1rem; }
+	.newsletter-header { gap: 0.75rem; }
+	.newsletter-title { font-size: 24px; }
+	.newsletter-subtitle { font-size: 15px; }
+}
+
+.newsletter-button {
+	padding: 0.75rem 1.25rem;
+	border-radius: 999px;
+	border: none;
+	background: linear-gradient(90deg, #7c5cff 0%, #4fe6c1 100%);
+	color: #071227;
+	font-weight: 700;
+	cursor: pointer;
+	box-shadow: 0 8px 20px rgba(79,230,193,0.12);
+	transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.newsletter-button:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 14px 36px rgba(79,230,193,0.18);
+}
+
+.newsletter-note {
+	font-size: 14px;
+	color: rgba(255,255,255,0.68);
+	font-family: "Poppins", sans-serif;
+}
+
+@media (max-width: 560px) {
+	.newsletter-glass { padding: 1.25rem; }
+	.newsletter-form { gap: 0.5rem; }
+	.newsletter-button { width: 100%; flex: 0 0 auto; }
+}
+
