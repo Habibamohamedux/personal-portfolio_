@@ -36,29 +36,29 @@ export default function Getintouch() {
   };
 
   return (
-    <div className="getintouch-container">
-      <Secondrytitle secondaryTitle="Get in touch" />
+    <section className="getintouch">
+     <Secondrytitle secondaryTitle="GET IN TOUCH" />
 
-      <section className="getintouch-wrapper">
-        {/* LEFT SIDE FORM */}
-        <div className="left-side">
-          <motion.form
-            className="glass-form"
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="row">
-              <div className="field">
-                <label>Name *</label>
-                <input
-                  name="name"
-                  required
-                  placeholder="Your name"
-                  onChange={handleChange}
-                />
-              </div>
+    <div className="getintouch-wrapper">
+
+      <div className="left-side">
+      
+
+        <motion.form
+          className="glass-form"
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* FORM CONTENT (same as previous version) */}
+          {/* --------------------------------------- */}
+
+          <div className="row">
+            <div className="field">
+              <label>Name *</label>
+              <input name="name" required placeholder="Your name" />
+            </div>
 
               <div className="field">
                 <label>Phone</label>
@@ -139,31 +139,32 @@ export default function Getintouch() {
               />
             ))}
 
-            {/* LANE 2 */}
-            {[screen4, screen5, screen6].map((img, i) => (
-              <motion.img
-                key={"lane2-" + i}
-                src={img}
-                className="phone-card"
-                animate={{ y: ["130%", "-130%"] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 14 + i * 1.3,
-                  ease: "linear"
-                }}
-                style={{
-                  top: `calc(${i * 80 + 40}px)`,
-                  left: `calc(${i * 80 - 40}px)`,
-                  rotate: -14,
-                  position: "absolute",
-                  zIndex: 1,
-                  opacity: 0.92
-                }}
-              />
-            ))}
-          </div>
+{/* LANE 2 */}
+{[screen4, screen5, screen6].map((img, i) => (
+  <motion.img
+    key={"lane2-" + i}
+    src={img}
+    className="phone-card"
+    animate={{ y: ["130%", "-130%"] }}
+    transition={{
+      repeat: Infinity,
+      duration: 14 + i * 1.3,
+      ease: "linear"
+    }}
+    style={{
+      top: `calc(${i * 80 + 40}px)`,   // shifted down
+      left: `calc(${i * 80 - 40}px)`,  // shifted left
+      rotate: -14,
+      position: "absolute",
+      zIndex: 1,
+      opacity: 0.92
+    }}
+  />
+))}
         </div>
-      </section>
+      </div>
+
     </div>
+        </section>
   );
 }

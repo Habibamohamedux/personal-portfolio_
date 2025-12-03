@@ -5,12 +5,13 @@ import Navbar from "../components/layout/Navbar.jsx";
 import Latestshowreel from "../components/common/latestshowreel.jsx";
 import Featuredprojects from "../components/common/Featuredprojects.jsx";
 import Frontenddevelopment from "../components/layout/frontenddevelopment.jsx";
-import Servicescards from "../components/layout/servicescards.jsx";
+import Servicescards from "../components/layout/ServicesCards.jsx";
 import Courses from "../components/layout/Courses.jsx";
 import Testimonials from "../components/layout/Testimonials.jsx";
 import Blog from "../components/layout/Blog.jsx";
 import Socialmedia from "../components/layout/Socialmedia.jsx";
 import Getintouch from "../components/layout/Getintouch.jsx";
+import Newsletter from "../components/layout/Newsletter.jsx";
 const Home = () => {
     return (
         <>
@@ -26,6 +27,7 @@ const Home = () => {
 <Blog />
 <Socialmedia />
 <Getintouch />
+    <Newsletter /> 
         </>
       );
 }

@@ -1,10 +1,9 @@
 .getintouch-container {
   display: flex;
   gap: 40px;
-  padding: 48px 100px;
   align-items: flex-start;
   justify-content: center;
-  background-color: #0c2c63;
+  
   flex-direction: column;
   align-content: center;
 }
@@ -18,7 +17,15 @@
   width: 100%;
   margin: 0 auto;
 }
-
+.getintouch{
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;  
+  background-color: #0c2c63;
+  
+}
+/* LEFT FORM SIDE */
 .left-side {
   flex: 1;
   display: flex;
