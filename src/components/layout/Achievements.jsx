@@ -1,6 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './Achievements.css';
+import bookcover from '../../assets/creative/bookcover.jpg';
+import movieposter from '../../assets/creative/movieposter.jpg';
+import Cib from '../../assets/creative/Cib.jpg';
+import sustain from '../../assets/creative/sustain.jpg';
 
 const creativeWorks = [
   {
@@ -8,20 +12,18 @@ const creativeWorks = [
     type: "Short Film",
     title: "Grandma Tales",
     role: "Director / Editor",
-    // Replace with actual image path
-    image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=2670&auto=format&fit=crop", 
-    link: "/blog/grandma-tales", // Internal Link to your blog page
-    style: "cinema" // horizontal aspect ratio
+    image: movieposter, 
+    link: "/blog/grandma-tales",
+    style: "cinema"
   },
   {
     id: 2,
     type: "Published Book",
     title: "Trying To Figure A Way Out",
     role: "Author / Illustrator",
-    // Replace with actual image path
-    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=2573&auto=format&fit=crop",
-    link: "/blog/figure-way-out", // Internal Link to your blog page
-    style: "book" // vertical aspect ratio
+    image: bookcover,
+    link: "/blog/figure-way-out",
+    style: "book"
   }
 ];
 
@@ -30,46 +32,33 @@ const certifications = [
     id: 1,
     title: "CIB Summer Internship",
     issuer: "Commercial International Bank",
-    date: "August 2024",
-    // Placeholder image
-    image: "https://images.unsplash.com/photo-1589330694653-4d5c95331b9a?auto=format&fit=crop&q=80&w=1000",
-    link: "#"
+    date: "August 2025",
+    image: Cib,
+    link: "/blog/CIB-Summer-Internship"
   },
   {
     id: 2,
     title: "Sustainability Foundations",
     issuer: "LinkedIn Learning",
-    date: "Sep 2025",
-    // Placeholder image
-    image: "https://images.unsplash.com/photo-1523580846055-a72752879fc2?auto=format&fit=crop&q=80&w=1000",
-    link: "#"
+    date: "September 2025",
+    image: sustain,
+    link: "/blog/Sustainability-Foundations"
   }
 ];
 
+// --- UPDATED LINKEDIN DATA (Only 2 Posts) ---
 const linkedInPosts = [
   {
     id: 1,
-    date: "2 days ago",
-    content: "Thrilled to share that 'Grandma Tales' has won 1st Place at the WAMEED 1.0 Competition! This project was a journey of rediscovering heritage through a modern lens...",
-    likes: 142,
-    comments: 24,
-    url: "https://linkedin.com/in/yourprofile"
+    // "CIB Summer Internship" Post
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:activity:7369434422175088642", 
+    height: "600"
   },
   {
     id: 2,
-    date: "1 week ago",
-    content: "Just completed the CIB Summer Internship program. It was an incredible opportunity to apply UX principles in a FinTech environment. Huge thanks to my mentors...",
-    likes: 89,
-    comments: 12,
-    url: "https://linkedin.com/in/yourprofile"
-  },
-  {
-    id: 3,
-    date: "1 month ago",
-    content: "My first book 'Trying To Figure A Way Out' is finally published! It's a collection of thoughts on growing up and finding your creative voice.",
-    likes: 210,
-    comments: 45,
-    url: "https://linkedin.com/in/yourprofile"
+    // "Wameed Short Film" Post
+    embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:activity:7366718771362758656",
+    height: "600"
   }
 ];
 
@@ -123,7 +112,7 @@ const Achievements = () => {
         <div className="category-block">
           <div className="sticky-label">
             <h3>Professional</h3>
-            <span>Certs</span>
+            <span>Certifications</span>
           </div>
 
           <div className="cert-grid">
@@ -144,28 +133,25 @@ const Achievements = () => {
           </div>
         </div>
 
-        {/* --- SECTION 3: LINKEDIN PULSE --- */}
+        {/* --- SECTION 3: LINKEDIN LIVE FEED --- */}
         <div className="category-block">
           <div className="sticky-label">
             <h3>Recent Updates</h3>
-            <span>Social</span>
+            <span>Social Media</span>
           </div>
 
-          <div className="linkedin-scroller">
+          <div className="linkedin-grid-static">
             {linkedInPosts.map((post) => (
-              <div key={post.id} className="li-post">
-                <div className="li-header">
-                  <div className="li-avatar">H</div> {/* Your Initial */}
-                  <div className="li-meta">
-                    <h5>Habiba Saad</h5>
-                    <span>{post.date}</span>
-                  </div>
-                </div>
-                <p className="li-content">{post.content}</p>
-                <div className="li-footer">
-                  <span>{post.likes} Likes • {post.comments} Comments</span>
-                  <a href={post.url} target="_blank" rel="noreferrer" className="li-link">View Post &rarr;</a>
-                </div>
+              <div key={post.id} className="li-embed-wrapper">
+                <iframe 
+                  src={post.embedUrl}
+                  height={post.height}
+                  width="100%" 
+                  frameBorder="0" 
+                  allowFullScreen="" 
+                  title="Embedded LinkedIn Post"
+                  className="li-iframe"
+                ></iframe>
               </div>
             ))}
           </div>

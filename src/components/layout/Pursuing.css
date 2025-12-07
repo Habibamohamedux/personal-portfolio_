@@ -202,3 +202,197 @@
     font-size: 5rem;
   }
 }
+.divider-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  margin: 4rem 0;
+}
+
+.language-section {
+  padding-bottom: 2rem;
+}
+
+.section-subtitle {
+  font-family: var(--font-header);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  color: var(--text-white);
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.lang-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+}
+
+.lang-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-5px);
+}
+
+/* Background Typography (FR, DE, ES) */
+.lang-bg-code {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  font-family: var(--font-header);
+  font-size: 6rem;
+  color: rgba(255, 255, 255, 0.03);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.lang-header h4 {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #fff;
+  z-index: 2;
+  position: relative;
+}
+
+.lang-status {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* Status Colors */
+.lang-card.active .lang-status { color: var(--accent-cyan); }
+.lang-card.locked .lang-status { color: var(--text-grey); }
+
+/* The Progress Bar for Active Languages */
+.progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-cyan);
+  border-radius: 4px;
+}
+
+/* Special Style for "Next" (Spanish) */
+.lang-card.locked {
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.lang-card.locked:hover {
+  opacity: 1;
+  border-style: solid;
+  border-color: var(--accent-cyan);
+}
+/* --- UPDATES FOR LANGUAGE CARDS --- */
+
+.lang-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* Align text to bottom of the big number */
+  margin-bottom: 0.5rem;
+}
+
+.lang-level {
+  font-size: 0.9rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.lang-percentage {
+  font-family: var(--font-header);
+  font-size: 3rem;
+  line-height: 0.8;
+  color: var(--accent-cyan);
+}
+
+/* The "Currently Reading" Section */
+.current-read {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.book-thumb {
+  width: 45px;
+  height: 65px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text-grey);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.book-title {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #fff;
+  line-height: 1.2;
+}
+/* --- NEW: Language Name Styles --- */
+.lang-title-group {
+  margin: 1rem 0; /* Space between status and percentage */
+}
+
+.lang-title-group h3 {
+  margin: 0;
+  font-family: var(--font-header);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  line-height: 1;
+}
+
+.native-lang {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-grey);
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Adjust the meta section to sit below the title */
+.lang-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}

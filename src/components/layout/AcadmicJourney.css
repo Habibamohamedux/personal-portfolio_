@@ -31,8 +31,8 @@
   filter: blur(80px);
   z-index: 0;
 }
-.bg-glow-1 { top: 50px; right: -200px; }
-.bg-glow-2 { bottom: -200px; left: -200px; }
+.bg-glow-1 { top: 30px; right: -200px; }
+.bg-glow-2 { bottom: 50px; left: -200px; }
 
 .content-wrapper {
   position: relative;

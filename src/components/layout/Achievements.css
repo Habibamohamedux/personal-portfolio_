@@ -116,7 +116,7 @@
 .card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   transition: filter 0.3s ease;
 }
 
@@ -194,7 +194,7 @@
 
 .cert-thumb {
   width: 100%;
-  height: 180px;
+  height: 320px;
   object-fit: cover;
   border-radius: 6px;
   opacity: 0.8;
@@ -212,80 +212,28 @@
   margin: 0;
 }
 
-/* --- LINKEDIN FEED STYLE --- */
-.linkedin-scroller {
+/* --- LINKEDIN EMBED STYLES (NO SCROLLBAR) --- */
+.linkedin-grid-static {
   display: flex;
   gap: 2rem;
-  overflow-x: auto;
-  padding-bottom: 2rem;
-  /* Hide scrollbar but allow scroll */
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-blue) transparent;
-}
-
-.li-post {
-  min-width: 300px;
-  max-width: 350px;
-  background: #1e1f2b; /* LinkedIn Dark Modeish color */
-  border-radius: 12px;
-  padding: 1.5rem;
-  border: 1px solid rgba(255,255,255,0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.li-header {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.li-avatar {
-  width: 40px;
-  height: 40px;
-  background-color: var(--accent-blue);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.li-meta h5 {
-  margin: 0;
-  font-size: 0.95rem;
-}
-.li-meta span {
-  font-size: 0.75rem;
-  color: var(--text-grey);
-}
-
-.li-content {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #ddd;
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* Limit to 4 lines */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.li-footer {
-  margin-top: auto;
+  flex-wrap: wrap; /* Allows items to wrap to next line if needed */
   padding-top: 1rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  color: var(--text-grey);
 }
 
-.li-link {
-  color: var(--accent-blue);
-  text-decoration: none;
-  font-weight: 600;
+.li-embed-wrapper {
+  min-width: 300px;
+  max-width: 450px; /* Gives them a bit more room */
+  flex: 1; /* Allows them to grow and fill space */
+  background: white; 
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  height: fit-content; 
+}
+
+.li-iframe {
+  display: block; 
+  background-color: white;
 }
 
 /* --- RESPONSIVE --- */
@@ -307,5 +255,14 @@
   
   .sticky-label span {
     font-size: 1.5rem;
+  }
+
+  /* Make LinkedIn cards stack on mobile */
+  .linkedin-grid-static {
+    flex-direction: column;
+  }
+  
+  .li-embed-wrapper {
+    max-width: 100%;
   }
 }

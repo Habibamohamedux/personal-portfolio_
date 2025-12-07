@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-  --bg-cv: linear-gradient(180deg, rgba(1, 8, 16, 0.9), rgba(13, 46, 103, 0.95));;
+  --bg-cv: linear-gradient(180deg, rgba(1, 8, 16, 0.9), rgba(13, 46, 103, 0.95));
   --card-bg: #0f1021;
   --accent-blue: #2e86de;
-  --accent-cyan: #00d2d3;
-  --accent-purple: #a55eea; /* Added for Creative Media distinction */
+  --accent-cyan: #00d2d3; /* Adjusted cyan for better visibility */
+  --accent-purple: #a55eea;
   --text-white: #ffffff;
   --text-grey: #a4b0be;
   --font-header: 'League Gothic', sans-serif;
@@ -64,7 +64,6 @@
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
-  group: hover;
 }
 
 /* Specific Border Glows per role */
@@ -72,7 +71,7 @@
 .cv-card.frontend:hover { border-color: var(--accent-cyan); box-shadow: 0 0 30px rgba(0, 210, 211, 0.2); }
 .cv-card.creative:hover { border-color: var(--accent-purple); box-shadow: 0 0 30px rgba(165, 94, 234, 0.2); }
 
-/* The Icon Circle */
+/* The Icon Circle (Updated for SVG) */
 .cv-icon-box {
   width: 80px;
   height: 80px;
@@ -81,16 +80,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
   margin-bottom: 1.5rem;
   transition: transform 0.4s ease;
   color: var(--text-white);
+}
+
+.cv-icon-box svg {
+  width: 40px;
+  height: 40px;
+  fill: currentColor; /* Inherits text color */
 }
 
 .cv-card:hover .cv-icon-box {
   transform: scale(1.1) rotate(5deg);
   background: rgba(255, 255, 255, 0.1);
 }
+.cv-card.ux:hover .cv-icon-box { color: var(--accent-blue); }
+.cv-card.frontend:hover .cv-icon-box { color: var(--accent-cyan); }
+.cv-card.creative:hover .cv-icon-box { color: var(--accent-purple); }
 
 /* Text Styling */
 .role-title {
@@ -139,3 +146,76 @@
 .download-btn:hover .btn-arrow {
   transform: translateY(3px);
 }
+
+/* --- POPUP / MODAL STYLES --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.modal-content {
+  background: #0f1021;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  transform: scale(0.9);
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.modal-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-family: var(--font-header);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin: 0 0 1rem 0;
+  color: #fff;
+}
+
+.modal-text {
+  color: var(--text-grey);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.modal-close-btn {
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes popIn { to { transform: scale(1); } }

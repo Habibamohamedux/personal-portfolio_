@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './Pursuing.css';
+import Ora from '../../assets/creative/Ora.svg';
+import book1 from '../../assets/creative/gesammelte-werke.jpg';
+import book2 from '../../assets/creative/Laphotoquitue.jpg';
 
 const Pursuing = () => {
   return (
@@ -21,7 +24,7 @@ const Pursuing = () => {
 
       <div className="max-width-wrapper">
         
-        {/* Header */}
+        {/* --- SECTION 1: HEADER & ORA PROJECT --- */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,9 +34,7 @@ const Pursuing = () => {
           <h1 className="big-title">What I'm Pursuing Now?</h1>
         </motion.div>
 
-        {/* Main Content Split */}
         <div className="project-split">
-          
           {/* Left: Text Content */}
           <motion.div 
             className="project-info"
@@ -48,7 +49,7 @@ const Pursuing = () => {
               <p className="project-desc">
                 I’m currently focusing on my graduation project – <strong>ORA</strong>, the first-ever AI-powered assistant designed to support women through every stage of motherhood.
                 <br /><br />
-                From the first thought of pregnancy to postnatal care, ORA aims to be a compassionate, intelligent companion that empowers women with personalized guidance, emotional support, and reliable information — from the first heartbeat to the first steps.
+                From the first thought of pregnancy to postnatal care, ORA aims to be a compassionate, intelligent companion that empowers women with personalized guidance, emotional support, and reliable information.
               </p>
             </div>
 
@@ -66,7 +67,6 @@ const Pursuing = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="image-frame">
-              {/* REPLACE WITH YOUR MAIN ORA IMAGE (The baby/womb concept) */}
               <img 
                 src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=2670&auto=format&fit=crop" 
                 alt="ORA Concept Art" 
@@ -74,23 +74,20 @@ const Pursuing = () => {
               />
             </div>
             
-            {/* The Floating App Icon */}
             <motion.div 
               className="floating-ui"
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
             >
-              {/* REPLACE WITH YOUR APP LOGO/ICON */}
               <img 
-                src="https://cdn-icons-png.flaticon.com/512/4333/4333609.png" 
+                src=   {Ora} 
                 alt="ORA App Icon" 
               />
             </motion.div>
           </motion.div>
-
         </div>
 
-        {/* --- EXTRA CREATIVE SECTION: Technical Pillars --- */}
+        {/* --- SECTION 2: TECH STACK --- */}
         <motion.div 
           className="tech-stack-strip"
           initial={{ opacity: 0, y: 40 }}
@@ -99,19 +96,149 @@ const Pursuing = () => {
         >
           <div className="tech-card">
             <h4>Artificial Intelligence</h4>
-            <p>Empathetic NLP models tuned for maternal emotional support and guidance.</p>
+            <p>Empathetic NLP models tuned for maternal support.</p>
           </div>
           <div className="tech-card">
             <h4>IoT Integration</h4>
-            <p>Seamless connection with health monitors for real-time vitals tracking.</p>
+            <p>Real-time vitals tracking & health monitors.</p>
           </div>
           <div className="tech-card">
             <h4>Data Security</h4>
-            <p>End-to-end encryption ensuring complete privacy for sensitive health data.</p>
+            <p>End-to-end encryption for health data.</p>
           </div>
           <div className="tech-card">
             <h4>UX Research</h4>
-            <p>Designed based on interviews with 50+ expecting mothers.</p>
+            <p>Based on interviews with 50+ mothers.</p>
+          </div>
+        </motion.div>
+
+        {/* --- DIVIDER --- */}
+        <div className="divider-line"></div>
+
+        {/* --- SECTION 3: LANGUAGE JOURNEY --- */}
+        <motion.div 
+          className="language-section"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h3 className="section-subtitle">Linguistic Journey</h3>
+          
+          <div className="lang-grid">
+            
+            {/* 1. FRENCH CARD (A2 - 35%) */}
+            <div className="lang-card active">
+              <div className="lang-bg-code">FR</div>
+              
+              <div className="lang-header">
+                <span className="lang-status">● Active Learning</span>
+                
+                {/* --- ADDED: NAME SECTION --- */}
+                <div className="lang-title-group">
+                  <h3>French</h3>
+                  <span className="native-lang">Français</span>
+                </div>
+
+                <div className="lang-meta">
+                  <span className="lang-level">Level A2</span>
+                  <span className="lang-percentage">35%</span>
+                </div>
+              </div>
+
+              <div className="progress-track">
+                <motion.div 
+                  className="progress-fill" 
+                  initial={{ width: 0 }} 
+                  whileInView={{ width: '35%' }} 
+                  transition={{ duration: 1.5, delay: 0.2 }}
+                />
+              </div>
+
+              {/* Reading Section */}
+              <div className="current-read">
+                <img 
+                  src={book2} 
+                  alt="Laphoto qui tue" 
+                  className="book-thumb" 
+                />
+                <div className="book-info">
+                  <span className="book-label">Currently Reading</span>
+                  <h5 className="book-title">La photo qui tue – Anthony Horowitz</h5>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. GERMAN CARD (A1 - 15%) */}
+            <div className="lang-card active">
+              <div className="lang-bg-code">DE</div>
+              
+              <div className="lang-header">
+                <span className="lang-status">● Active Learning</span>
+
+                {/* --- ADDED: NAME SECTION --- */}
+                <div className="lang-title-group">
+                  <h3>German</h3>
+                  <span className="native-lang">Deutsch</span>
+                </div>
+
+                <div className="lang-meta">
+                  <span className="lang-level">Level A1</span>
+                  <span className="lang-percentage">15%</span>
+                </div>
+              </div>
+
+              <div className="progress-track">
+                <motion.div 
+                  className="progress-fill" 
+                  initial={{ width: 0 }} 
+                  whileInView={{ width: '15%' }} 
+                  transition={{ duration: 1.5, delay: 0.4 }}
+                />
+              </div>
+
+              {/* Reading Section */}
+              <div className="current-read">
+                <img 
+                  src={book1} 
+                  alt="gesammelte werke" 
+                  className="book-thumb" 
+                />
+                <div className="book-info">
+                  <span className="book-label">Currently Reading</span>
+                  <h5 className="book-title">Gesammelte Werke – Franz Kafka</h5>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. SPANISH CARD (Locked) */}
+            <div className="lang-card locked">
+              <div className="lang-bg-code">ES</div>
+              
+              <div className="lang-header">
+                <span className="lang-status">○ Initializing...</span>
+
+                {/* --- ADDED: NAME SECTION --- */}
+                <div className="lang-title-group">
+                  <h3>Spanish</h3>
+                  <span className="native-lang">Español</span>
+                </div>
+
+                <div className="lang-meta">
+                  <span className="lang-level">Beginner</span>
+                  <span className="lang-percentage" style={{ color: '#555' }}>0%</span>
+                </div>
+              </div>
+
+              <div className="progress-track" style={{ opacity: 0.3 }}>
+                 {/* Empty bar */}
+              </div>
+
+              {/* Placeholder for layout consistency, empty */}
+              <div className="current-read" style={{ opacity: 0, pointerEvents: 'none' }}>
+                  <div className="book-thumb"></div>
+              </div>
+            </div>
+
           </div>
         </motion.div>
 
