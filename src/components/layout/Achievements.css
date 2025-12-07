@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-dark: #050511;
+  --card-bg: #0f1021;
+  --accent-blue: #2e86de;
+  --accent-gold: #f1c40f;
+  --text-white: #ffffff;
+  --text-grey: #a4b0be;
+  --font-header: 'League Gothic', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+.achievements-container {
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  padding: 6rem 2rem;
+  min-height: 100vh;
+  font-family: var(--font-body);
+}
+
+.max-width-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- HEADER --- */
+.section-header {
+  margin-bottom: 5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.big-title {
+  font-family: var(--font-header);
+  font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.85;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(to bottom, #fff, #999);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-desc {
+  max-width: 300px;
+  text-align: right;
+  font-size: 0.9rem;
+  color: var(--text-grey);
+}
+
+/* --- LAYOUT GRID (Sidebar + Content) --- */
+.category-block {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* Sidebar | Content */
+  gap: 3rem;
+  margin-bottom: 6rem;
+}
+
+.sticky-label {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.sticky-label h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-blue);
+  margin-bottom: 0.5rem;
+}
+
+.sticky-label span {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* --- CREATIVE MEDIA CARDS (Movie/Book) --- */
+.creative-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.creative-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 16/9; /* Cinematic aspect ratio */
+  cursor: pointer;
+  background: var(--card-bg);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none; /* Removes underline from Link */
+}
+
+/* Vertical aspect ratio for books */
+.creative-card.book-aspect {
+  aspect-ratio: 3/4; 
+  max-width: 350px;
+}
+
+.creative-card:hover {
+  transform: scale(1.02);
+  z-index: 2;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease;
+}
+
+.creative-card:hover .card-img {
+  filter: brightness(0.4); /* Darken image on hover to show text */
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.creative-card:hover .card-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card-tag {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-blue);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.card-title {
+  font-family: var(--font-header);
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+}
+
+.read-btn {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+  border-bottom: 1px solid var(--accent-blue);
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+/* --- PROFESSIONAL CERTS --- */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.cert-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cert-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.cert-thumb {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  opacity: 0.8;
+}
+
+.cert-info h4 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.cert-info p {
+  font-size: 0.85rem;
+  color: var(--text-grey);
+  margin: 0;
+}
+
+/* --- LINKEDIN FEED STYLE --- */
+.linkedin-scroller {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding-bottom: 2rem;
+  /* Hide scrollbar but allow scroll */
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-blue) transparent;
+}
+
+.li-post {
+  min-width: 300px;
+  max-width: 350px;
+  background: #1e1f2b; /* LinkedIn Dark Modeish color */
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.li-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.li-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: var(--accent-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.li-meta h5 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.li-meta span {
+  font-size: 0.75rem;
+  color: var(--text-grey);
+}
+
+.li-content {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #ddd;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Limit to 4 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.li-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-grey);
+}
+
+.li-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .category-block {
+    grid-template-columns: 1fr; /* Stack sidebar on top */
+    gap: 1.5rem;
+  }
+  
+  .sticky-label {
+    position: relative;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.5rem;
+  }
+  
+  .sticky-label span {
+    font-size: 1.5rem;
+  }
+}

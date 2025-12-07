@@ -8,9 +8,9 @@ const Abouthero = () => {
     <>
       <Aurora
         colorStops={["#0d1b3d", "#1e3a8a", "#60a5fa"]}
-        blend={1.0}
-        amplitude={1.0}
-        speed={1.0}
+        blend={2.0}
+        amplitude={9.0}
+        speed={2.0}
       />
 
       <div className="about-hero-container">
