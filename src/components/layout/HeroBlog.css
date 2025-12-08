@@ -1,0 +1,70 @@
+.hero-blog-section {
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+  text-align: center;
+  position: relative;
+}
+
+.hero-blog-title {
+  font-family: var(--font-header);
+  font-size: clamp(5rem, 12vw, 10rem); /* Massive responsive text */
+  line-height: 0.85;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(to bottom, #ffffff 30%, rgba(255,255,255,0.2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -2px;
+}
+
+.hero-blog-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-grey);
+  max-width: 500px;
+  margin: 1.5rem auto;
+  font-weight: 300;
+}
+
+/* The Search Bar Pill */
+.search-pill-container {
+  margin: 3rem auto 0;
+  max-width: 600px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: white;
+  font-family: var(--font-body);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  padding-right: 120px; /* Space for button */
+}
+
+.search-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 210, 211, 0.2);
+}
+
+.search-btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  border-radius: 40px;
+  padding: 0 1.5rem;
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  font-family: var(--font-header);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 1px;
+}

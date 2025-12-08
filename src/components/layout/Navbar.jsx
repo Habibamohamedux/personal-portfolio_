@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+// 1. Import Link from React Router
+import { Link } from "react-router-dom"; 
 import "./Navbar.css";
-import Languagebtn from "../../assets/language.svg"; // fix spelling if needed
+// Make sure these paths are correct for your project
+import Languagebtn from "../../assets/language.svg"; 
 import Logo from "../../assets/logo.svg";
 
 const Navbar = () => {
@@ -9,6 +12,17 @@ const Navbar = () => {
   const [languageMenu, setLanguageMenu] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
   const menuRef = useRef();
+
+  // --- 2. UPDATED LINKS WITH PATHS INSTEAD OF IDS ---
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Services", path: "/services" },
+    { name: "Courses", path: "/courses" },
+   { name: "Blogs", path: "/blogs" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   useEffect(() => {
     setFadeIn(true);
@@ -61,8 +75,10 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Center: Logo */}
-          <img src={Logo} alt="Logo" className="nav-logo" />
+          {/* Center: Logo (Optional: Link this to Home too) */}
+          <Link to="/">
+            <img src={Logo} alt="Logo" className="nav-logo" />
+          </Link>
 
           {/* Right: Burger */}
           <div
@@ -80,6 +96,9 @@ const Navbar = () => {
       {/* Fullscreen Menu */}
       <div className={`fullscreen-menu ${menuOpen ? "open" : ""}`}>
         <div className="fullscreen-content">
+          
+          {/* We hid the header in CSS, so this part is technically invisible, 
+              but good to keep structure or remove if preferred */}
           <div className="fullscreen-header">
             <img src={Logo} alt="Logo" className="fullscreen-logo" />
             <div
@@ -93,17 +112,16 @@ const Navbar = () => {
           </div>
 
           <ul className="fullscreen-links">
-            {[
-              "Home",
-              "About",
-              "Portfolio",
-              "Services",
-              "Courses & Tutorials",
-              "Blogs & News",
-              "Contact",
-            ].map((item) => (
-              <li key={item} onClick={() => setMenuOpen(false)}>
-                {item}
+            {/* --- 3. MAP THROUGH LINKS --- */}
+            {navLinks.map((item) => (
+              <li key={item.name}>
+                <Link 
+                  to={item.path} 
+                  onClick={() => setMenuOpen(false)} // Close menu when clicked
+                  style={{ textDecoration: 'none', color: 'inherit' }} // Keep styling clean
+                >
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>

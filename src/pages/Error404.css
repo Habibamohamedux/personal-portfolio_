@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --bg-dark-error: radial-gradient(circle at center, #0f1525 0%, #050810 100%);
+  --accent-cyan: #00d2d3;
+  --accent-blue: #2e86de;
+  --accent-pink: #ff0055; /* Added for the glitch split effect */
+  --text-white: #ffffff;
+  --text-grey: #a4b0be;
+  --font-header: 'League Gothic', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* --- MAIN CONTAINER --- */
+.error-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-dark-error);
+  font-family: var(--font-body);
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+/* --- AMBIENT BACKGROUND GLOWS --- */
+.error-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  z-index: 0;
+}
+.glow-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: var(--accent-blue); }
+.glow-2 { bottom: -10%; right: -10%; width: 400px; height: 400px; background: var(--accent-cyan); }
+
+/* --- THE GLASS CARD --- */
+.error-glass-card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 4rem 3rem;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Add a subtle scanline texture overlay to the card */
+.error-glass-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 3px
+  );
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* --- GLITCH TYPOGRAPHY (The "404") --- */
+.error-glitch-title {
+  font-family: var(--font-header);
+  font-size: clamp(6rem, 15vw, 10rem);
+  line-height: 1;
+  color: var(--text-white);
+  position: relative;
+  margin: 0 0 1rem 0;
+  letter-spacing: 5px;
+  /* The main text jitter animation */
+  animation: glitch-skew 1s infinite linear alternate-reverse;
+}
+
+/* Creating the cyan and pink split channels using pseudo-elements */
+.error-glitch-title::before,
+.error-glitch-title::after {
+  content: attr(data-text); /* Copies the text content */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+/* The Cyan Channel */
+.error-glitch-title::before {
+  color: var(--accent-cyan);
+  z-index: -1;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+/* The Pink Channel */
+.error-glitch-title::after {
+  color: var(--accent-pink);
+  z-index: -2;
+  animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+/* --- SUBTITLES & TEXT --- */
+.error-subtitle {
+  font-family: var(--font-header);
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(to right, #fff, var(--accent-grey));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.error-desc {
+  color: var(--text-grey);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+/* --- COOL HOME BUTTON --- */
+.error-home-btn {
+  position: relative;
+  padding: 1rem 2.5rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none; /* If using Link component */
+  display: inline-block;
+}
+
+/* The sliding hover effect */
+.error-home-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 210, 211, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.error-home-btn:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0, 210, 211, 0.3);
+  text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+.error-home-btn:hover::before {
+  left: 100%;
+}
+
+/* ------------------ GLITCH ANIMATION KEYFRAMES ------------------ */
+/* Skews the main text slightly */
+@keyframes glitch-skew {
+  0% { transform: skew(1deg); }
+  20% { transform: skew(-1deg); }
+  40% { transform: skew(2deg); }
+  60% { transform: skew(-2deg); }
+  80% { transform: skew(1deg); }
+  100% { transform: skew(0deg); }
+}
+
+/* Animates the Cyan clipping mask */
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 0); }
+  20% { clip-path: inset(60% 0 20% 0); transform: translate(2px, 0); }
+  40% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 0); }
+  60% { clip-path: inset(80% 0 10% 0); transform: translate(2px, 0); }
+  80% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 0); }
+  100% { clip-path: inset(30% 0 30% 0); transform: translate(2px, 0); }
+}
+
+/* Animates the Pink clipping mask */
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(10% 0 80% 0); transform: translate(2px, 0); }
+  20% { clip-path: inset(30% 0 30% 0); transform: translate(-2px, 0); }
+  40% { clip-path: inset(80% 0 10% 0); transform: translate(2px, 0); }
+  60% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 0); }
+  80% { clip-path: inset(60% 0 20% 0); transform: translate(2px, 0); }
+  100% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 0); }
+}

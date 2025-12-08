@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap");
 
 /* ------------------ Variables ------------------ */
@@ -69,7 +68,7 @@
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  z-index: 1001; /* Ensure it's above other navbar content */
+  z-index: 1001; /* IMPORTANT: Keeps the main burger/X on top of the fullscreen menu */
 }
 
 .line {
@@ -80,6 +79,7 @@
   border-radius: 2px;
 }
 
+/* Transforms the burger into an X */
 .burger.open .line1 {
   transform: rotate(45deg) translate(4px, 4px);
 }
@@ -162,13 +162,13 @@
 .fullscreen-menu {
   position: fixed;
   inset: 0;
-  background: var(--navbar-bg);
+  background: var(--navbar-bg); /* Matches the glass effect */
   backdrop-filter: blur(40px) saturate(200%);
   -webkit-backdrop-filter: blur(40px) saturate(200%);
   opacity: 0;
   visibility: hidden;
   transition: all 0.6s ease;
-  z-index: 900;
+  z-index: 900; /* Sits below the navbar (1000) and burger (1001) */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,69 +187,46 @@
   width: 600px;
 }
 
+/* REMOVED: .fullscreen-header, .fullscreen-logo, .close-btn-alt styles */
+/* We hide the header container completely */
 .fullscreen-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.fullscreen-logo {
-  width: 60px;
-}
-
-.close-btn-alt {
-  width: 26px;
-  height: 26px;
-  position: relative;
-  cursor: pointer;
-}
-
-.close-btn-alt .line {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  height: 2px;
-  background: var(--text-primary);
-  transition: all 0.3s ease;
-}
-
-.close-btn-alt .line1 {
-  transform: rotate(45deg);
-}
-
-.close-btn-alt .line2 {
-  transform: rotate(-45deg);
-}
-
-.close-btn-alt:hover .line {
-  background: linear-gradient(90deg, #8ec5fc, #e0c3fc);
+  display: none; 
 }
 
 /* Links */
 .fullscreen-links {
   list-style: none;
   padding: 0;
-  margin-top: 100px;
+    padding-top: 100px;
+  margin-top: 0; 
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 24px; /* Increased gap slightly for cleaner look */
 }
 
+/* ------------------ Soft Elegant Glow for Links ------------------ */
 .fullscreen-links li {
   font-family: var(--font-main);
-  font-size: 48px;
+  font-size: 48px; /* Increased size slightly for impact */
   letter-spacing: 2px;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.5s ease;
+  color: #fff;
+  position: relative;
+  text-shadow: 0 0 1px rgba(255,255,255,0.2);
 }
 
 .fullscreen-links li:hover {
-  transform: translateY(-3px);
-  text-shadow: var(--shadow-light);
+  transform: translateY(-2px);
+  text-shadow: 
+    0 0 2px rgba(255,255,255,0.3),
+    0 0 4px rgba(255,255,255,0.25),
+    0 0 6px rgba(255,255,255,0.2);
+  animation: softGlow 1.5s ease-in-out infinite alternate;
 }
 
 .fullscreen-footer {
-  margin-top: 80px;
+  margin-top: 60px;
   font-size: 13px;
   color: var(--text-muted);
   font-family: var(--font-secondary);
@@ -278,14 +255,37 @@
   }
 }
 
+@keyframes softGlow {
+  0% {
+    text-shadow: 0 0 2px rgba(255,255,255,0.3),
+                 0 0 4px rgba(255,255,255,0.25),
+                 0 0 6px rgba(255,255,255,0.2);
+  }
+  50% {
+    text-shadow: 0 0 3px rgba(255,255,255,0.35),
+                 0 0 5px rgba(255,255,255,0.3),
+                 0 0 7px rgba(255,255,255,0.25);
+  }
+  100% {
+    text-shadow: 0 0 2px rgba(255,255,255,0.3),
+                 0 0 4px rgba(255,255,255,0.25),
+                 0 0 6px rgba(255,255,255,0.2);
+  }
+}
+
 /* ------------------ Responsive ------------------ */
 @media (max-width: 768px) {
   .navbar {
     padding: 16px 24px;
   }
+  .fullscreen-links {
+padding-top: 20px;
+ 
+  }
 
   .fullscreen-links li {
     font-size: 40px;
+ 
   }
 
   .fullscreen-footer {
@@ -302,49 +302,13 @@
     width: 24px;
     height: 18px;
   }
+  .fullscreen-links {
+padding-top: 5px;
+ 
+  }
 
   .fullscreen-links li {
     font-size: 32px;
     gap: 18px;
-  }
-}
-/* ------------------ Soft Elegant Glow for Fullscreen Links ------------------ */
-.fullscreen-links li {
-  font-family: var(--font-main);
-  font-size: 48px;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: all 0.5s ease;
-  color: #fff;
-  position: relative;
-  text-shadow: 0 0 1px rgba(255,255,255,0.2);
-}
-
-/* Hover: soft white glow */
-.fullscreen-links li:hover {
-  transform: translateY(-2px);
-  text-shadow: 
-    0 0 2px rgba(255,255,255,0.3),
-    0 0 4px rgba(255,255,255,0.25),
-    0 0 6px rgba(255,255,255,0.2);
-  animation: softGlow 1.5s ease-in-out infinite alternate;
-}
-
-/* Smooth gentle glow animation */
-@keyframes softGlow {
-  0% {
-    text-shadow: 0 0 2px rgba(255,255,255,0.3),
-                 0 0 4px rgba(255,255,255,0.25),
-                 0 0 6px rgba(255,255,255,0.2);
-  }
-  50% {
-    text-shadow: 0 0 3px rgba(255,255,255,0.35),
-                 0 0 5px rgba(255,255,255,0.3),
-                 0 0 7px rgba(255,255,255,0.25);
-  }
-  100% {
-    text-shadow: 0 0 2px rgba(255,255,255,0.3),
-                 0 0 4px rgba(255,255,255,0.25),
-                 0 0 6px rgba(255,255,255,0.2);
   }
 }
