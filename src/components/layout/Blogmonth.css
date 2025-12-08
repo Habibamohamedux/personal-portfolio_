@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --accent-blue: #2e86de;
+    --accent-cyan: #00d2d3;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-white: #ffffff;
+    --text-grey: #a4b0be;
+    --font-header: 'League Gothic', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    --bg-dark-blue: #050511;
+}
+
+.blog-month-section {
+    position: relative;
+    background-color: var(--bg-dark-blue);
+    /* Parallax Background Image */
+    background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2620&auto=format&fit=crop'); 
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    padding: 8rem 100px; 
+    overflow: hidden;
+}
+
+/* Dark Blue Overlay */
+.blog-month-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(5, 5, 17, 0.98) 10%, rgba(5, 5, 17, 0.85) 100%);
+    z-index: 0;
+}
+
+.blog-month-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    /* UPDATED: 'stretch' makes both columns equal height */
+    align-items: stretch;
+}
+
+/* --- LEFT: IMAGE (GLASS EFFECT) --- */
+.blog-image-wrapper {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5); 
+    background: rgba(255, 255, 255, 0.02);
+    /* UPDATED: Ensure it fills the stretched height */
+    height: 100%;
+}
+
+.blog-image {
+    width: 100%;
+    /* UPDATED: Height 100% and object-fit cover to fill space without distortion */
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0.9; 
+}
+
+.blog-image-wrapper:hover .blog-image {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* --- RIGHT: CONTENT --- */
+.blog-content {
+    text-align: left;
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* UPDATED: Center content vertically within the stretched container */
+    justify-content: center;
+}
+
+/* Label */
+.section-label {
+    display: inline-block;
+    font-family: var(--font-header);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-cyan);
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    /* ENSURED: Line is blue */
+    border-left: 3px solid var(--accent-blue);
+}
+
+/* Header */
+.blog-title {
+    font-family: var(--font-header);
+    /* UPDATED: Smaller font size clamp */
+    font-size: clamp(2.5rem, 4vw, 3.5rem); 
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin: 0;
+    /* UPDATED: Pure white, removed gradient settings */
+    color: var(--text-white);
+    background: none;
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: currentColor;
+    letter-spacing: 1px;
+}
+
+.blog-description {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-grey);
+    font-weight: 300;
+}
+
+/* Meta Data */
+.blog-meta {
+    display: flex;
+    gap: 2rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-grey);
+    align-items: center;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.meta-item svg {
+    color: var(--accent-blue);
+    width: 18px;
+    height: 18px;
+}
+
+/* Tags (Glass Pills) */
+.blog-tags {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.blog-tag {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    background: rgba(46, 134, 222, 0.05);
+    padding: 6px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(46, 134, 222, 0.2);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.blog-tag:hover {
+    background: rgba(46, 134, 222, 0.15);
+    border-color: var(--accent-cyan);
+    transform: translateY(-2px);
+}
+
+/* --- GLASS BUTTON --- */
+.read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.read-more-btn:hover {
+    border-color: var(--accent-blue);
+    background: rgba(46, 134, 222, 0.1); 
+    box-shadow: 0 0 30px rgba(46, 134, 222, 0.2);
+    transform: translateX(5px);
+}
+
+.read-more-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.read-more-btn:hover svg {
+    transform: translateX(5px);
+    color: var(--accent-cyan);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .blog-month-section {
+        padding: 6rem 50px;
+    }
+    .blog-month-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        /* Reset alignment for mobile stack */
+        align-items: center;
+    }
+    .blog-image-wrapper {
+        order: -1;
+        /* Reset height for mobile so it doesn't stretch unnecessarily */
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+    .blog-content {
+        /* Reset justification */
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-month-section {
+        padding: 5rem 24px;
+    }
+}

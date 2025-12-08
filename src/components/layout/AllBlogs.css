@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --accent-blue: #2e86de;
+  --accent-cyan: #00d2d3;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-white: #ffffff;
+  --text-grey: #a4b0be;
+  --font-header: 'League Gothic', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --bg-dark-blue: #050511;
+}
+
+.all-blogs-section {
+  padding: 6rem 100px;
+  background-color: var(--bg-dark-blue);
+  position: relative;
+  min-height: 80vh;
+}
+
+/* --- HEADER LAYOUT (UPDATED) --- */
+.all-blogs-header {
+  display: flex;
+  justify-content: space-between; /* Title Left, Filter Right */
+  align-items: flex-end; /* Align bottom lines of text and button */
+  margin-bottom: 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 2rem;
+}
+
+.header-text-group {
+  text-align: left;
+}
+
+.all-blogs-title {
+  font-family: var(--font-header);
+  font-size: 3.5rem;
+  color: var(--text-white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 0.5rem 0;
+  line-height: 1;
+}
+
+.all-blogs-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-grey);
+  margin: 0;
+  font-weight: 300;
+}
+
+/* --- FILTER DROPDOWN --- */
+.filter-wrapper {
+  position: relative;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  justify-content: space-between;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-blue);
+}
+
+.filter-btn .chevron {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+.filter-btn .chevron.rotate {
+  transform: rotate(180deg);
+}
+
+/* The Dropdown Menu */
+.filter-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  width: 100%;
+  min-width: 160px;
+  background: #0f1021; /* Solid dark color to cover content behind */
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  list-style: none;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.filter-dropdown li {
+  padding: 0.6rem 1rem;
+  color: var(--text-grey);
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.filter-dropdown li:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-white);
+}
+
+.filter-dropdown li.active {
+  background: var(--accent-blue);
+  color: white;
+}
+
+/* --- GRID LAYOUT --- */
+.all-blogs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+/* --- BLOG CARD --- */
+.blog-list-card {
+  background: rgba(20, 25, 40, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-list-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Image */
+.list-card-image {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.list-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blog-list-card:hover .list-card-image img {
+  transform: scale(1.05);
+}
+
+/* Category Badge */
+.category-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(46, 134, 222, 0.85);
+  backdrop-filter: blur(4px);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.category-badge.design { background: rgba(0, 210, 211, 0.85); color: #000; }
+.category-badge.frontend { background: rgba(255, 0, 85, 0.85); }
+.category-badge.arvr { background: rgba(165, 94, 234, 0.85); }
+
+/* Content */
+.list-card-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.list-card-title {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  color: var(--text-white);
+  margin: 0 0 0.8rem 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.list-card-excerpt {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-grey);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.list-card-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+  margin-bottom: 1rem;
+}
+
+.list-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Tags */
+.list-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mini-tag {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-grey);
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+/* --- GLASS LOAD MORE BUTTON --- */
+.load-more-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.load-more-btn {
+  /* Glass Base */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* Text & Shape */
+  color: var(--text-white);
+  padding: 1rem 3.5rem;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Effect: Blue Glow & Lift */
+.load-more-btn:hover {
+  background: rgba(46, 134, 222, 0.1); /* Subtle Blue Tint */
+  border-color: var(--accent-blue);
+  box-shadow: 
+    0 0 20px rgba(46, 134, 222, 0.2), /* Outer Glow */
+    inset 0 0 10px rgba(46, 134, 222, 0.1); /* Inner Glow */
+  transform: translateY(-3px);
+  color: #fff;
+}
+
+/* Active/Click Effect */
+.load-more-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 10px rgba(46, 134, 222, 0.1);
+}
+.empty-state {
+  text-align: center;
+  color: var(--text-grey);
+  font-size: 1.2rem;
+  padding: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .all-blogs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .all-blogs-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  
+  .all-blogs-section {
+    padding: 6rem 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .all-blogs-section {
+    padding: 4rem 24px;
+  }
+  
+  .all-blogs-title {
+    font-size: 2.5rem;
+  }
+}

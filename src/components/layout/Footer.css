@@ -23,13 +23,13 @@
 }
 
 .blob1 {
-  background: #6a4ecf;
+  background: #4e59cf;
   top: -100px;
 
 }
 
 .blob2 {
-  background: #ff5f7e;
+  background: #5f74ff;
   bottom: -100px;
   animation-delay: 6s;
 }

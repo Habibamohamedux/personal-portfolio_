@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --accent-blue: #2e86de;
+  --accent-cyan: #00d2d3;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-white: #ffffff;
+  --text-grey: #a4b0be;
+  --font-header: 'League Gothic', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --bg-dark-blue: #050511;
+}
+
+.trending-tags-section {
+  /* Requested Padding: 100px from sides */
+  padding: 6rem 100px;
+  background-color: var(--bg-dark-blue);
+  text-align: center;
+  position: relative;
+}
+
+/* --- HEADER --- */
+.trending-header {
+  margin-bottom: 4rem;
+}
+
+.trending-title {
+  font-family: var(--font-header);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  color: var(--text-white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 1rem 0;
+  line-height: 1;
+  /* Optional: Add a subtle glow */
+  text-shadow: 0 0 20px rgba(46, 134, 222, 0.3);
+}
+
+.trending-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-grey);
+  font-weight: 300;
+}
+
+/* --- TAGS GRID --- */
+.tags-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* --- GLASS TAG BUTTON --- */
+.glass-tag {
+  /* Base Glass Style */
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Typography */
+  color: var(--text-grey);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  
+  /* Shape & Spacing */
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Ensure no default button styles */
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover State - Neon Glow */
+.glass-tag:hover {
+  color: var(--text-white);
+  border-color: var(--accent-cyan);
+  background: rgba(0, 210, 211, 0.1); /* Subtle cyan tint */
+  box-shadow: 
+    0 0 15px rgba(0, 210, 211, 0.3), /* Inner glow */
+    0 5px 15px rgba(0, 0, 0, 0.3);   /* Shadow for depth */
+  transform: translateY(-3px);
+}
+
+/* Active/Focus State */
+.glass-tag:focus-visible {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(46, 134, 222, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .trending-tags-section {
+    padding: 5rem 24px;
+  }
+  
+  .glass-tag {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    flex-grow: 1; /* Tags expand to fill space on mobile */
+    text-align: center;
+  }
+}

@@ -6,7 +6,7 @@
   font-family: var(--font-header);
   font-size: 2rem;
   color: var(--text-white);
-  border-left: 3px solid var(--accent-pink);
+    border-left: 3px solid #2e86de;
   padding-left: 1rem;
   margin-bottom: 2rem;
   display: block;

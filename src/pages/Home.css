@@ -11,3 +11,53 @@ body {
   background-color: #00040b;
     color: #333;
 }
+/* --- GLOBAL NEON SCROLLBAR --- */
+
+/* 1. Set the width */
+::-webkit-scrollbar {
+  width: 1px; /* Slightly wider to show off the effect */
+}
+
+/* 2. The Track (The road the car drives on) */
+::-webkit-scrollbar-track {
+  background: #020205; /* Pitch black/dark blue to contrast the glow */
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 3. The Thumb (The actual scrolling bar) */
+::-webkit-scrollbar-thumb {
+  /* We use a gradient to give it depth */
+  background: linear-gradient(
+    180deg, 
+    #2e86de 0%, 
+    #0097e6 50%, 
+    #2e86de 100%
+  );
+  border-radius: 10px;
+  
+  /* Create a gap around the thumb so it looks floating */
+  border: 1px solid #020205; 
+  
+  /* Smoothly animate changes */
+  transition: all 0.5s ease-in-out;
+}
+
+/* 4. The HOVER Animation (The "Power Up") */
+::-webkit-scrollbar-thumb:hover {
+  /* Change to bright Cyan */
+  background: #00d2d3;
+  
+  /* This box-shadow creates the "Neon Glow" / "Sparkle" */
+  box-shadow: 
+    inset 0 0 10px rgba(255, 255, 255, 0.5), /* Inner white core */
+    0 0 15px rgba(0, 210, 211, 0.8),         /* Outer cyan glow */
+    0 0 30px rgba(0, 210, 211, 0.4);         /* Distant glow aura */
+    
+  border: 2px solid #020205; /* Make border slightly thinner to grow the bar */
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2e86de #020205;
+}
