@@ -1,0 +1,232 @@
+/* --- Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* --- Main Section Container --- */
+#institutional-package {
+  width: 100%;
+  padding: 6rem 2rem;
+  /* Deep dark blue background matching the image */
+  background: radial-gradient(circle at top right, #0d1536 0%, #050a1f 100%);
+  color: #fff;
+}
+
+.institutional-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Header Styling --- */
+.institutional-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-title {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 4rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.section-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: #a0aaff;
+  font-weight: 300;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* --- Content Layout (Two Columns) --- */
+.institutional-content {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+/* --- Left Column: Offerings --- */
+.offerings-column {
+  flex: 1;
+}
+
+.column-title {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 3rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.offerings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.offering-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.offering-icon-wrapper {
+  flex-shrink: 0;
+  padding: 1rem;
+  background: rgba(79, 195, 247, 0.1); /* Light blue background */
+  border-radius: 12px;
+  color: #4fc3f7; /* Bright blue icon color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(79, 195, 247, 0.2);
+}
+
+.offering-icon-wrapper svg {
+  font-size: 2rem;
+}
+
+.offering-text h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.offering-text p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #a0aaff;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* --- Right Column: Form Card --- */
+.form-column {
+  flex: 1;
+  max-width: 500px;
+}
+
+.form-card {
+  background: #0b102b; /* Dark card background */
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.form-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: #e0e6ff;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  background: #050a1f; /* Darker input background */
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #5f6a8f;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4fc3f7;
+}
+
+/* --- Buttons --- */
+.request-btn,
+.download-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-icon {
+  font-size: 1.3rem !important;
+}
+
+/* Primary Request Button */
+.request-btn {
+  background: linear-gradient(to right, #29b6f6, #4fc3f7); /* Bright blue gradient */
+  color: #050a1f;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
+}
+
+.request-btn:hover {
+  box-shadow: 0 8px 20px rgba(79, 195, 247, 0.5);
+}
+
+/* Secondary Download Button */
+.download-btn {
+  background: transparent;
+  border: 1px solid rgba(79, 195, 247, 0.4);
+  color: #e0e6ff;
+}
+
+.download-btn:hover {
+  background: rgba(79, 195, 247, 0.1);
+  border-color: #4fc3f7;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 968px) {
+  .institutional-content {
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .offerings-column,
+  .form-column {
+    width: 100%;
+    max-width: none;
+  }
+
+  .column-title {
+    text-align: center;
+  }
+
+  .form-card {
+    padding: 2rem;
+  }
+}

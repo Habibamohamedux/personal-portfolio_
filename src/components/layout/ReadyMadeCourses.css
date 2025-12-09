@@ -1,0 +1,211 @@
+/* --- Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+/* --- Section Container --- */
+#ready-made-courses {
+  width: 100%;
+  padding: 6rem 2rem;
+  background-color: #0b102b; /* Deep dark blue specific to this section */
+  /* Top-down gradient to blend with previous sections */
+  background-image: linear-gradient(to bottom, #050511 0%, #0b102b 20%, #0b102b 100%);
+  color: #fff;
+}
+
+.ready-courses-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Header --- */
+.courses-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.courses-header .section-title {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 4.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.courses-header .section-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  color: #a0aaff;
+  font-weight: 300;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- Grid Layout --- */
+.courses-grid {
+  display: grid;
+  /* Two columns as per screenshot */
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2.5rem;
+}
+
+/* --- Card Styling --- */
+.course-card {
+  background: #0d1233; /* Slightly lighter than section bg */
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  /* Optional: subtle inner glow */
+  box-shadow: inset 0 0 20px rgba(79, 195, 247, 0.05);
+}
+
+/* Image Header */
+.course-image-wrapper {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.course-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.course-card:hover .course-img {
+  transform: scale(1.05);
+}
+
+.overlay-gradient-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, #0d1233 0%, transparent 100%);
+}
+
+/* Price Badge */
+.price-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(13, 25, 66, 0.85);
+  color: #4fc3f7;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(79, 195, 247, 0.4);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
+/* --- Content Body --- */
+.course-content {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-title {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  color: #fff;
+  line-height: 1.1;
+}
+
+/* Meta Data (Duration/Level) */
+.course-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: #8892b0;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meta-icon {
+  font-size: 1.1rem !important;
+  color: #4fc3f7;
+}
+
+/* Features List */
+.course-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem 0;
+}
+
+.course-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: #e0e6ff;
+  margin-bottom: 0.8rem;
+}
+
+.check-icon {
+  color: #4fc3f7; /* Cyan Blue Checkmark */
+  font-size: 1.2rem !important;
+}
+
+/* Enroll Button */
+.enroll-btn {
+  margin-top: auto; /* Pushes button to bottom */
+  width: 100%;
+  padding: 1rem;
+  background: rgba(13, 25, 66, 0.6);
+  border: 1px solid rgba(79, 195, 247, 0.3);
+  border-radius: 12px;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.enroll-btn:hover {
+  background: rgba(79, 195, 247, 0.15);
+  border-color: #4fc3f7;
+  box-shadow: 0 0 20px rgba(79, 195, 247, 0.2);
+}
+
+.arrow-icon {
+  font-size: 1.2rem !important;
+  transition: transform 0.3s ease;
+}
+
+.enroll-btn:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .courses-grid {
+    grid-template-columns: 1fr; /* Stack vertically on smaller screens */
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
