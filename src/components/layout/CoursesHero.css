@@ -1,160 +1,206 @@
-/* --- Font Imports --- */
-@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500&display=swap');
-
-/* --- Main Section Container --- */
+/* --- Main Container --- */
 #courses-hero {
-  position: relative;
+  position: relative; /* Essential for the absolute background */
   width: 100%;
-  /* Adjust height as needed, e.g., 80vh or 600px */
-  min-height: 85vh; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;      /* Full screen height */
+  display: flex;      /* Enables centering of the content */
+  justify-content: center; /* Horizontally center content */
+  align-items: center;     /* Vertically center content */
   overflow: hidden;
-  background-color: #020213; /* Deepest dark base */
+  background-color: #000000;
 }
-
-/* --- Complex Animated Background Layers --- */
-.hero-bg-animation {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.bg-layer {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  opacity: 0.6;
-}
-
-/* Layer 1: Deep Blue/Purple drifting movement */
-.layer-1 {
-  background: radial-gradient(circle at center, rgba(24, 73, 167, 0.4) 0%, rgba(9, 9, 36, 0) 60%);
-  animation: drift 25s infinite linear alternate;
-}
-
-/* Layer 2: Lighter Blue highlight moving differently */
-.layer-2 {
-  background: radial-gradient(circle at center, rgba(79, 195, 247, 0.25) 0%, rgba(9, 9, 36, 0) 50%);
-  animation: drift 35s infinite linear alternate-reverse;
-  opacity: 0.4;
-}
-
-/* Layer 3: Subtle deep wash */
-.layer-3 {
-   background: linear-gradient(to bottom right, rgba(19, 18, 63, 0.5), rgba(0, 0, 0, 0));
-}
-
-@keyframes drift {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  100% { transform: translate(15%, 10%) rotate(5deg); }
-}
-
 
 /* --- Content Styling --- */
 .hero-content-container {
   position: relative;
-  z-index: 2; /* ensure text is above background */
+  z-index: 2; /* Ensures text is ON TOP of the terminal */
   text-align: center;
-  max-width: 800px;
-  padding: 2rem;
-  color: #fff;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 2rem;
+  pointer-events: none; /* Lets clicks pass through the gaps to the background */
 }
 
-/* Title: League Gothic */
+/* Enable clicking on buttons */
+.hero-content-container button, 
+.hero-content-container a,
+.hero-content-container span.new-badge {
+  pointer-events: auto;
+}
+
+/* --- Typography --- */
 .hero-title {
   font-family: 'League Gothic', sans-serif;
-  font-size: 6rem; /* Large font size per image */
-  letter-spacing: 3px;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  /* The light blue color from the image */
-  color: #4fc3f7; 
+  font-size: 8rem;
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  color: #ffffff;
   text-transform: uppercase;
-  /* Subtle text glow */
-  text-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+  text-shadow: 0 4px 8px rgba(0,0,0,0.8);
 }
 
-/* Subtitle: Poppins */
+.highlight-text {
+  color: transparent;
+  -webkit-text-stroke: 2px #4fc3f7;
+  position: relative;
+  display: inline-block;
+}
+
 .hero-subtitle {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.85); /* Slightly transparent white */
-  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 4rem;
   line-height: 1.6;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
-/* --- Buttons Container --- */
+/* --- Badge --- */
+.badge-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.new-badge {
+  background: rgba(0, 0, 0, 0.6); 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: #4fc3f7;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* --- Buttons --- */
 .hero-buttons-container {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
-/* --- Button Styling (Poppins) --- */
 .hero-btn {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 1rem;
-  padding: 0.8rem 1.8rem;
-  border-radius: 50px; /* Rounded capsule shape */
+  font-size: 1.05rem;
+  padding: 16px 36px;
+  border-radius: 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  transition: all 0.3s ease;
-  color: #fff;
+  justify-content: center;
+  gap: 12px;
   outline: none;
+  border: none;
+  color: white;
+  white-space: nowrap;
+  min-width: 200px;
 }
 
-.btn-icon {
-  font-size: 1.2rem !important;
+.glass-btn {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
-/* The specific "Glow" style from the reference image */
-.glow-btn {
-  /* Semi-transparent dark blue background */
-  background: rgba(13, 25, 66, 0.7);
-  /* Subtle light blue border */
-  border: 1px solid rgba(79, 195, 247, 0.3);
-  /* Initial soft glow */
-  box-shadow: 0 4px 15px rgba(9, 9, 26, 0.5), inset 0 0 10px rgba(79, 195, 247, 0.1);
-  backdrop-filter: blur(5px);
+.glass-btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 25px rgba(79, 195, 247, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
 }
 
-.glow-btn:hover {
-  background: rgba(20, 35, 85, 0.9);
-  border-color: rgba(79, 195, 247, 0.6);
-  /* Stronger outer glow on hover */
-  box-shadow: 0 0 25px rgba(79, 195, 247, 0.4), inset 0 0 15px rgba(79, 195, 247, 0.2);
-  transform: translateY(-2px);
+.glass-btn:active {
+  transform: scale(0.95);
 }
 
-
-/* --- Responsive Adjustments --- */
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 4rem;
-  }
-  .hero-subtitle {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-  .hero-buttons-container {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0 2rem;
-  }
-  .hero-btn {
-    width: 100%;
-    justify-content: center;
-  }
+  .hero-title { font-size: 4.5rem; }
+  .hero-buttons-container { flex-direction: column; width: 100%; }
+  .hero-btn { width: 100%; }
+}
+/* --- Main Container --- */
+#courses-hero {
+  position: relative; /* This acts as the anchor for the absolute background */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #000000; /* Fallback color */
+}
+
+/* --- Content Styling --- */
+.hero-content-container {
+  position: relative;
+  z-index: 10; /* Increased to ensure it is above the canvas (zIndex: 0) */
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 2rem;
+  pointer-events: none; 
+}
+
+.hero-btn {
+  /* Flexbox Layout - The core fix */
+  display: flex;
+  align-items: center;     /* Vertically centers icon + text */
+  justify-content: center; /* Horizontally centers content */
+  gap: 10px;               /* Consistent spacing between icon & text */
+  
+  /* Typography resets for alignment */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1;          /* Crucial: Prevents text from sitting "too high" or "too low" */
+  
+  /* Sizing & Appearance */
+  padding: 16px 36px;
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: white;
+  white-space: nowrap;
+  min-width: 220px;        /* Slightly wider for balance */
+}
+
+/* Ensure the icon itself behaves */
+.hero-btn .btn-icon {
+  display: block;          /* Removes default inline SVG spacing */
+  font-size: 1.4rem;       /* Visual balance with the text size */
+  margin-top: -2px;        /* Micro-adjustment: sometimes icons visually "feel" too low */
+}
+
+/* Glass effect remains the same */
+.glass-btn {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glass-btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 25px rgba(79, 195, 247, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.glass-btn:active {
+  transform: scale(0.95);
 }
