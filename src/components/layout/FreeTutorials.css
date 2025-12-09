@@ -3,12 +3,9 @@
 
 /* --- Section Container --- */
 #free-tutorials {
-  width: 100%;
-  padding: 6rem 2rem;
+  padding:  25px 100px;
   /* Deep dark blue background similar to the screenshot */
-  background-color: #050511; 
-  /* Optional subtle gradient wash */
-  background-image: radial-gradient(circle at 50% 10%, #0d1b4d 0%, #050511 60%);
+  background: radial-gradient(circle at center, #0a1942 0%, #020213 100%);
   color: #fff;
 }
 

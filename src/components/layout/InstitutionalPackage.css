@@ -3,8 +3,7 @@
 
 /* --- Main Section Container --- */
 #institutional-package {
-  width: 100%;
-  padding: 6rem 2rem;
+  padding: 50px 100px;
   /* Deep dark blue background matching the image */
   background: radial-gradient(circle at top right, #0d1536 0%, #050a1f 100%);
   color: #fff;

@@ -3,8 +3,7 @@
 
 /* --- Section Container --- */
 #private-sessions {
-  width: 100%;
-  padding: 6rem 2rem;
+  padding: 50px 100px;
   background-color: #050a1f; /* Deep dark blue */
   /* Gradient wash to separate from previous section */
   background-image: radial-gradient(circle at 50% 50%, #0d1536 0%, #050a1f 70%);

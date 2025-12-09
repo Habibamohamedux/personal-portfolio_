@@ -1,0 +1,284 @@
+/* --- Keep Fonts & Root Variables from previous --- */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-dark: #020213;
+  --bg-panel: rgba(13, 25, 66, 0.6);
+  --glass-border: rgba(79, 195, 247, 0.15);
+  --neon-blue: #4fc3f7;
+  --text-main: #ffffff;
+  --text-muted: #a0aaff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+#courses-inside-page {
+  width: 100%;
+  min-height: 100vh;
+  background-image: radial-gradient(circle at 50% 0%, #0a1942 0%, #020213 60%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HERO SECTION --- */
+.course-hero {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  z-index: 0;
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(79, 195, 247, 0.1);
+  border: 1px solid var(--neon-blue);
+  color: var(--neon-blue);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.course-title-large {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 5rem;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.hero-progress-wrapper { max-width: 400px; }
+.progress-info { display: flex; justify-content: space-between; font-family: 'Poppins', sans-serif; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; }
+.progress-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); transition: width 0.5s ease; }
+
+/* --- CONTENT AREA --- */
+.content-area {
+  padding: 60px 100px;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* --- CURRICULUM SIDEBAR --- */
+.curriculum-container {
+  flex: 0 0 380px; /* Slightly wider for modules */
+  background: var(--bg-panel);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  position: sticky;
+  top: 40px;
+}
+
+.curriculum-header {
+  padding: 20px;
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid var(--glass-border);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.modules-list {
+  max-height: 650px;
+  overflow-y: auto;
+}
+
+/* Module Header */
+.module-header {
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.module-header:hover { background: rgba(255,255,255,0.05); }
+
+.module-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.module-chevron {
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+}
+
+.module-chevron.open { transform: rotate(180deg); }
+
+/* Lesson Items (Nested) */
+.module-lessons {
+  background: rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.lesson-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 20px 14px 30px; /* Indented */
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+  transition: all 0.2s;
+}
+
+.lesson-item:hover { background: rgba(79, 195, 247, 0.05); }
+
+.lesson-item.active {
+  background: rgba(79, 195, 247, 0.1);
+  border-left: 3px solid var(--neon-blue);
+  padding-left: 27px; /* Compensate border */
+}
+
+.lesson-icon {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.lesson-meta h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #e0e6ff;
+  margin-bottom: 2px;
+}
+
+.lesson-meta span {
+  font-size: 0.75rem;
+  color: #8892b0;
+}
+
+.completed-icon {
+  margin-left: auto;
+  font-size: 1rem !important;
+  color: var(--neon-blue);
+}
+
+/* --- VIDEO & CONTENT --- */
+.video-page-container { flex: 1; display: flex; flex-direction: column; }
+
+.video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 35px;
+}
+
+.main-video { width: 100%; height: 100%; border: none; }
+
+.lesson-text-content h2 {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.lesson-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #d1d5db;
+  margin-bottom: 3rem;
+  max-width: 900px;
+}
+
+.extras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.extra-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--glass-border);
+  padding: 15px 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.extra-card:hover {
+  background: rgba(79, 195, 247, 0.1);
+  border-color: var(--neon-blue);
+  transform: translateY(-2px);
+}
+
+.extra-icon { color: var(--neon-blue); }
+.extra-card h5 { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 0.95rem; }
+.extra-card span { font-size: 0.8rem; color: #888; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1100px) {
+  .course-hero, .content-area { padding: 0 40px; }
+  .content-area { padding-top: 40px; }
+  .curriculum-container { flex: 0 0 320px; }
+}
+
+@media (max-width: 900px) {
+  .course-hero { padding: 40px 20px; height: auto; }
+  .course-title-large { font-size: 3.5rem; }
+  
+  .content-area { 
+    flex-direction: column-reverse; /* Sidebar moves to bottom on mobile */
+    padding: 30px 20px;
+  }
+  
+  .curriculum-container { width: 100%; position: relative; top: 0; }
+}

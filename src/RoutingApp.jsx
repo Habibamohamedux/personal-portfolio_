@@ -7,6 +7,7 @@ import Blog from "./pages/Blog.jsx";
 import Blogcategory from "./pages/Blogcategory.jsx";
 import InsideBlog from "./pages/InsideBlog.jsx";
 import Courses from "./pages/Courses.jsx";
+import Coursesinside from "./pages/Coursesinside.jsx";
 import Error404 from "./pages/Error404.jsx";
 
 const RoutingApp = () => {
@@ -21,6 +22,7 @@ const RoutingApp = () => {
           <Route path="/blog-category" element={<Blogcategory />} />
           <Route path="/blog/inside" element={<InsideBlog />} />
             <Route path="/Courses" element={<Courses />} />
+          <Route path="/courses/inside" element={<Coursesinside />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>

@@ -3,8 +3,8 @@
 
 /* --- Section Container --- */
 #notes-section {
-  width: 100%;
-  padding: 6rem 2rem;
+
+  padding: 25px 100px;
   /* Dark blue background to match previous sections */
   background: radial-gradient(circle at center, #0a1942 0%, #020213 100%);
   display: flex;

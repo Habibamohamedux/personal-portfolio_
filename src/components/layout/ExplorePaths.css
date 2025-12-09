@@ -1,116 +1,232 @@
-/* --- Font Imports --- */
-@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500&display=swap');
+/* --- Variables & Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
 
-/* --- Main Section Container --- */
+:root {
+  --neon-blue: #4fc3f7;
+  --neon-glow: rgba(79, 195, 247, 0.5);
+  --card-bg: rgba(13, 25, 66, 0.7);
+  --bg-gradient: radial-gradient(circle at center, #0a1942 0%, #020213 100%);
+  --transition-speed: 0.4s;
+}
+
+/* --- Main Section --- */
 #explore-paths {
   position: relative;
-  width: 100%;
-  padding: 6rem 2rem; /* Generous padding */
-  /* Dark blue gradient background matching the image */
-  background: radial-gradient(circle at center, #0a1942 0%, #020213 100%);
+  min-height: 80vh;
+  padding:  50px 100px;
+  background: var(--bg-gradient);
   color: #fff;
   overflow: hidden;
+  
+  /* Flex Center the whole section content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .explore-paths-container {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem; /* Space between header and grid */
 }
 
-/* --- Header Styling --- */
+/* --- Header Section --- */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  animation: fadeInDown 1s ease-out;
+}
+
 .section-title {
   font-family: 'League Gothic', sans-serif;
-  font-size: 4rem;
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
+  font-size: 4.5rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: #fff;
-  /* Subtle text glow */
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  line-height: 1;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+  margin: 0;
 }
 
 .section-subtitle {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
-  margin-bottom: 4rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
 }
 
-/* --- Grid for Cards --- */
+/* --- Flex Grid --- */
 .paths-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
   justify-content: center;
+  gap: 2.5rem;
+  width: 100%;
 }
 
 /* --- Card Styling --- */
 .path-card {
-  background: rgba(13, 25, 66, 0.6); /* Semi-transparent dark card base */
-  border: 1px solid rgba(79, 195, 247, 0.15); /* Very subtle blue border */
-  border-radius: 20px; /* Rounded corners */
-  padding: 3rem 2rem;
-  text-align: left;
-  /* Default soft glow */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(79, 195, 247, 0.05);
-  backdrop-filter: blur(10px); /* Glassmorphism effect */
-  transition: all 0.3s ease; /* Smooth transition for hover */
+  /* Flex Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  
+  /* Sizing */
+  flex: 1 1 300px; /* Grow, Shrink, Basis */
+  max-width: 380px;
+  padding: 3rem 2.5rem;
+  
+  /* Appearance */
+  background: var(--card-bg);
+  border: 1px solid rgba(79, 195, 247, 0.1);
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  
+  /* Animation Properties */
   cursor: pointer;
+  transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Effect: Card Lift & Glow */
+.path-card:hover {
+  transform: translateY(-12px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 
+              0 0 30px var(--neon-glow),
+              inset 0 0 20px rgba(79, 195, 247, 0.1);
 }
 
 /* --- Icon Styling --- */
 .icon-container {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  background: rgba(79, 195, 247, 0.2); /* Light blue background for icon */
-  border-radius: 15px;
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  background: rgba(79, 195, 247, 0.1);
   margin-bottom: 1.5rem;
+  transition: all var(--transition-speed) ease;
 }
 
 .path-icon {
-  font-size: 2.5rem !important;
-  color: #4fc3f7; /* Bright blue icon color */
+  font-size: 2rem !important;
+  color: var(--neon-blue);
+  transition: transform var(--transition-speed) ease;
 }
 
-.glow-icon {
-  /* Icon glow effect */
-  box-shadow: 0 0 15px rgba(79, 195, 247, 0.4);
+/* Hover Effect: Icon Glow & Scale */
+.path-card:hover .icon-container {
+  background: var(--neon-blue);
+  box-shadow: 0 0 25px var(--neon-glow);
+  transform: scale(1.1);
 }
 
-/* --- Card Content Typography --- */
+.path-card:hover .path-icon {
+  color: #020213; /* Icon turns dark when background lights up */
+  transform: scale(1.1);
+}
+
+/* --- Text Styling --- */
 .path-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
   color: #fff;
+  transition: color 0.3s ease;
 }
 
 .path-description {
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.7);
-  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  transition: color 0.3s ease;
 }
 
-/* --- Responsive Adjustments --- */
+.path-card:hover .path-title {
+  color: var(--neon-blue);
+}
+
+.path-card:hover .path-description {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- Animations --- */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive --- */
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 3rem;
+  .section-title { font-size: 3.5rem; }
+  .path-card { 
+    max-width: 100%; /* Full width on mobile */
+    align-items: center; /* Center content on mobile */
+    text-align: center;
   }
-  .section-subtitle {
-    font-size: 1rem;
-  }
+}
+/* --- Flex Grid Container --- */
+.paths-grid {
+  display: flex;
+  flex-wrap: wrap;          /* Allows items to wrap to next line */
+  justify-content: center;  /* Centers items if they don't fill the row */
+  gap: 2rem;                /* Gap between columns and rows */
+  width: 100%;
+}
+
+/* --- Card Styling (Desktop: 3 per line) --- */
+.path-card {
+  /* FLEX LOGIC FOR 3 ITEMS */
+  /* Calculation: (100% space / 3 items) - (Gap Adjustment) */
+  flex: 0 0 calc(33.333% - 1.4rem); 
+  
+  /* Flex Layout for internal content */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  
+  /* Visuals */
+  padding: 3rem 2.5rem;
+  background: var(--card-bg);
+  border: 1px solid rgba(79, 195, 247, 0.1);
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  
+  /* Animation */
+  cursor: pointer;
+  transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Responsive (Mobile/Tablet: 1 per line) --- */
+/* We use a higher breakpoint (992px) to switch directly from 3 to 1 */
+@media (max-width: 992px) {
   .paths-grid {
-    grid-template-columns: 1fr; /* Stack cards on small screens */
-    padding: 0 1rem;
+    gap: 1.5rem; /* Slightly smaller gap on mobile */
   }
+
   .path-card {
-    padding: 2rem;
+    /* FORCE 1 ITEM PER LINE */
+    flex: 0 0 100%; 
+    max-width: 500px; /* Optional: Stops cards from getting too huge on tablets */
   }
 }

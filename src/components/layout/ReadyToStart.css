@@ -3,8 +3,8 @@
 
 /* --- Section Container --- */
 #ready-to-start {
-  width: 100%;
-  padding: 8rem 2rem 6rem; /* Top padding is larger to separate from FAQ */
+
+  padding: 100px 100px   ; /* Top padding is larger to separate from FAQ */
   background: radial-gradient(circle at center, #0a1535 0%, #020213 80%);
   color: #fff;
   display: flex;

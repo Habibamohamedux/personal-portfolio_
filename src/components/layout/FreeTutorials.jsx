@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import './FreeTutorials.css';
 
-// Data derived exactly from your uploaded screenshot
+// Real images sourced from Unsplash to match the creative/tech theme
 const tutorialsData = [
   {
     id: 1,
@@ -11,7 +11,7 @@ const tutorialsData = [
     level: 'Beginner',
     views: '8.2K views',
     duration: '45 min',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=Book+Writing', // Replace with real image
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80',
     categoryColor: '#4fc3f7'
   },
   {
@@ -20,7 +20,7 @@ const tutorialsData = [
     level: 'Intermediate',
     views: '12.4K views',
     duration: '1h 15min',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=Video+Editing',
+    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44c?auto=format&fit=crop&w=800&q=80',
     categoryColor: '#7b4ff7'
   },
   {
@@ -29,7 +29,7 @@ const tutorialsData = [
     level: 'Beginner',
     views: '6.7K views',
     duration: '50 min',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=Script+Writing',
+    image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e63?auto=format&fit=crop&w=800&q=80',
     categoryColor: '#4fc3f7'
   },
   {
@@ -38,7 +38,7 @@ const tutorialsData = [
     level: 'Beginner',
     views: '15.3K views',
     duration: '55 min',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=UX+Design',
+    image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80',
     categoryColor: '#4fc3f7'
   },
   {
@@ -47,7 +47,7 @@ const tutorialsData = [
     level: 'Beginner',
     views: '18.9K views',
     duration: '1h 20min',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=HTML+CSS',
+    image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80',
     categoryColor: '#4fc3f7'
   },
   {
@@ -56,12 +56,11 @@ const tutorialsData = [
     level: 'Intermediate',
     views: '9.1K views',
     duration: '40 min',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=Freelancing',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80',
     categoryColor: '#7b4ff7'
   }
 ];
 
-// Animation Variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -109,19 +108,16 @@ const FreeTutorials = () => {
               variants={cardVariants}
               whileHover="hover"
             >
-              {/* Card Image Header */}
               <div className="card-image-wrapper">
                 <img src={tutorial.image} alt={tutorial.title} className="card-bg-image" />
                 <div className="overlay-gradient"></div>
                 
-                {/* Duration Badge */}
                 <div className="duration-badge">
                   <AccessTimeIcon style={{ fontSize: '14px', marginRight: '4px' }} />
                   {tutorial.duration}
                 </div>
               </div>
 
-              {/* Card Content */}
               <div className="card-content">
                 <div className="meta-row">
                   <span className={`level-badge ${tutorial.level.toLowerCase()}`}>

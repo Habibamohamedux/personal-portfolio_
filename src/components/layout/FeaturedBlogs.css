@@ -13,7 +13,7 @@
 
 .featured-section {
   /* Requested: 100px side padding */
-  padding: 6rem 100px;
+  padding: 50px 100px;
   background-color: var(--bg-dark-blue);
   position: relative;
 }

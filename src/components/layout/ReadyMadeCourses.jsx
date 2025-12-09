@@ -2,19 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import BarChartIcon from '@mui/icons-material/BarChart'; // Represents 'Level'
+import BarChartIcon from '@mui/icons-material/BarChart';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import './ReadyMadeCourses.css';
 
-// Data extracted exactly from your screenshot
 const coursesData = [
   {
     id: 1,
     title: 'WRITING YOUR FIRST BOOK',
     price: '$299',
     duration: '8 Weeks',
-    level: 'Beginner to Intermediate',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=Book+Writing', // Replace with real image
+    level: 'Beginner',
+    // High-res notebook/writing image
+    image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80',
     features: [
       '40+ hours of video content',
       'Story structure frameworks',
@@ -27,8 +27,9 @@ const coursesData = [
     title: 'MOVIE EDITING MASTERY',
     price: '$399',
     duration: '10 Weeks',
-    level: 'Intermediate to Advanced',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=Movie+Editing',
+    level: 'Advanced',
+    // Video timeline editing image
+    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44c?auto=format&fit=crop&w=800&q=80',
     features: [
       '50+ hours of editing tutorials',
       'Industry-standard software training',
@@ -42,7 +43,8 @@ const coursesData = [
     price: '$249',
     duration: '6 Weeks',
     level: 'Beginner',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=Screenwriting',
+    // Script/typewriter image
+    image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e63?auto=format&fit=crop&w=800&q=80',
     features: [
       '30+ hours of content',
       'Script formatting templates',
@@ -56,7 +58,8 @@ const coursesData = [
     price: '$199',
     duration: '4 Weeks',
     level: 'All Levels',
-    image: 'https://placehold.co/600x400/1a1a1a/FFF?text=Freelancing',
+    // Modern workspace image
+    image: 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=800&q=80',
     features: [
       '20+ hours of business training',
       'Client acquisition strategies',
@@ -66,7 +69,6 @@ const coursesData = [
   }
 ];
 
-// Animations
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -129,7 +131,7 @@ const ReadyMadeCourses = () => {
               <div className="course-content">
                 <h3 className="course-title">{course.title}</h3>
                 
-                {/* Meta Data Row (Duration & Level) */}
+                {/* Meta Data Row */}
                 <div className="course-meta">
                   <div className="meta-item">
                     <AccessTimeIcon className="meta-icon" />
