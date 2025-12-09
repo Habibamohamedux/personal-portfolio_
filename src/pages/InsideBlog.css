@@ -1,0 +1,631 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --bg-dark: #050511;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --accent-blue: #2e86de;
+  --accent-cyan: #00d2d3;
+  --accent-purple: #8854d0;
+  --accent-orange: #ff9f43;
+  --text-white: #ffffff;
+  --text-grey: #a4b0be;
+  --sidebar-width: 280px;
+}
+.inside-blog-container {
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  min-height: 100vh;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  
+  /* --- CHANGE THIS LINE --- */
+  /* OLD: overflow-x: hidden; */
+  overflow-x: clip; 
+}
+
+/* Scroll Progress Bar */
+.article-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-cyan);
+  transform-origin: 0%;
+  z-index: 9999;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+/* --- 1. HERO SECTION --- */
+.article-hero {
+  height: 85vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* Ensure ID linking lands correctly above the content */
+  scroll-margin-top: 100px;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    #050511 10%,
+    rgba(5, 5, 17, 0.7) 50%,
+    rgba(5, 5, 17, 0.3) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+.hero-title {
+  font-family: "League Gothic", sans-serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin-top: 1rem;
+  letter-spacing: 2px;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.hero-meta-glass {
+  display: inline-flex;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.hero-category {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+/* =========================================
+   2. DYNAMIC LAYOUT GRID (The Core Logic)
+========================================= */
+.article-layout-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  position: relative;
+  display: grid;
+  gap: 4rem;
+  /* Smooth transition for grid column changes */
+  transition: grid-template-columns 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* State: Sidebar OPEN */
+.article-layout-wrapper.sidebar-open {
+  /* Sidebar width | Content takes rest */
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+}
+
+/* State: Sidebar CLOSED */
+.article-layout-wrapper.sidebar-closed {
+  /* Sidebar collapses to 0 | Content fills space */
+  grid-template-columns: 0px minmax(0, 1fr);
+}
+
+/* =========================================
+   3. SIDEBAR & TOC
+========================================= */
+.sticky-sidebar-container {
+  position: sticky;
+  top: 120px; /* Adjusts how far from top it sticks */
+  height: fit-content;
+  z-index: 10;
+  overflow: visible;
+
+  /* --- ADD THIS LINE --- */
+  align-self: start; 
+}
+.sidebar-sticky-content {
+  position: relative;
+  width: var(
+    --sidebar-width
+  ); /* Ensure content has fixed width so it doesn't squish while collapsing */
+}
+
+/* TOGGLE BUTTON (The Glass Arrow) */
+.toc-toggle-btn {
+  /* 1. Positioning: Sticks it to the screen */
+  position: fixed;
+  left: 0;
+  top: 200px; /* Adjust this value to move it up or down */
+  z-index: 9999; /* Ensures it stays on top of images/text */
+
+  /* 2. Visual Style (Matches your screenshot) */
+  background-color: #1a2238; /* Dark Navy Blue */
+  color: #ffffff;
+  border: none;
+
+  /* 3. Shape: Flat on left, Rounded on right */
+  border-radius: 0 50% 50% 0;
+
+  /* 4. Sizing */
+  width: 40px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+.toc-toggle-btn:hover {
+  background: var(--accent-blue);
+  color: white;
+  box-shadow: 0 4px 20px rgba(46, 134, 222, 0.4);
+  width: 50px; /* Subtle hover animation */
+  background-color: #2a3655;
+}
+
+/* Arrow rotation animation */
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* TOC CONTENT WRAPPER (Handles fade/slide) */
+.toc-wrapper {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  transform: translateX(0);
+  background: linear-gradient(180deg, var(--glass-bg) 0%, transparent 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--glass-border);
+}
+
+/* When parent layout is closed, fade out and slide left */
+.article-layout-wrapper.sidebar-closed .toc-wrapper {
+  opacity: 0;
+  transform: translateX(-50px);
+  pointer-events: none; /* Prevent clicks when hidden */
+}
+
+/* TOC List Styling */
+.toc-wrapper h3 {
+  font-family: "League Gothic", sans-serif;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  border-left: 2px solid var(--glass-border);
+}
+.toc-list li {
+  padding: 0.8rem 1.5rem;
+  color: var(--text-grey);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+/* Active/Hover State marker */
+.toc-list li::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.toc-list li:hover {
+  color: var(--text-white);
+}
+.toc-list li.active {
+  color: var(--accent-cyan);
+  background: linear-gradient(90deg, rgba(0, 210, 211, 0.08), transparent);
+}
+.toc-list li.active::before {
+  background: var(--accent-cyan);
+  height: 100%;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.sidebar-share {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+.sidebar-share span {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-grey);
+}
+.share-icons button {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-white);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.share-icons button:hover {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   4. ARTICLE BODY & CONTENT
+========================================= */
+.article-body {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  /* Smooth transition for width change */
+  transition: max-width 0.5s ease;
+  margin: 0 auto; /* Center content */
+}
+
+/* Max-width changes based on parent state */
+.sidebar-open .article-body {
+  max-width: 800px;
+}
+/* When sidebar closes, allow content to expand wider for dramatic effect */
+.sidebar-closed .article-body {
+  max-width: 1000px;
+}
+
+.article-section {
+  margin-bottom: 4rem;
+  /* Ensure ID linking lands correctly */
+  scroll-margin-top: 120px;
+}
+
+.article-body h2 {
+  font-family: "League Gothic", sans-serif;
+  font-size: 3.5rem;
+  color: var(--text-white);
+  margin: 2rem 0 1.5rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.lead-paragraph {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--text-white);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.highlight-text {
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+
+/* Component: Highlight Box */
+.article-highlight {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.8rem;
+  display: flex;
+  gap: 1.5rem;
+  margin: 3rem 0;
+  backdrop-filter: blur(10px);
+}
+.article-highlight.insight {
+  border-left: 4px solid var(--accent-purple);
+}
+.article-highlight.keypoint {
+  border-left: 4px solid var(--accent-cyan);
+}
+.article-highlight.stat {
+  border-left: 4px solid var(--accent-blue);
+}
+.article-highlight.tip {
+  border-left: 4px solid var(--accent-orange);
+}
+
+.highlight-icon {
+  font-size: 1.5rem;
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.05);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--glass-border);
+}
+.article-highlight h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-white);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.article-highlight p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-grey);
+}
+
+/* Component: Image Grid (Masonry style) */
+.article-image-grid.grid-masonry {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  margin: 4rem 0;
+}
+.grid-masonry .grid-img-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+/* Define varied spans for masonry look */
+.grid-masonry .item-0 {
+  grid-column: span 8;
+  grid-row: span 2;
+  min-height: 500px;
+}
+.grid-masonry .item-1 {
+  grid-column: span 4;
+  min-height: 240px;
+}
+.grid-masonry .item-2 {
+  grid-column: span 4;
+  min-height: 240px;
+}
+
+.grid-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.grid-img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+/* Component: Glass Quote */
+.glass-quote {
+  background: linear-gradient(
+    135deg,
+    rgba(46, 134, 222, 0.1),
+    rgba(255, 255, 255, 0.01)
+  );
+  border-left: 4px solid var(--accent-cyan);
+  padding: 4rem 3rem 3rem;
+  margin: 5rem 0;
+  border-radius: 0 20px 20px 0;
+  position: relative;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+.quote-icon {
+  position: absolute;
+  top: -25px;
+  left: 30px;
+  font-size: 3rem;
+  color: var(--accent-cyan);
+  background: var(--bg-dark);
+  padding: 0 15px;
+}
+.glass-quote p {
+  font-family: "League Gothic", sans-serif;
+  font-size: 3rem;
+  line-height: 1.1;
+  color: var(--text-white);
+  margin-bottom: 1.5rem;
+}
+.glass-quote cite {
+  font-size: 1.1rem;
+  color: var(--text-grey);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+}
+.glass-quote cite::before {
+  content: "— ";
+  color: var(--accent-cyan);
+}
+
+/* Component: Stats Grid */
+.article-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 4rem 0;
+}
+.stat-glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+.stat-glass-card:hover {
+  transform: translateY(-10px);
+  background: rgba(46, 134, 222, 0.1);
+  border-color: var(--accent-blue);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+.stat-value {
+  display: block;
+  font-family: "League Gothic", sans-serif;
+  font-size: 4.5rem;
+  color: var(--accent-cyan);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(0, 210, 211, 0.3);
+}
+.stat-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--text-white);
+  letter-spacing: 2px;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Half Layout */
+.layout-half-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin: 4rem 0;
+}
+.layout-half-right img {
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Author Signature */
+.article-footer {
+  margin-top: 6rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--glass-border);
+}
+.author-signature {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  background: var(--glass-bg);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  width: fit-content;
+}
+.signature-icon {
+  font-size: 2.5rem;
+  color: var(--accent-cyan);
+}
+.author-signature span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-grey);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.author-signature h4 {
+  font-family: "League Gothic", sans-serif;
+  font-size: 2rem;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .article-layout-wrapper.sidebar-open,
+  .article-layout-wrapper.sidebar-closed {
+    grid-template-columns: 1fr; /* Stack on smaller screens */
+    gap: 2rem;
+  }
+  .sticky-sidebar-container {
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+  }
+  .sidebar-sticky-content {
+    width: 100%;
+  }
+
+  /* Hide toggle on tablet/mobile as it stacks */
+  .toc-toggle-btn {
+    display: none;
+  }
+
+  .toc-wrapper {
+    transform: none;
+    opacity: 1; /* Always show TOC content when stacked */
+  }
+
+  .article-body,
+  .sidebar-open .article-body,
+  .sidebar-closed .article-body {
+    max-width: 100%; /* Full width content */
+  }
+  .article-image-grid.grid-masonry {
+    grid-template-columns: 1fr;
+  }
+  .grid-masonry .item-0,
+  .grid-masonry .item-1,
+  .grid-masonry .item-2 {
+    grid-column: span 1;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .article-hero {
+    height: 70vh;
+  }
+  .hero-title {
+    font-size: 4.5rem;
+  }
+  .article-layout-wrapper {
+    padding: 3rem 1.5rem;
+  }
+  .article-stats-grid,
+  .layout-half-right {
+    grid-template-columns: 1fr;
+  }
+  .article-body h2 {
+    font-size: 2.5rem;
+  }
+  .glass-quote p {
+    font-size: 2rem;
+  }
+  .stat-value {
+    font-size: 3.5rem;
+  }
+}

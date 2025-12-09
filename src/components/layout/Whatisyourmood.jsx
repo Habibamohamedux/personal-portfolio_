@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import './Whatisyourmood.css';
 
 // --- Icons (Native SVG) ---
@@ -19,11 +20,22 @@ const moods = [
   { id: 6, title: "Code & Dev", icon: <CodeIcon />, color: "cyan" },
 ];
 
-const FeaturedBlogs = () => {
+const Whatisyourmood = () => {
+  // 2. Initialize Navigation
+  const navigate = useNavigate();
+
+  const handleMoodClick = (mood) => {
+    // 3. Navigate to the category page and pass the mood details as 'state'
+    navigate('/blog-category', { 
+      state: { 
+        title: mood.title,
+        color: mood.color
+      } 
+    });
+  };
+
   return (
     <section className="mood-section">
-      
-      {/* Header Centered */}
       <div className="mood-header">
         <h2 className="mood-title">WHAT'S YOUR MOOD TODAY?</h2>
         <p className="mood-subtitle">
@@ -31,7 +43,6 @@ const FeaturedBlogs = () => {
         </p>
       </div>
 
-      {/* 6 Cards Grid */}
       <div className="mood-grid">
         {moods.map((mood, index) => (
           <motion.div 
@@ -41,8 +52,9 @@ const FeaturedBlogs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
+            // 4. Add Click Event
+            onClick={() => handleMoodClick(mood)}
           >
-            {/* Icon Wrapper with Dynamic Color Class */}
             <div className={`mood-icon-wrapper ${mood.color}`}>
               {mood.icon}
             </div>
@@ -51,9 +63,8 @@ const FeaturedBlogs = () => {
           </motion.div>
         ))}
       </div>
-
     </section>
   );
 };
 
-export default FeaturedBlogs;
+export default Whatisyourmood;
