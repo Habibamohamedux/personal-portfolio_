@@ -16,10 +16,10 @@ const Blog = () => {
       <Navbar />
       <HeroBlog />
         <Blogmonth />
+<FeaturedBlogs/>
         <Whatisyourmood />
         <TrendingTags />
         <AllBlogs />
-      <FeaturedBlogs />
       <Newsletter />
       <Footer />
     </>

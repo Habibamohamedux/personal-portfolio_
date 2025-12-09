@@ -1,32 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --accent-blue: #2e86de;
+  --accent-cyan: #00d2d3;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-white: #ffffff;
+  --text-grey: #a4b0be;
+  --font-header: 'League Gothic', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --bg-dark-blue: #050511;
+}
+
 .featured-section {
-  padding: 2rem 0 6rem;
+  /* Requested: 100px side padding */
+  padding: 6rem 100px;
+  background-color: var(--bg-dark-blue);
+  position: relative;
 }
 
 .section-label {
   font-family: var(--font-header);
   font-size: 2rem;
   color: var(--text-white);
-    border-left: 3px solid #2e86de;
+  /* Use variable for consistency */
+  border-left: 3px solid var(--accent-blue);
   padding-left: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   display: block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .bento-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr; /* Left is wider */
-  grid-template-rows: 250px 250px;
+  grid-template-columns: 1.5fr 1fr; /* Left column is wider */
+  grid-template-rows: 280px 280px; /* Fixed height rows for neat stacking */
   gap: 1.5rem;
 }
 
 /* Common Card Styles */
 .blog-card {
   position: relative;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--glass-border);
   cursor: pointer;
-  group: hover;
+  /* Glass Background behind image */
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .blog-card-bg {
@@ -34,74 +54,105 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0.9;
 }
 
 .blog-card:hover .blog-card-bg {
   transform: scale(1.05);
+  opacity: 1;
 }
 
 .blog-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(5,5,17,0.95), transparent 60%);
+  /* Dark gradient to make text readable */
+  background: linear-gradient(to top, rgba(5,5,17, 0.95) 10%, rgba(5,5,17, 0.2) 60%, transparent 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 2rem;
+  padding: 2.5rem;
   transition: all 0.3s ease;
 }
 
 /* Text Styles */
 .blog-tag {
+  font-family: var(--font-body);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--accent-cyan);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   background: rgba(0, 210, 211, 0.1);
-  padding: 4px 10px;
-  border-radius: 20px;
+  padding: 6px 12px;
+  border-radius: 50px;
   width: fit-content;
   backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 210, 211, 0.2);
 }
 
 .blog-title {
   font-family: var(--font-header);
-  color: white;
-  line-height: 1;
-  margin: 0 0 0.5rem 0;
+  color: var(--text-white);
+  line-height: 0.95;
+  margin: 0 0 0.8rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .blog-meta {
+  font-family: var(--font-body);
   font-size: 0.85rem;
   color: var(--text-grey);
+  font-weight: 300;
 }
 
 /* Specific Card Layouts */
 .main-feature {
   grid-column: 1;
-  grid-row: 1 / span 2; /* Spans full height */
+  grid-row: 1 / span 2; /* Spans full height on left */
 }
 
-.main-feature .blog-title { font-size: 3.5rem; }
+.main-feature .blog-title { 
+  font-size: clamp(3rem, 5vw, 4.5rem); 
+}
 
 .sub-feature {
   grid-column: 2;
 }
 
-.sub-feature .blog-title { font-size: 2rem; }
+.sub-feature .blog-title { 
+  font-size: 2.2rem; 
+}
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 992px) {
+  .featured-section {
+    padding: 6rem 50px; /* Reduce side padding on tablets */
+  }
+  
   .bento-grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
+  
   .main-feature {
-    height: 400px;
+    grid-column: 1;
     grid-row: auto;
+    height: 400px;
   }
+  
   .sub-feature {
+    grid-column: 1;
     height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-section {
+    padding: 4rem 24px; /* Standard mobile padding */
+  }
+  
+  .main-feature .blog-title {
+    font-size: 3rem;
   }
 }
