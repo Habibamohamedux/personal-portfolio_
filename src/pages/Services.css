@@ -1,0 +1,195 @@
+/* General Layout */
+.services-page {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.btn-primary {
+  background-color: #222;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* 1. HERO */
+.services-hero {
+  background-color: #f4f4f4;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+.highlight {
+  color: #4a90e2; /* Blue Accent */
+}
+
+/* 2. OFFER SERVICES (Grid) */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+/* 3. WHY WORK */
+.why-work-with-me {
+  background-color: #222;
+  color: white;
+}
+
+.benefits-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  text-align: center;
+}
+
+.benefit-item {
+  flex: 1 1 300px;
+}
+
+/* 4. PROCESS */
+.process-timeline {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.process-step {
+  flex: 1;
+  min-width: 200px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.step-num {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #e0e0e0;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+/* 5. PACKAGES */
+.packages-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.package-card {
+  border: 1px solid #eee;
+  padding: 40px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.package-card.featured {
+  border: 2px solid #4a90e2;
+  transform: scale(1.05);
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4a90e2;
+  color: white;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  border-radius: 20px;
+}
+
+.package-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.package-card ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+/* 6. TOOLS */
+.tools-used {
+  background-color: #fafafa;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.tools-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.tool-badge {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2rem; }
+  .process-timeline { flex-direction: column; }
+}
