@@ -1,22 +1,30 @@
 import React from 'react';
-import ServicesHero from './ServicesHero';
-import OfferServices from './OfferServices';
-import WhyWork from './WhyWork';
-import MyProcess from './MyProcess';
-import ServicesPackage from './ServicesPackage';
-import ToolsUsed from './ToolsUsed';
-import './Services.css'; // Shared styles
+import Navbar from "../components/layout/Navbar.jsx";
+import ServicesHero from '../components/layout/ServicesHero';
+import ServicesCards from '../components/layout/ServicesCards.jsx'; // This imports the card logic
+import WhyWork from '../components/layout/WhyWork';
+import MyProcess from '../components/layout/MyProcess';
+import ServicesPackage from '../components/layout/ServicesPackage';
+import ToolsUsed from '../components/layout/ToolsUsed';
+import Testimonials from "../components/layout/Testimonials.jsx";
+import Newsletter from "../components/layout/Newsletter.jsx";
+import Footer from "../components/layout/Footer.jsx";
+import './Services.css';
 
 const Services = () => {
   return (
-<>
+    <>
+      <Navbar />
       <ServicesHero />
-      <OfferServices />
+      <ServicesCards /> {/* This renders the component imported above */}
       <WhyWork />
       <MyProcess />
       <ServicesPackage />
       <ToolsUsed />
-</>
+      <Testimonials />
+      <Newsletter />
+      <Footer />
+    </>
   );
 };
 

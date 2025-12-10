@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'; 
 import "./ServicesCards.css"; 
 import Secondrytitle from "../common/Secondrytitle.jsx";
 import shape1 from "../../assets/servicesshapes/shape1.png";
@@ -11,6 +12,7 @@ import shape7 from "../../assets/servicesshapes/shape7.png";
 import shape8 from "../../assets/servicesshapes/shape8.png";
 import shape9 from "../../assets/servicesshapes/shape9.png";
 import shape11 from "../../assets/servicesshapes/shape11.png";
+
 const cardsData = [
   {
     category: "UX–UI Design Services",
@@ -129,10 +131,15 @@ const cardsData = [
 ];
 
 const ServicesCards = () => {
+  const navigate = useNavigate(); 
+
+  const handleCardClick = (card) => {
+    navigate(`/services/inside`, { state: { cardData: card } });
+  };
+
   return (
     <div className="services-section">
       <Secondrytitle secondaryTitle="Services" />
-
 
       <div className="services-stack-container">
         {cardsData.map((card, index) => (
@@ -173,6 +180,7 @@ const ServicesCards = () => {
               <button
                 className="service-button"
                 style={{ background: card.buttonColor }}
+                onClick={() => handleCardClick(card)}
               >
                 View all
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 9 11" fill="none">
@@ -185,7 +193,6 @@ const ServicesCards = () => {
       </div>
 
     </div>  
-
   );
 };
 

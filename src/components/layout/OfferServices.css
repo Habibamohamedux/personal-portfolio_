@@ -1,0 +1,236 @@
+/* --- CSS Variables & Resets --- */
+:root {
+    --os-bg-dark: #0a0e1a; /* Very dark blue background */
+    --os-glass-bg: rgba(20, 25, 45, 0.7); /* Semi-transparent card bg */
+    --os-glass-border: rgba(60, 75, 120, 0.3); /* Subtle border */
+    --os-accent-blue: #2563eb; /* Bright accent color for icons/links */
+    --os-text-white: #ffffff;
+    --os-text-muted: #b0b8d0;
+    
+    /* Font Stacks */
+    --font-heading: 'League Gothic', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* --- Main Section Wrapper --- */
+.services-section {
+    /* Theme Background */
+    background-color: var(--os-bg-dark);
+    /* Ensure full coverage and centered positioning */
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+}
+
+/* --- Content Container --- */
+.services-container {
+    width: 100%;
+    /* REQUIREMENT: 100px padding from the side on desktop */
+    padding-left: 100px;
+    padding-right: 100px;
+    /* Max width for very large screens so it doesn't stretch infinitely */
+    max-width: 1440px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* Space between header and grid */
+}
+
+/* --- Header Section --- */
+.services-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 400; /* League Gothic is naturally bold */
+    color: var(--os-text-white);
+    letter-spacing: 0.05em;
+    margin: 0; /* No margins */
+}
+
+.section-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--os-text-muted);
+    max-width: 600px;
+    margin: 0; /* No margins */
+}
+
+/* --- Grid Layout --- */
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Space between cards */
+    justify-content: center;
+}
+
+/* --- Service Card Style --- */
+.service-card {
+    /* Calculations for a 3-column grid accounting for the gap */
+    flex: 1 1 calc(33.333% - 30px);
+    min-width: 300px; /* Ensure cards don't get too squashed */
+    
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px;
+    border-radius: 16px;
+}
+
+/* --- Glassmorphism Effect --- */
+.glass-effect {
+    background: var(--os-glass-bg);
+    backdrop-filter: blur(12px); /* The blur effect behind the card */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    border: 1px solid var(--os-glass-border);
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-effect:hover {
+    border-color: var(--os-accent-blue);
+    transform: translateY(-5px);
+}
+
+/* --- Card Internal Structure --- */
+
+/* 1. Card Header (Icon + Title) */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--os-accent-blue);
+    border-radius: 12px;
+    flex-shrink: 0; /* Prevent icon from squashing */
+}
+
+.service-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--os-text-white);
+    margin: 0;
+    letter-spacing: 0.03em;
+}
+
+/* 2. Card Body (Tags List) */
+.card-body {
+    flex-grow: 1; /* Pushes the footer to the bottom */
+}
+
+.tags-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Spacing between tags */
+}
+
+/* Styling the individual service keywords as subtle tags */
+.tag-item {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--os-text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.tag-item:hover {
+    background: rgba(37, 99, 235, 0.2); /* Slight blue tint on hover */
+    color: var(--os-text-white);
+    border-color: var(--os-accent-blue);
+}
+
+/* 3. Card Footer (Link) */
+.view-details-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--os-accent-blue);
+    text-decoration: none;
+    transition: gap 0.3s ease;
+}
+
+.view-details-link:hover {
+    gap: 12px; /* Slight arrow movement on hover */
+}
+
+
+/* --- Responsiveness --- */
+
+/* Tablet / Medium Screens */
+@media (max-width: 1024px) {
+    .services-container {
+        /* Reduce padding on smaller screens */
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    
+    .service-card {
+        /* Switch to 2-column grid */
+        flex: 1 1 calc(50% - 30px);
+    }
+    
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+/* Mobile / Small Screens */
+@media (max-width: 768px) {
+    .services-container {
+        /* Minimal padding on mobile */
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 40px;
+    }
+
+    .services-grid {
+        gap: 20px;
+    }
+    
+    .service-card {
+        /* Switch to 1-column grid (stacking) */
+        flex: 1 1 100%;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+}

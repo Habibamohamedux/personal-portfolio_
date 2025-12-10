@@ -1,0 +1,267 @@
+/* --- GLOBAL LAYOUT FOR PAGE --- */
+.inside-service-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9; /* Light bg for contrast against the hero */
+}
+
+/* --- HERO SECTION --- */
+.is-hero {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  /* 100px Padding Rule */
+  padding: 0 100px; 
+  box-sizing: border-box;
+  overflow: hidden;
+  color: #fff;
+}
+
+.is-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.is-subtitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.is-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.is-description {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0;
+}
+
+/* Hero Shapes */
+.is-shape {
+  position: absolute;
+  width: 500px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+.is-shape-1 { top: -100px; right: -100px; }
+.is-shape-2 { bottom: -100px; right: 10%; }
+
+/* --- DETAILS SECTION --- */
+.is-details-section {
+  padding: 100px; /* 100px Padding Rule */
+  background-color: #1a1a1a; /* Dark theme for glass cards */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.is-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+}
+
+.is-section-title {
+  font-family: "League Gothic", sans-serif;
+  font-size: 48px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.is-section-desc {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Grid for Service Tags */
+.is-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* Glass Cards */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.3s ease;
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.is-card-number {
+  font-family: "League Gothic", sans-serif;
+  font-size: 32px;
+  opacity: 0.3;
+}
+
+.is-card-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.is-card-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --- PROCESS SECTION --- */
+.is-process-section {
+  padding: 100px;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.dark-text { color: #000; }
+
+.is-process-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.process-step {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.step-num {
+  font-family: "League Gothic", sans-serif;
+  font-size: 60px;
+  line-height: 1;
+  /* Color is set inline via JS */
+}
+
+.process-step h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.process-step p {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --- CTA SECTION --- */
+.is-cta {
+  padding: 80px 100px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.is-cta h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.is-cta-button {
+  font-family: "League Gothic", sans-serif;
+  font-size: 24px;
+  padding: 15px 50px;
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.is-cta-button:hover {
+  transform: scale(1.05);
+}
+
+/* --- ERROR STATE --- */
+.error-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.back-btn {
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .is-hero, .is-details-section, .is-process-section, .is-cta {
+    padding: 60px 40px;
+  }
+  .is-title { font-size: 48px; }
+}
+
+@media (max-width: 768px) {
+  .is-hero, .is-details-section, .is-process-section, .is-cta {
+    padding: 60px 24px;
+  }
+  .is-title { font-size: 36px; }
+  .is-hero { min-height: 60vh; }
+  .is-process-row { flex-direction: column; }
+  .is-shape { width: 250px; opacity: 0.5; }
+}

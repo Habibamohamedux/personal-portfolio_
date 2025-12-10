@@ -1,0 +1,259 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --ti-bg-dark: #020617;
+  --ti-accent: #2563eb;
+  --ti-text-white: #ffffff;
+  --ti-text-gray: #94a3b8;
+  --ti-glass-bg: rgba(255, 255, 255, 0.03);
+  --ti-glass-border: rgba(255, 255, 255, 0.08);
+  
+  /* Category Glow Colors */
+  --glow-design: #ec4899; /* Pink */
+  --glow-video: #8b5cf6;  /* Purple */
+  --glow-dev: #10b981;    /* Emerald */
+  --glow-3d: #f59e0b;     /* Amber */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ti-section {
+  position: relative;
+  width: 100%;
+  /* Ensure it has height but fits content */
+  padding-block: 100px;
+  background-color: var(--ti-bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- Background Blobs --- */
+.ti-bg-blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob-ti {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.15;
+}
+
+.blob-ti-1 {
+  top: 10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: var(--ti-accent);
+}
+
+.blob-ti-2 {
+  bottom: 10%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: var(--glow-video);
+}
+
+/* --- Main Container & Layout --- */
+.ti-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1440px;
+  /* Constraint: 100px padding from the side */
+  padding-inline: 100px;
+}
+
+.ti-layout-grid {
+  display: flex;
+  gap: 60px; /* Space between the two main columns */
+  align-items: flex-start;
+}
+
+.ti-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-width: 0; /* Prevents flex items from overflowing */
+}
+
+/* --- Headers --- */
+.ti-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ti-icon {
+  color: var(--ti-accent);
+}
+
+.ti-title {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--ti-text-white);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* --- Shared Glass Styles --- */
+.glass-panel, .glass-card, .glass-pill {
+  background: var(--ti-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ti-glass-border);
+}
+
+/* =============================
+   TOOLS SECTION (Animated)
+============================= */
+.tools-scroller {
+  border-radius: 24px;
+  padding-block: 30px; /* Height of the scroll track area */
+  overflow: hidden; /* Hides the overflow for the infinite effect */
+  position: relative;
+  /* Subtle fade mask on edges */
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.tools-track {
+  display: flex;
+  gap: 20px; /* Space between tool cards */
+  width: max-content; /* Ensures track is wide enough for all items */
+  /* The infinite scrolling animation */
+  animation: scrollTools 40s linear infinite;
+}
+
+/* Pause animation on hover for better UX */
+.tools-scroller:hover .tools-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollTools {
+  0% { transform: translateX(0); }
+  /* Move by half the track's width (the length of one original set) */
+  100% { transform: translateX(-50%); }
+}
+
+.tool-card {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Category-specific glows on hover */
+.design-glow:hover { border-color: var(--glow-design); box-shadow: 0 4px 15px -5px var(--glow-design); }
+.video-glow:hover { border-color: var(--glow-video); box-shadow: 0 4px 15px -5px var(--glow-video); }
+.dev-glow:hover { border-color: var(--glow-dev); box-shadow: 0 4px 15px -5px var(--glow-dev); }
+.3d-glow:hover { border-color: var(--glow-3d); box-shadow: 0 4px 15px -5px var(--glow-3d); }
+
+.tool-icon-placeholder {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-family: 'League Gothic', sans-serif;
+  font-size: 1.2rem;
+  color: var(--ti-text-white);
+}
+
+.tool-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ti-text-white);
+  white-space: nowrap;
+}
+
+/* =============================
+   INDUSTRIES SECTION
+============================= */
+.industries-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Space between pills */
+}
+
+.industry-pill {
+  padding: 12px 24px;
+  border-radius: 50px; /* Pill shape */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ti-text-white);
+  text-align: center;
+  cursor: default;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.industry-pill:hover {
+  background: rgba(37, 99, 235, 0.15); /* Slight blue tint */
+  border-color: var(--ti-accent);
+  transform: translateY(-5px); /* Float up */
+  box-shadow: 0 10px 20px -10px rgba(37, 99, 235, 0.5);
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 1024px) {
+  .ti-container {
+    padding-inline: 40px;
+  }
+  
+  .ti-layout-grid {
+    flex-direction: column; /* Stack columns vertically */
+    gap: 50px;
+  }
+  
+  .tools-scroller {
+    /* Remove mask on smaller screens if it feels too cramped */
+    mask-image: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .ti-container {
+    padding-inline: 20px;
+  }
+  
+  .ti-title {
+    font-size: 2rem;
+  }
+  
+  .industries-grid {
+    gap: 12px;
+  }
+  
+  .industry-pill {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    flex-grow: 1; /* Make pills fill space nicely on mobile */
+  }
+}

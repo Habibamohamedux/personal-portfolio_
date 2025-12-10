@@ -1,0 +1,239 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --accent-blue: #3b82f6; /* Brighter blue for glow */
+  --deep-purple: #6366f1;
+  --glass-bg: rgba(255, 255, 255, 0.03); 
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-white: #ffffff;
+  --text-gray: #cbd5e1;
+  --deep-dark-blue: #020617; 
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-white);
+  /* Dark base background */
+  background-color: #020617;
+}
+
+/* --- VIBRANT ANIMATED BACKGROUND --- */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-blob {
+  position: absolute;
+  filter: blur(80px); /* Slightly less blur to define shapes better */
+  opacity: 0.6; /* Higher opacity for "wow" effect */
+  border-radius: 50%;
+  /* Mix blend mode makes colors interact like light */
+  mix-blend-mode: screen; 
+}
+
+/* Blob 1: The fast mover (Top Left) */
+.blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: #2563eb;
+  animation: moveVertical 8s infinite alternate ease-in-out, morph 10s infinite alternate ease-in-out;
+}
+
+/* Blob 2: The large base (Bottom Right) */
+.blob-2 {
+  bottom: -20%;
+  right: -20%;
+  width: 60vw;
+  height: 60vw;
+  background: #4f46e5;
+  animation: moveHorizontal 12s infinite alternate ease-in-out, morph 8s infinite alternate ease-in-out;
+  animation-delay: -2s;
+}
+
+/* Blob 3: The accent (Center/Moving) */
+.blob-3 {
+  top: 30%;
+  left: 30%;
+  width: 40vw;
+  height: 40vw;
+  background: #0ea5e9;
+  opacity: 0.4;
+  animation: moveDiagonal 15s infinite alternate ease-in-out, morph 12s infinite alternate ease-in-out;
+  animation-delay: -5s;
+}
+
+/* Overlay gradient to ensure the bottom stays dark/readable */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom, 
+    rgba(15, 23, 42, 0.4) 0%, 
+    rgba(2, 6, 23, 0.8) 70%, 
+    #020617 100%
+  );
+  /* Noise texture for "film grain" look */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* --- CONTENT STYLING --- */
+.hero-container {
+  position: relative;
+  z-index: 10; /* Ensures content is above the blobs */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; 
+}
+
+.content-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2.5rem;
+  max-width: 900px;
+  animation: slideUpFade 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.glass-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: #e0e7ff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.hero-title {
+  font-family: 'League Gothic', sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(6rem, 15vw, 11rem); /* Massive size */
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 50px rgba(37, 99, 235, 0.5); /* Glowing text */
+}
+
+.hero-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--text-gray);
+  max-width: 700px;
+}
+
+.button-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 20px 40px;
+  font-size: 1.2rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-solid {
+  background: #2563eb;
+  border: none;
+  color: white;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.5); /* Glow effect on button */
+}
+
+.btn-solid:hover {
+  background: #1d4ed8;
+  box-shadow: 0 0 40px rgba(37, 99, 235, 0.7);
+  transform: translateY(-2px);
+}
+
+/* --- ANIMATIONS --- */
+
+@keyframes moveVertical {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(0%); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes moveHorizontal {
+  0% { transform: translateX(-50%) translateY(-10%); }
+  50% { transform: translateX(20%) translateY(10%); }
+  100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+@keyframes moveDiagonal {
+  0% { transform: translate(-30%, -30%) rotate(0deg); }
+  100% { transform: translate(30%, 30%) rotate(180deg); }
+}
+
+/* This is the key "Liquid" effect - changing shapes */
+@keyframes morph {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+@keyframes slideUpFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .button-group { flex-direction: column; width: 100%; }
+  .hero-title { font-size: 5rem; }
+}

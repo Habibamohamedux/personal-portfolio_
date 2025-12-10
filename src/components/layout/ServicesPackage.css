@@ -1,0 +1,360 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --pkg-bg-dark: #050a18;
+  --pkg-accent: #2563eb;
+  --pkg-accent-glow: rgba(37, 99, 235, 0.4);
+  --pkg-text-white: #ffffff;
+  --pkg-text-gray: #9ca3af;
+  --pkg-glass-bg: rgba(255, 255, 255, 0.02);
+  --pkg-glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.packages-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--pkg-bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 100px;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* --- Animated Background --- */
+.pkg-bg-blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob-pkg {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+}
+
+.blob-pkg-1 {
+  top: -20%;
+  left: 30%;
+  width: 600px;
+  height: 600px;
+  background: var(--pkg-accent);
+  animation: floatBlob 15s infinite alternate ease-in-out;
+}
+
+.blob-pkg-2 {
+  bottom: -20%;
+  right: 20%;
+  width: 500px;
+  height: 500px;
+  background: #4f46e5;
+  animation: floatBlob 18s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes floatBlob {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 30px); }
+}
+
+/* --- Container --- */
+.packages-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  padding-inline: 100px; /* Exact Request */
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+/* --- Header --- */
+.packages-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--pkg-text-white);
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.section-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: var(--pkg-text-gray);
+  max-width: 700px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* --- Grid Layout --- */
+.cards-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* --- Card Styles --- */
+.pricing-card {
+  flex: 1;
+  /* Glassmorphism Panel */
+  background: var(--pkg-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--pkg-glass-border);
+  
+  border-radius: 20px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover Animation: Lift Up */
+.pricing-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Popular Card (Middle) */
+.card-popular {
+  border: 2px solid var(--pkg-accent);
+  background: rgba(37, 99, 235, 0.05); /* Subtle blue tint */
+  transform: scale(1.05); /* Slightly bigger */
+  z-index: 2;
+  box-shadow: 0 0 30px rgba(37, 99, 235, 0.1);
+}
+
+.card-popular:hover {
+  transform: scale(1.05) translateY(-10px); /* Maintain scale while lifting */
+  box-shadow: 0 20px 50px -10px rgba(37, 99, 235, 0.2);
+}
+
+/* Popular Badge */
+.popular-badge {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--pkg-accent);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px var(--pkg-accent-glow);
+}
+
+/* Card Header */
+.card-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pkg-title {
+  /* League Gothic for Title as requested */
+  font-family: 'League Gothic', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--pkg-text-white);
+  margin: 0;
+}
+
+.pkg-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: var(--pkg-text-gray);
+  margin: 0;
+  min-height: 42px;
+}
+
+.pkg-price-wrapper {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.starting-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--pkg-text-gray);
+}
+
+.pkg-price {
+  /* League Gothic for Price as requested */
+  font-family: 'League Gothic', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: var(--pkg-text-white);
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Features List */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--pkg-text-white);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.check-icon {
+  color: var(--pkg-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Card Footer */
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+}
+
+.ideal-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ideal-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  color: var(--pkg-text-gray);
+}
+
+.ideal-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: var(--pkg-text-white);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* --- GLASS EFFECT BUTTONS --- */
+.get-started-btn {
+  width: 100%;
+  padding: 18px;
+  /* Glass Effect: Transparent BG + Blur */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  border-radius: 12px;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Button Hover State */
+.get-started-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  transform: translateY(-2px);
+}
+
+/* Popular Button Glow */
+.btn-glow {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: var(--pkg-accent);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.2);
+}
+
+.btn-glow:hover {
+  background: var(--pkg-accent);
+  box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 1024px) {
+  .packages-container {
+    padding-inline: 40px;
+  }
+  
+  .pricing-card, .card-popular {
+    transform: none; /* Disable default scale to prevent overlap */
+  }
+  
+  .pricing-card:hover, .card-popular:hover {
+    transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 850px) {
+  .cards-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pricing-card {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .card-popular {
+    transform: scale(1); /* Reset scale on mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .packages-container {
+    padding-inline: 20px;
+  }
+}
