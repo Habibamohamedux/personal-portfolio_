@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async'; // <--- 1. Import Helmet
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArticleIcon from '@mui/icons-material/Article';
 import DownloadIcon from '@mui/icons-material/Download';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'; // For Accordion
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import './Coursesinside.css';
+import Navbar from "../components/layout/Navbar.jsx";
+import Footer from "../components/layout/Footer.jsx";
 
 // --- Mock Data: Organized by Modules ---
 const courseInfo = {
@@ -87,8 +90,23 @@ const CoursesInside = () => {
   };
 
   return (
+    <><Navbar />
     <div id="courses-inside-page">
       
+      {/* 2. ADD HELMET HERE */}
+      <Helmet>
+        {/* The title updates automatically based on the active lesson */}
+        <title>{`${activeLesson.title} | ${courseInfo.title}`}</title>
+        
+        {/* The description updates to match the lesson description */}
+        <meta name="description" content={activeLesson.description} />
+        
+        {/* Open Graph Tags (Optional: Makes sharing look good) */}
+        <meta property="og:title" content={activeLesson.title} />
+        <meta property="og:description" content={activeLesson.description} />
+        <meta property="og:image" content={courseInfo.image} />
+      </Helmet>
+
       {/* 1. HERO SECTION */}
       <section className="course-hero">
         <img src={courseInfo.image} alt="Course Background" className="hero-bg" />
@@ -217,6 +235,8 @@ const CoursesInside = () => {
         </main>
       </div>
     </div>
+    <Footer />  
+    </>
   );
 };
 

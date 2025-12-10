@@ -4,10 +4,10 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { FaBookOpen, FaRegClock, FaChartLine, FaArrowRight, FaSortAmountDown, FaSortAmountUp } from 'react-icons/fa';
 import './Blogcategory.css';
 
-// Layout Components
 import Navbar from "../components/layout/Navbar.jsx";
 import Newsletter from "../components/layout/Newsletter.jsx";
 import Footer from "../components/layout/Footer.jsx";
+import { Helmet } from "react-helmet-async";
 
 // --- BLOG DATA ---
 const initialBlogs = [
@@ -63,22 +63,22 @@ const initialBlogs = [
 
 const Blogcategory = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // 1. Added Navigation Hook
-  const [sortOrder, setSortOrder] = useState('newest'); 
-  
-  // Retrieve data passed from Mood card
+  const navigate = useNavigate();
+  const [sortOrder, setSortOrder] = useState('newest');
+
+  // Retrieve data from Mood card → Default values
   const { title, color } = location.state || { title: "Deep UX Thinking", color: "pink" };
 
-  // Parallax Logic
+  // Parallax
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 500], [0, 200]); 
-  const y2 = useTransform(scrollY, [0, 500], [0, -150]); 
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Sorting Logic
+  // Sorting
   const sortedBlogs = useMemo(() => {
     return [...initialBlogs].sort((a, b) => {
       const dateA = new Date(a.date);
@@ -87,26 +87,53 @@ const Blogcategory = () => {
     });
   }, [sortOrder]);
 
-  // 2. Function to handle click
   const handleArticleClick = (blog) => {
     navigate('/blog/inside', { state: { blogData: blog } });
   };
 
   return (
     <>
+      {/* ============================= */}
+      {/*        SEO: HELMET            */}
+      {/* ============================= */}
+      <Helmet>
+        <title>{title} | Blog Category</title>
+
+        <meta
+          name="description"
+          content={`Explore curated articles about ${title}. Deep UX thinking, psychology, design principles, creative strategies, and modern tech insights.`}
+        />
+
+        <meta
+          name="keywords"
+          content={`${title}, UX design, design category, UX psychology, creative writing, UI design blog, Habiba Saad blog`}
+        />
+
+        <link rel="canonical" href={`https://Habibasaad.com/blog-category/${title.replace(/\s+/g, '-').toLowerCase()}`} />
+
+        {/* Open Graph */}
+        <meta property="og:title" content={`${title} | Blog Category`} />
+        <meta
+          property="og:description"
+          content={`Read articles and deep dives related to ${title}. Written by UI/UX Designer & Frontend Developer Habiba Saad.`}
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://Habibasaad.com/blog-category" />
+      </Helmet>
+
       <Navbar />
-      
+
       <div className="category-page-container">
-        
-        {/* --- PARALLAX BACKGROUND ELEMENTS --- */}
+
+        {/* PARALLAX */}
         <motion.div style={{ y: y1 }} className={`parallax-orb orb-1 ${color}`}></motion.div>
         <motion.div style={{ y: y2 }} className={`parallax-orb orb-2 ${color}`}></motion.div>
 
-        {/* --- HEADER SECTION --- */}
+        {/* HEADER */}
         <header className="category-header">
           <div className={`category-glow ${color}`}></div>
 
-          <motion.div 
+          <motion.div
             className="featured-pill"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,7 +142,7 @@ const Blogcategory = () => {
             <span className={`dot ${color}`}></span> Featured Category
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             className="category-title"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -124,18 +151,17 @@ const Blogcategory = () => {
             {title}
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             className="category-desc"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Exploring the intersection of psychology, design, and technology. 
-            Deep dives into principles that create meaningful, memorable digital products.
+            Exploring the intersection of psychology, design, and technology.
+            Deep dives into principles that create meaningful, unforgettable experiences.
           </motion.p>
 
-          {/* Stats Row (Static Numbers) */}
-          <motion.div 
+          <motion.div
             className="stats-row"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -165,11 +191,11 @@ const Blogcategory = () => {
           </motion.div>
         </header>
 
-        {/* --- FILTER BAR --- */}
+        {/* FILTER BAR */}
         <div className="filter-bar">
           <span className="results-count">Showing {sortedBlogs.length} Articles</span>
-          <button 
-            className="sort-btn" 
+          <button
+            className="sort-btn"
             onClick={() => setSortOrder(prev => prev === 'newest' ? 'oldest' : 'newest')}
           >
             {sortOrder === 'newest' ? <FaSortAmountDown /> : <FaSortAmountUp />}
@@ -177,36 +203,35 @@ const Blogcategory = () => {
           </button>
         </div>
 
-        {/* --- CONTENT GRID --- */}
+        {/* CONTENT GRID */}
         <motion.div layout className="category-content-grid">
           <AnimatePresence>
             {sortedBlogs.map((blog) => (
-              <motion.article 
-                layout 
-                key={blog.id} 
+              <motion.article
+                layout
+                key={blog.id}
                 className="category-blog-card"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                // 3. Attach click event
                 onClick={() => handleArticleClick(blog)}
                 style={{ cursor: 'pointer' }}
               >
                 <div className="cat-card-image">
                   <img src={blog.image} alt={blog.title} />
                 </div>
-                
+
                 <div className="cat-card-body">
                   <div className="cat-meta">
                     <span>{blog.date}</span>
                     <span className="dot-sep">•</span>
                     <span>{blog.readTime}</span>
                   </div>
-                  
+
                   <h3 className="cat-card-title">{blog.title}</h3>
                   <p className="cat-card-excerpt">{blog.excerpt}</p>
-                  
+
                   <button className={`cat-read-btn ${color}`}>
                     Read More <FaArrowRight />
                   </button>

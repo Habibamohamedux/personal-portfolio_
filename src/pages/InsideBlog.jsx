@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
+import { Helmet } from 'react-helmet-async'; // <--- 1. Import Helmet
 // FIXED IMPORT: Replaced FaUserLines with FaUserEdit
 import { 
   FaShareAlt, FaList, FaChevronLeft, 
@@ -105,8 +106,28 @@ const InsideBlog = () => {
     { id: 'conclusion', label: 'Conclusion' },
   ];
 
+  // Blog Info (Stored here to easily reuse in Helmet and Hero)
+  const blogInfo = {
+    title: "The Psychology of Microinteractions",
+    description: "Discover how microinteractions guide users, provide feedback, and add humanity to digital products. A deep dive into UX psychology and cognitive load.",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop",
+    author: "Habiba Saad"
+  };
+
   return (
     <>
+      {/* 2. ADD HELMET SECTION */}
+      <Helmet>
+        <title>{`${blogInfo.title} | ${blogInfo.author}`}</title>
+        <meta name="description" content={blogInfo.description} />
+        
+        {/* Open Graph Tags for Social Sharing */}
+        <meta property="og:title" content={blogInfo.title} />
+        <meta property="og:description" content={blogInfo.description} />
+        <meta property="og:image" content={blogInfo.image} />
+        <meta property="og:type" content="article" />
+      </Helmet>
+
       <Navbar />
       
       {/* Scroll Progress Line */}
@@ -118,7 +139,7 @@ const InsideBlog = () => {
         <header id="intro" className="article-hero">
           <div className="hero-bg-overlay"></div>
           <img 
-            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop" 
+            src={blogInfo.image} 
             alt="Hero" 
             className="hero-image" 
           />
@@ -140,7 +161,7 @@ const InsideBlog = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              THE PSYCHOLOGY OF MICROINTERACTIONS
+              {blogInfo.title.toUpperCase()}
             </motion.h1>
           </div>
         </header>

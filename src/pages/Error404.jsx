@@ -1,11 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom'; 
+import { Helmet } from 'react-helmet-async'; // <--- 1. Import Helmet
 import './Error404.css';
 
 const Error = () => {
   return (
     <section className="error-container">
+      
+      {/* 2. ADD HELMET */}
+      <Helmet>
+        <title>404 - Page Not Found</title>
+        <meta name="description" content="The page you are looking for does not exist." />
+        {/* It is good practice to tell Google NOT to index error pages */}
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+
       {/* Ambient Background Glows */}
       <div className="error-bg-glow glow-1"></div>
       <div className="error-bg-glow glow-2"></div>
@@ -30,10 +40,10 @@ const Error = () => {
           The coordinates you are trying to access have been lost in the digital void. Rerouting recommended.
         </p>
 
-        {/* Replace with <Link to="/"> if using React Router */}
-        <a href="/" className="error-home-btn">
+        {/* 3. Use Link instead of <a> for faster navigation */}
+        <Link to="/" className="error-home-btn">
           Return to Base
-        </a>
+        </Link>
 
       </motion.div>
     </section>

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // <--- 1. Import Helmet
 import "./InsideServices.css";
 import Navbar from "../components/layout/Navbar.jsx";
 import Footer from "../components/layout/Footer.jsx";
@@ -15,9 +16,16 @@ const InsideServices = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // --- ERROR STATE (If accessed directly without state) ---
   if (!cardData) {
     return (
       <div className="error-container">
+        {/* Helmet for Error State */}
+        <Helmet>
+          <title>Service Not Found</title>
+          <meta name="robots" content="noindex" />
+        </Helmet>
+        
         <h2>Service not found</h2>
         <button onClick={() => navigate("/")} className="back-btn">Go Back</button>
       </div>
@@ -60,6 +68,18 @@ const InsideServices = () => {
 
   return (
     <>
+      {/* 2. ADD DYNAMIC HELMET TAGS */}
+      <Helmet>
+        <title>{`${cardData.title} | Our Services`}</title>
+        <meta name="description" content={cardData.description} />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:title" content={cardData.title} />
+        <meta property="og:description" content={cardData.description} />
+        {/* Uses the first shape image as a preview if available */}
+        <meta property="og:image" content={cardData.shapes?.[0]} />
+      </Helmet>
+
       <Navbar />
       <div className="inside-service-page">
         

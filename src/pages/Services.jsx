@@ -1,4 +1,6 @@
 import React from 'react';
+import { Helmet } from "react-helmet";
+
 import Navbar from "../components/layout/Navbar.jsx";
 import ServicesHero from '../components/layout/ServicesHero';
 import ServicesCards from '../components/layout/ServicesCards.jsx'; // This imports the card logic
@@ -12,6 +14,12 @@ import Footer from "../components/layout/Footer.jsx";
 import './Services.css';
 
 const Services = () => {
+  <Helmet>
+        <title>About</title>
+        <meta name="description" content="This is the about page" />
+        <meta property="og:title" content="About Us" />
+        <meta property="og:image" content="/images/about.png" />
+      </Helmet> 
   return (
     <>
       <Navbar />

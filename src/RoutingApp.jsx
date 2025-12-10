@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async'; // Correct import
+
+// Pages
 import Home from "./pages/Home.jsx";
 import Contact from "./pages/Contact.jsx";
 import About from "./pages/About.jsx";
@@ -15,24 +18,36 @@ import Error404 from "./pages/Error404.jsx";
 
 const RoutingApp = () => {
   return (
-    <>
+    <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          
+          {/* Blog Routes */}
           <Route path="/blogs" element={<Blog />} />
           <Route path="/blog-category" element={<Blogcategory />} />
           <Route path="/blog/inside" element={<InsideBlog />} />
-            <Route path="/Courses" element={<Courses />} />
+          
+          {/* Course Routes - Lowercased 'c' is better standard */}
+          <Route path="/courses" element={<Courses />} />
           <Route path="/courses/inside" element={<Coursesinside />} />
+          
+          {/* Services Routes */}
           <Route path="/services" element={<Services />} />
+          
+          {/* CRITICAL FIX: Changed from '/services/inside' to '/services/details' 
+             to match the navigate() function in ServicesCards.jsx */}
           <Route path="/services/inside" element={<InsideServices />} />
+          
           <Route path="/portfolio" element={<Portfolio />} />
+          
+          {/* 404 Catch-all */}
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </HelmetProvider>
   );
 };
 
