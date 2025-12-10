@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link for routing
 import "./Footer.css";
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 
@@ -18,12 +19,6 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      {/* Background Blobs */}
-      <div className="footer-bg">
-        <div className="blob blob1"></div>
-        <div className="blob blob2"></div>
-      </div>
-
       {/* Glass Holder */}
       <div className="footer-glass">
         <div className="footer-content">
@@ -35,17 +30,18 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* MIDDLE */}
+          {/* MIDDLE - Updated to use Link and match your Router paths */}
           <div className="footer-column middle">
             <h3 className="footer-heading">QUICK LINKS</h3>
             <ul className="footer-links">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#courses">Courses & Tutorials</a></li>
-              <li><a href="#blogs">Blogs & News</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/services">Services</Link></li> 
+              {/* Assuming Portfolio might share the Services page or exist on Home, 
+                  mapped to Services for now based on your Router */}
+              <li><Link to="/Courses">Courses & Tutorials</Link></li>
+              <li><Link to="/blogs">Blogs & News</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
