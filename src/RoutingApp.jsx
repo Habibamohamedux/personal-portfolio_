@@ -10,6 +10,7 @@ import Courses from "./pages/Courses.jsx";
 import Coursesinside from "./pages/Coursesinside.jsx";
 import Services from "./pages/Services.jsx";
 import InsideServices from "./pages/InsideServices.jsx";
+import Portfolio from "./pages/Portfolio.jsx";
 import Error404 from "./pages/Error404.jsx";
 
 const RoutingApp = () => {
@@ -27,6 +28,7 @@ const RoutingApp = () => {
           <Route path="/courses/inside" element={<Coursesinside />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/inside" element={<InsideServices />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
