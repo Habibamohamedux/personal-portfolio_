@@ -21,7 +21,6 @@ const Home = () => {
     return (
         <>
             <Helmet>
-                {/* Primary Meta Tags */}
                 <title>Habiba Saad | UX/UI & Creative Designer</title>
                 <meta 
                     name="description" 

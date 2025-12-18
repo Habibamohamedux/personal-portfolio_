@@ -1,13 +1,29 @@
-import React, { Component, useDebugValue } from 'react';
+import React from 'react'; // specific imports like Component/useDebugValue aren't needed here
 import './Arrowbtndown.css';
 
 const Arrowbtndown = () => {
+
+    // Function to handle the scroll action
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight, // Calculates the full height of the page
+            behavior: 'smooth' // Adds a smooth scrolling animation
+        });
+    };
+
     return (
-        <div className="arrow-btn-down">
+        <div 
+            className="arrow-btn-down" 
+            onClick={scrollToBottom} 
+            style={{ cursor: 'pointer' }} // Ensures the cursor looks like a hand
+            role="button" // Good for accessibility
+            tabIndex={0}  // Makes it focusable
+        >
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="22" viewBox="0 0 15 22" fill="none">
-  <path d="M8.36377 1C8.36377 0.447715 7.91605 2.41411e-08 7.36377 0C6.81148 -2.41411e-08 6.36377 0.447715 6.36377 1L7.36377 1L8.36377 1ZM6.65666 21.7071C7.04719 22.0976 7.68035 22.0976 8.07088 21.7071L14.4348 15.3431C14.8254 14.9526 14.8254 14.3195 14.4348 13.9289C14.0443 13.5384 13.4111 13.5384 13.0206 13.9289L7.36377 19.5858L1.70691 13.9289C1.31639 13.5384 0.683226 13.5384 0.292701 13.9289C-0.0978232 14.3195 -0.0978233 14.9526 0.292701 15.3431L6.65666 21.7071ZM7.36377 1L6.36377 1L6.36377 21L7.36377 21L8.36377 21L8.36377 1L7.36377 1Z" fill="white"/>
-</svg>
+                <path d="M8.36377 1C8.36377 0.447715 7.91605 2.41411e-08 7.36377 0C6.81148 -2.41411e-08 6.36377 0.447715 6.36377 1L7.36377 1L8.36377 1ZM6.65666 21.7071C7.04719 22.0976 7.68035 22.0976 8.07088 21.7071L14.4348 15.3431C14.8254 14.9526 14.8254 14.3195 14.4348 13.9289C14.0443 13.5384 13.4111 13.5384 13.0206 13.9289L7.36377 19.5858L1.70691 13.9289C1.31639 13.5384 0.683226 13.5384 0.292701 13.9289C-0.0978232 14.3195 -0.0978233 14.9526 0.292701 15.3431L6.65666 21.7071ZM7.36377 1L6.36377 1L6.36377 21L7.36377 21L8.36377 21L8.36377 1L7.36377 1Z" fill="white"/>
+            </svg>
         </div>
-       );
+    );
 };
+
 export default Arrowbtndown;

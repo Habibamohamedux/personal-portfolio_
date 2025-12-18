@@ -5,11 +5,15 @@
   background-color: #00040b;
   position: relative;
   z-index: 2;
+  gap: 32px;
+  overflow-x: clip; 
 }
 
 .latestshowreel-video {
   position: relative;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,16 +21,22 @@
 
 .latestshowreel-video video {
   width: 100%;
+  height: auto; 
   border-radius: 25px;
-  box-shadow: 0 4px 56px rgba(22,25,95,0.7);
-  background: linear-gradient(0deg, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.51) 100%);
+  box-shadow: 0 4px 56px rgba(22, 25, 95, 0.7);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.26) 0%, rgba(0, 0, 0, 0.51) 100%);
+  display: block;
+  object-fit: cover; /* Key property: allows us to resize height without stretching */
 }
 
 /* Overlay */
 .video-overlay {
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0,0,0,0.55);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.55);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,8 +47,27 @@
   z-index: 2;
 }
 
+/* Assume there is an SVG or Image inside the overlay for the play button */
+.video-overlay svg, 
+.video-overlay img {
+  width: 80px; /* Default Desktop Size */
+  height: 80px;
+  transition: transform 0.3s ease;
+}
+
 .video-overlay.visible {
   opacity: 1;
+}
+
+/* Hover effect for Desktop only */
+@media (hover: hover) {
+  .video-overlay:hover {
+    opacity: 1;
+  }
+  .video-overlay:hover svg,
+  .video-overlay:hover img {
+    transform: scale(1.1);
+  }
 }
 
 /* Shapes */
@@ -50,15 +79,85 @@
   transition: transform 0.3s ease, opacity 0.5s ease;
   z-index: 1;
   animation: float 4s ease-in-out infinite alternate;
-  opacity: 50%;
-    mix-blend-mode: color-dodge;
-
+  opacity: 0.5;
+  mix-blend-mode: color-dodge;
 }
 
-
-/* Corner placement */
 .latestshowreel .shape1 { top: -100px; left: -80px; }
 .latestshowreel .shape2 { top: -100px; right: -80px; }
 .latestshowreel .shape3 { bottom: -100px; left: -80px; }
 .latestshowreel .shape4 { bottom: -100px; right: -80px; }
 
+@keyframes float {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-20px); }
+}
+
+/* =========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================= */
+
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .latestshowreel {
+    padding: 50px 40px;
+  }
+  .latestshowreel .shape {
+    width: 120px;
+    height: 120px;
+  }
+  .latestshowreel .shape1 { top: -60px; left: -40px; }
+  .latestshowreel .shape2 { top: -60px; right: -40px; }
+  .latestshowreel .shape3 { bottom: -60px; left: -40px; }
+  .latestshowreel .shape4 { bottom: -60px; right: -40px; }
+}
+/* Mobile Screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .latestshowreel {
+    padding: 40px 20px;
+    gap: 60px; /* Increased gap */
+    
+    /* CENTERS THE CONTENT FLEX-WISE */
+    align-items: center; 
+  }
+
+  /* CENTER THE TITLE TEXT */
+  /* Assuming your title is an h2, h3, or has a specific class like .section-title */
+  .latestshowreel h2, 
+  .latestshowreel h3,
+  .latestshowreel .section-title {
+    text-align: center;
+    width: 100%;
+  }
+
+  .latestshowreel-video video {
+    border-radius: 15px;
+    height: 60vh; /* Taller video on phone */
+    min-height: 500px; 
+    object-fit: cover; 
+  }
+
+  .video-overlay {
+    border-radius: 15px;
+    opacity: 1; 
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .video-overlay svg, 
+  .video-overlay img {
+    width: 50px; /* Smaller button */
+    height: 50px;
+  }
+
+  .latestshowreel .shape {
+    width: 70px;
+    height: 70px;
+    opacity: 0.4;
+  }
+
+  /* Shape positions adjusted for mobile */
+  .latestshowreel .shape1 { top: -20px; left: -10px; }
+  .latestshowreel .shape2 { top: -20px; right: -10px; }
+  .latestshowreel .shape3 { bottom: -20px; left: -10px; }
+  .latestshowreel .shape4 { bottom: -20px; right: -10px; }
+}
