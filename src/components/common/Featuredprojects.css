@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Outfit:wght@100..900&family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* =========================================
+   GLOBAL STYLES
+   ========================================= */
 html {
   scroll-behavior: smooth;
 }
@@ -16,191 +19,263 @@ h6, h5, h4, h3, h2, h1, p {
   padding: 0;
 }
 
+/* =========================================
+   MAIN LAYOUT
+   ========================================= */
 .featured-projects {
   display: flex;
   justify-content: center;
-  padding:100px;
+  padding: 100px;
+  background-color: #000; /* Ensure background matches your theme */
 }
 
 .featured-layout {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-}
-
-
-.featured-left img {
-  width: 100%;
-  border-radius: 20px;
-  height: auto;
-  object-fit: cover;
-}
-
-.featured-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  height: -webkit-fill-available;
-}
-
-.featured-right img {
-  width: 100%;
-  border-radius: 20px;
-  object-fit: cover;
-    height: -webkit-fill-available;
-}
-
-/* Responsive Design */
-@media (max-width: 900px) {
-  .featured-layout {
-    flex-direction: column;
-  }
-
-  .featured-images {
-    flex-direction: column;
-  }
-
-  .featured-projects-content {
-    text-align: left;
-  }
-}
-
-.featured-layout {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch; /* Ensures both sides are equal height */
   gap: 60px;
   width: 100%;
+  max-width: 1400px; /* Prevents it from getting too wide on huge screens */
 }
 
-/* LEFT IMAGE SLIDESHOW */
+/* =========================================
+   LEFT SIDE: IMAGES
+   ========================================= */
 .featured-images {
-    display: flex
-;
-    width: 50%;
-    height: -webkit-fill-available;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  gap: 20px;
 }
 
 .featured-left {
-  width: 100%;
-  position: relative;
+  width: 60%; /* The big image takes up more space */
+  display: flex;
 }
 
+.featured-right {
+  width: 40%; /* The column with two images */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Image Container Styling */
 .image-container {
   position: relative;
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
-      height: -webkit-fill-available;
+  /* Ensures container fills the flex parent height */
+  flex-grow: 1; 
+  height: 100%; 
 }
 
 .image-container img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   border-radius: 20px;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
+  display: block; /* Removes bottom gap */
 }
 
+/* Hover Effects */
 .image-container:hover img {
   transform: scale(1.05);
 }
 
 .image-label {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.6);
-  padding: 6px 12px;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   color: #fff;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 2;
 }
 
+/* Show label on hover or if "active" class added */
 .image-container:hover .image-label {
   opacity: 1;
+  transform: translateY(0);
 }
 
-/* Responsive Design */
-@media (max-width: 900px) {
-  .featured-layout {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .featured-images {
-    flex-direction: column;
-  }
-
-  .featured-projects-content {
-    text-align: left;
-  }
+/* Fade animation class managed by React */
+.image-container.fade img {
+  opacity: 0.8; 
+  /* You can add a transition here if you want the fade to be handled by CSS */
 }
 
-.featured-layout {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 60px;
-  width: 100%;
-}
-
-/* LEFT IMAGE GRID */
-.featured-images {
-  display: flex;
-width: 50%;
-  gap: 20px;
-}
-
-.featured-left {
-  width: 50%;
-}
-
-.featured-left img {
-  width: 100%;
-    height: -webkit-fill-available;
-  border-radius: 20px;
-  object-fit: cover;
-}
-
-.featured-right {
-width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.featured-right img {
-    width: 100%;
-    border-radius: 20px;
-    object-fit: cover;
-    height: -webkit-fill-available;
-}
-
-/* RIGHT TEXT SECTION */
+/* =========================================
+   RIGHT SIDE: TEXT CONTENT
+   ========================================= */
 .featured-projects-content {
-width: 50%;
+  width: 50%;
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Centers text vertically */
   align-items: flex-start;
   gap: 24px;
 }
 
-@media (max-width: 900px) {
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .featured-projects {
+    padding: 60px 40px;
+  }
+  
   .featured-layout {
-    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .featured-projects {
+    padding: 50px 20px;
+  }
+
+  .featured-layout {
+    flex-direction: column-reverse; /* Puts text on top, images below? Or remove 'reverse' for standard order */
     gap: 40px;
   }
 
+  /* Make both sections full width */
+  .featured-images, 
+  .featured-projects-content {
+    width: 100%;
+  }
+
+  /* IMAGE LAYOUT ON MOBILE */
   .featured-images {
-    flex-direction: column;
+    flex-direction: column; /* Stack the big image on top of the two small ones */
+    height: auto;
+  }
+
+  .featured-left {
+    width: 100%;
+    height: 300px; /* Give the main image a fixed height on mobile */
+  }
+
+  .featured-right {
+    width: 100%;
+    flex-direction: row; /* Put the two small images side-by-side */
+    height: 200px; /* Fixed height for the small row */
+  }
+
+  /* Adjust label visibility for touch devices */
+  .image-label {
+    opacity: 1; /* Always show label on mobile since there is no hover */
+    transform: translateY(0);
+    bottom: 10px;
+    left: 10px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .featured-left {
+    height: 250px;
+  }
+  
+  .featured-right {
+    height: 150px; /* Make the small images shorter */
+  }
+  
+  .featured-projects-content {
+    gap: 16px;
+  }
+}
+/* =========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================= */
+
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .featured-projects {
+    padding: 60px 40px;
+  }
+  .featured-layout {
+    gap: 40px;
+  }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .featured-projects {
+    padding: 50px 20px;
+  }
+
+  .featured-layout {
+    /* Puts text on top (if you want text below images, use 'column') */
+    flex-direction: column-reverse; 
+    align-items: center;
+    gap: 40px;
+  }
+
+  /* --- CENTER TEXT CONTENT --- */
+  .featured-projects-content {
+    width: 100%;
+    align-items: center; /* Centers flex items like the button */
+    text-align: center;  /* Centers text paragraphs and headers */
+  }
+
+  /* --- STACK IMAGES VERTICALLY --- */
+  .featured-images {
+    width: 100%;
+    flex-direction: column; /* Stacks the Left group on top of Right group */
+    gap: 20px;
+    height: auto;
+  }
+
+  /* Make both image groups full width and stacked */
+  .featured-left, 
+  .featured-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Ensures images inside stack vertically */
+    gap: 20px;
+    height: auto;
+  }
+
+  /* Uniform height for all 3 cards on mobile */
+  .image-container {
+    width: 100%;
+    height: 350px; /* Fixed height makes them look like consistent cards */
+  }
+
+  /* Always show labels on mobile */
+  .image-label {
+    opacity: 1;
+    transform: translateY(0);
+    bottom: 15px;
+    left: 15px;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  /* Slightly shorter cards on very small screens */
+  .image-container {
+    height: 280px; 
+  }
+  
+  .featured-projects-content {
+    gap: 16px;
   }
 }

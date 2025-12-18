@@ -1,12 +1,63 @@
-.courses-section{
+.courses-section {
     padding: 50px 100px;
     display: flex;
     flex-direction: column;
     gap: 48px;
+    background-color: #000; /* Assuming black background based on previous context */
 }
 
-.courses-content{
+.courses-content {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    max-width: 800px; /* Prevents text from stretching too wide */
+}
+
+/* --- CARD GRID LAYOUT --- */
+.courses-glasscards {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line */
+    gap: 24px;      /* Space between cards */
+    justify-content: flex-start; /* Aligns cards to the left */
+}
+
+/* =========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================= */
+
+/* Tablet (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .courses-section {
+        padding: 50px 40px; /* Reduce padding */
+    }
+
+    .courses-glasscards {
+        justify-content: center; /* Center cards on tablet if they don't fill row */
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    .courses-section {
+        padding: 40px 20px; /* Mobile padding */
+        gap: 32px;
+        align-items: center; /* Center the title/text container */
+    }
+
+    .courses-content {
+        align-items: center;
+        text-align: center; /* Center text for readability on phone */
+    }
+
+    .courses-glasscards {
+        flex-direction: column; /* Stack cards vertically */
+        align-items: center;
+        width: 100%;
+    }
+    
+    /* Optional: Ensure individual glasscards don't get too wide on mobile */
+    .courses-glasscards > * {
+        width: 100%;
+        max-width: 400px;
+    }
 }
