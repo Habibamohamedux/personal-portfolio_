@@ -1,367 +1,267 @@
-.testimonials-section {
-    position: relative;
-    width: 95%;
-    max-width: 1200px;
-    margin: 0 auto;
-    /* Updated Padding */
-    padding: 100px 50px;
-    min-height: 400px;
-    border-radius: 24px;
-    transition: background 0.5s 
-ease-in-out;
-    overflow: hidden;
-    /* ADDED SECTION BACKGROUND FROM JSX INLINE STYLE (Kept for completeness) */
-    background: rgba(77,124,255,0.85); 
-    /* FLEXBOX ADDITIONS */
-    display: flex;
-    gap: 80px;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Spacer Element: Replaces margin-top on cards-container */
-.spacer-element {
-    /* Height must be large enough to clear the absolute title */
-    height: 100px; 
-}
-
-
-/* -------- LEFT DOTS (Kept Absolute) -------- */
-.switch-buttons {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    z-index: 20;
-}
-
-.switch-dot {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 50%;
-    /* INACTIVE DOT STYLES (from JSX inline style) */
-    background: transparent; 
-    border: 2px solid rgba(255, 255, 255, 0.5);
-}
-
-.switch-dot.active {
-    background: white;
-    transform: scale(1.25);
-    border-color: white;
-}
-
-/* Specific active styles for Card 0 and 1 removed as you reverted active dot color to white */
-.switch-dot.active-0 {
-    /* Keeping this empty but present for structure, 
-       as base .active style now handles the appearance you defined. */
-}
-
-.switch-dot.active-1 {
-    /* Keeping this empty but present for structure, 
-       as base .active style now handles the appearance you defined. */
-}
-
-/* -------- CENTER TITLE (Kept Absolute) -------- */
-.center-title-container {
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-}
-
-.center-title {
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 12px;
-    font-size: 24px;
-    color: white;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    backdrop-filter: blur(8px);
-    line-height: 1.2;
-}
-
-.center-title-text {
-    text-align: center; 
-}
-
-.title-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-    flex-shrink: 0;
-}
-
-/* -------- CARDS CONTAINER - (No margin-top) -------- */
-.cards-container {
-    /* Removed margin-top, now spaced by .spacer-element */
-    display: flex;
-    justify-content: center; /* Centers the card horizontally */
-    align-items: center;
-    width: 100%; 
-    padding: 0 40px; 
-}
-
-/* -------- TESTIMONIAL CARD -------- */
-.testimonial-card {
-    width: 100%;
-    max-width: 800px;
-    padding: 32px;
-    border-radius: 16px;
-    min-height: 200px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    /* Animation Properties */
-    animation: cardFade 0.6s forwards;
-    transform: translateY(20px);
-    opacity: 0;
-    
-}
-
-@keyframes cardFade {
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-.stars {
-    font-size: 18px;
-    margin-bottom: 12px; /* Internal spacing kept */
-}
-
-.star-icon {
-    width: 20px;
-    height: 20px;
-    fill: #facc15; 
-    color: #facc15; 
-    display: inline-block;
-    margin-right: 2px;
-}
-
-.testimonial-title {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 10px; /* Internal spacing kept */
-}
-
-.testimonial-desc {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px; /* Internal spacing kept */
-    opacity: 0.9;
-}
-
-.testimonial-author {
-    font-size: 14px;
-    font-weight: 500;
-    opacity: 0.7;
-}
-
-/* -------- DESKTOP NAVIGATION ARROWS (Kept Absolute) -------- */
-.nav-arrow {
-    display: none; 
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.3);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 20;
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.nav-arrow:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-.nav-arrow.prev {
-    left: 20px;
-}
-
-.nav-arrow.next {
-    right: 20px;
-}
-
-.arrow-icon {
-    width: 24px;
-    height: 24px;
-}
-
-/* -------- MOBILE NAVIGATION ARROWS (Flex Container) -------- */
-.mobile-nav-arrows {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    /* Using padding/flex-spacing instead of margin-top */
-    padding-top: 40px; 
-}
-
-.mobile-nav-btn {
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.3);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.mobile-nav-btn:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-
-/* ====== RESPONSIVE DESIGN (min-width: 768px) ====== */
-
-@media (min-width: 768px) {
-    
-    .spacer-element {
-        height: 120px; 
-    }
-
-    .center-title {
-        font-size: 30px;
-        padding: 16px 32px;
-    }
-
-    .title-icon {
-        width: 24px;
-        height: 24px;
-    }
-
-    .nav-arrow {
-        display: block;
-    }
-
-    .mobile-nav-arrows {
-        display: none;
-    }
-
-    .cards-container {
-        padding: 0 80px;
-    }
-}
-
-/* Desktop and large screens (min-width: 1024px) */
-@media (min-width: 1024px) {
-    .switch-buttons {
-        left: 40px;
-    }
-
-    .nav-arrow.prev {
-        left: 40px;
-    }
-
-    .nav-arrow.next {
-        right: 40px;
-    }
-
-    .testimonial-title {
-        font-size: 32px;
-    }
-}
-
-/* Mobile-specific adjustments (max-width: 767px) */
-@media (max-width: 767px) {
-    .title-section {
-        font-size: 36px;
-    }
-    
-    .testimonials-section {
-        padding: 20px 20px 120px; 
-    }
-    
-    .spacer-element {
-        height: 80px; 
-    }
-
-    .center-title {
-        font-size: 18px;
-        padding: 8px 16px;
-    }
-
-    .center-title br {
-        display: none; 
-    }
-
-    .center-title-text {
-        text-align: left; 
-    }
-
-    .switch-buttons {
-        left: 10px;
-        gap: 8px;
-    }
-    
-    .testimonial-card {
-        padding: 24px;
-    }
-}
-.testimonials-container{
+/* --- CONTAINER --- */
+.testimonials-container {
     padding: 50px 100px;
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 24px;
+    gap: 40px;
+    width: 100%; /* Added to ensure full width */
+    box-sizing: border-box; 
 }
+
+/* --- MAIN SECTION --- */
 .testimonials-section {
     position: relative;
-    width: 95%;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 100px 50px;
-    min-height: 400px;
-    border-radius: 24px;
+    min-height: 500px; 
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 80px;
-    transition: background 0.5s ease-in-out;
-
-    /* Background via CSS variable */
+    gap: 60px;
+    
+    /* Background Transition */
     background: var(--bg-image) center/cover no-repeat;
+    transition: background-image 0.8s ease-in-out; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
-/* Optional overlay for better readability */
+/* --- DARK OVERLAY (Enhanced Readability) --- */
 .testimonials-section .overlay {
     position: absolute;
-    inset: 0; /* top:0; left:0; right:0; bottom:0 */
-    background: rgba(0, 0, 0, 0.25); /* adjust darkness */
-    border-radius: 24px;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.288), rgba(0,0,0,0.85));
+    border-radius: 12px;
     z-index: 1;
+    backdrop-filter: blur(0.5px); 
 }
 
-/* Make card/content above overlay */
+/* Ensure content sits above overlay */
 .cards-container,
-.center-title {
+.center-title,
+.switch-buttons {
     position: relative;
     z-index: 2;
 }
 
-/* Keep switch-buttons absolute */
+/* --- TITLE --- */
+.center-title {
+    padding: 14px 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px; 
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    backdrop-filter: blur(12px);
+    text-align: center;
+    text-transform: uppercase;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* --- SWITCH DOTS --- */
 .switch-buttons {
     position: absolute;
-    left: 20px;
+    left: 30px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    z-index: 2; /* above overlay but still absolute */
+    gap: 16px;
+}
+
+.switch-dot {
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+.switch-dot.active {
+    background: #fff;
+    transform: scale(1.4);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    border-color: #fff;
+}
+
+.switch-dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* --- CARDS CONTAINER --- */
+.cards-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* --- TESTIMONIAL CARD --- */
+.testimonial-card {
+    width: 100%;
+    max-width: 750px;
+    padding: 40px;
+    border-radius: 20px;
+    
+    background: rgba(58, 58, 58, 0.447); 
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    color: white;
+    text-align: center;
+}
+
+/* --- ROUNDED STARS --- */
+.stars {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 6px; 
+}
+
+.star-icon {
+    width: 24px;
+    height: 24px;
+    fill: #FFD700; 
+    filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6)); 
+    border-radius: 1px;
+    animation: popIn 0.5s ease backwards;
+}
+
+.star-icon:nth-child(1) { animation-delay: 0.1s; }
+.star-icon:nth-child(2) { animation-delay: 0.2s; }
+.star-icon:nth-child(3) { animation-delay: 0.3s; }
+.star-icon:nth-child(4) { animation-delay: 0.4s; }
+.star-icon:nth-child(5) { animation-delay: 0.5s; }
+
+/* Typography */
+.testimonial-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(to right, #fff, #f7f9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.testimonial-desc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e0e0e0; 
+    margin-bottom: 24px;
+    font-weight: 300;
+}
+
+.testimonial-author {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #FFD700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* =========================================
+   RESPONSIVE BREAKPOINTS (ADDED)
+   ========================================= */
+
+/* --- TABLET (Max 1024px) --- */
+@media (max-width: 1024px) {
+    .testimonials-container {
+        padding: 50px 40px;
+        align-items: center; /* Forces container to center */
+    }
+
+    .testimonials-section {
+        padding: 60px 30px;
+    }
+}
+
+/* --- MOBILE (Max 768px) --- */
+@media (max-width: 768px) {
+    /* 1. Center the main container layout */
+    .testimonials-container {
+        padding: 40px 20px;
+        align-items: center; 
+    }
+
+    /* 2. Adjust section padding and alignment */
+    .testimonials-section {
+        padding: 50px 20px 80px 20px; /* Extra bottom padding for dots */
+        text-align: center;
+    }
+
+    /* 3. Move Dots to Bottom Center */
+    .switch-buttons {
+        left: 50%;
+        transform: translateX(-50%);
+        top: auto;
+        bottom: 25px;
+        flex-direction: row; /* Horizontal dots */
+        gap: 12px;
+    }
+
+    /* 4. Force Text Centering in Card */
+    .testimonial-card {
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers stars/SVG */
+        text-align: center;  /* Centers text */
+    }
+
+    .testimonial-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .testimonial-desc {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .testimonial-author {
+        text-align: center;
+    }
+
+    .center-title {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+/* --- SMALL MOBILE (Max 480px) --- */
+@media (max-width: 480px) {
+    .testimonials-container {
+        padding: 30px 10px;
+    }
+
+    .testimonial-card {
+        padding: 24px 16px;
+    }
+
+    .testimonial-title {
+        font-size: 1.3rem;
+    }
 }

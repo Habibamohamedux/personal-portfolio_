@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./Socialmedia.css";
-import Calltoaction from "../common/Calltoaction.jsx";
 
 export default function Socialmedia() {
   const socials = [
@@ -17,7 +16,7 @@ export default function Socialmedia() {
   const texts = [
     { lang: "EN", title: "WANT TO SEE MORE!", subtitle: "EXPLORE SOCIALS" },
     { lang: "AR", title: "هل تريد رؤية المزيد!", subtitle: "استكشف السوشيال" },
-    { lang: "DE", title: "MÖCHTEST DU MEHR SEHEN!", subtitle: "ERKUNDE DIE SOCIALS" },
+    { lang: "DE", title: "NEUGIERIG", subtitle: "ERKUNDE DIE SOCIALS" },
     { lang: "FR", title: "TU VEUX VOIR PLUS !", subtitle: "EXPLORER LES RÉSEAUX" },
   ];
 
@@ -89,7 +88,6 @@ export default function Socialmedia() {
           </ul>
         </div>
 
-        <Calltoaction cta="MORE SOCIALS" />
       </div>
     </section>
   );

@@ -1,164 +1,391 @@
-.getintouch-container {
-  display: flex;
-  gap: 40px;
-  align-items: flex-start;
-  justify-content: center;
-  
-  flex-direction: column;
-  align-content: center;
+/* 1. IMPORT FONTS */
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
 }
 
-/* LIMIT WIDTH SO PHONES DON'T PUSH OUT */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --primary-text: #ffffff;
+  --secondary-text: #b0b0b0;
+  --accent-color: #4facfe;
+  --success-color: #00e676;
+  
+  --font-heading: 'League Gothic', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+
+  /* Height for the containers */
+  --container-height: 800px; 
+}
+
+/* --- MAIN SECTION --- */
+.getintouch {
+  padding: 60px 5%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  background-color: #0c2c63;
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font-body);
+}
+
 .getintouch-wrapper {
   display: flex;
-  position: relative;
-  gap: 50px;
+  gap: 60px;
   max-width: 1400px;
   width: 100%;
-  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  align-items: center; 
 }
-.getintouch{
-  padding: 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;  
-  background-color: #0c2c63;
-  
-}
-/* LEFT FORM SIDE */
+
+/* --- LEFT SIDE: FORM --- */
 .left-side {
-  flex: 1;
+  flex: 1.3;
   display: flex;
   flex-direction: column;
-  gap: 30px;
 }
 
 .glass-form {
   width: 100%;
-  padding: 35px;
+  height: var(--container-height);
+  padding: 50px 60px;
+  
+  /* Glass Styles */
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  box-shadow: var(--glass-shadow);
+  
+  /* Container Layout */
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 26px;
-  backdrop-filter: blur(18px);
-  box-shadow:
-    inset 0 0 20px rgba(255, 255, 255, 0.04),
-    0 10px 40px rgba(0, 0, 0, 0.45);
+  justify-content: center; 
+}
+
+/* --- THE FIX: ADDED GAP TO FORM ELEMENTS --- */
+.glass-form form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* This creates the breathing room between fields */
+  gap: 25px; 
+  justify-content: center;
+}
+
+/* TYPOGRAPHY */
+.form-header h3 {
+  font-family: var(--font-heading);
+  color: var(--primary-text);
+  font-size: 3.8rem; /* Bigger title */
+  margin-bottom: 0;
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+.form-header p {
+  font-family: var(--font-body);
+  color: var(--secondary-text);
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-top: 5px;
+  opacity: 0.9;
 }
 
 .row {
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  width: 100%;
 }
 
 .field {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
 }
 
 label {
-  color: #ffffffba;
+  font-family: var(--font-body);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  font-size: 0.9rem;
+  margin-left: 5px;
+  opacity: 0.8;
 }
 
 input,
 textarea {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 14px;
-  padding: 16px 20px;
+  font-family: var(--font-body);
+  width: 100%;
+  /* LIGHTER BACKGROUND FOR BETTER CONTRAST */
+  background: rgba(255, 255, 255, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 18px 24px;
   color: white;
   font-size: 1rem;
-  transition: 0.25s ease;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  outline: none;
 }
 
 textarea {
   height: 150px;
   resize: none;
+  line-height: 1.6;
 }
 
+/* Focus States */
 input:focus,
 textarea:focus {
-  border-color: rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
 }
 
 /* CHECKBOX */
 .checkbox-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
+  padding-left: 5px;
 }
 
-/* RIGHT SIDE GLASS PHONE HOLDER */
-.right-side {
-  flex: 0.9;
-  display: flex;
+.checkbox-row input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  accent-color: var(--accent-color);
+  margin: 0;
+}
+
+.checkbox-row label {
+  cursor: pointer;
+  text-transform: none;
+  color: var(--secondary-text);
+  font-size: 1rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* --- BUTTON FIX --- */
+.form-actions button, 
+.form-actions a,
+.cta-button, 
+ { 
+  white-space: nowrap !important;
+  min-width: 220px;
+  height: auto;
+  padding: 16px 40px !important;
+  font-family: var(--font-heading) !important;
+  font-size: 1.6rem !important;
+  letter-spacing: 1.5px !important;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  gap: 15px;
 }
 
-/* GLASS PHONE CONTAINER */
-.phones-glass {
-  width: 100%;
-  max-width: 420px;
-  height: 680px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(25px);
-  box-shadow:
-    inset 0 0 25px rgba(255, 255, 255, 0.07),
-    inset 0 0 45px rgba(255, 255, 255, 0.03),
-    0 25px 60px rgba(0, 0, 0, 0.5);
+/* --- SUCCESS MESSAGE --- */
+.success-message {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; 
+  gap: 25px;
+}
 
+.icon-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(0, 230, 118, 0.1);
+  border: 2px solid var(--success-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(0, 230, 118, 0.2);
+}
+
+.success-message h3 {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: var(--success-color);
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.success-message p {
+  font-family: var(--font-body);
+  color: var(--secondary-text);
+  font-size: 1.2rem;
+  max-width: 70%;
+  line-height: 1.6;
+}
+
+.reset-btn {
+  margin-top: 30px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: 0.3s;
+}
+
+.reset-btn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: white;
+}
+
+/* --- RIGHT SIDE: INFINITE SCROLL --- */
+.right-side {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-/* PHONE CARDS */
-.phone-card {
-  width: 150px;
-  height: 300px;
-  position: absolute;
+.phones-glass-container {
+  width: 100%;
+  max-width: 480px;
+  height: var(--container-height);
+  
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.2);
+  
+  overflow: hidden;
+  display: flex;
+  gap: 25px;
+  padding: 25px;
+  justify-content: center;
+  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+}
+
+.scroll-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.mt-offset {
+  margin-top: -60px; 
+}
+
+.scroll-track {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+  pointer-events: auto; 
+}
+
+.image-card {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s;
+  position: relative;
+  pointer-events: auto; 
+  cursor: pointer;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
-  border-radius: 28px;
-
-  /* OUTER SHADOW */
-  box-shadow:
-    0 15px 35px rgba(0, 0, 0, 0.55),
-    0 5px 15px rgba(0, 0, 0, 0.35);
-
-  /* INNER GLOW */
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-
-  opacity: 0.92;
-  transform: translate(-50%, -50%) rotate(-15deg);
 }
 
-/* RESPONSIVE FIXES — IMPORTANT */
-@media (max-width: 1200px) {
+/* --- RESTORED HOVER INTERACTION --- */
+.image-card:hover {
+  transform: scale(1.1); 
+  z-index: 100; 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Laptop / Small Desktop */
+@media (max-width: 1366px) {
   .getintouch-wrapper {
     flex-direction: column;
-    gap: 40px;
+    align-items: center;
+    max-width: 900px;
   }
-
+  
+  .glass-form {
+    height: auto; 
+    min-height: 600px;
+    gap: 30px;
+    padding: 40px;
+  }
+  
   .right-side {
     width: 100%;
-    justify-content: center;
+    height: 500px; 
+    overflow: hidden;
+  }
+  
+  .phones-glass-container {
+    height: 100%;
+    transform: none;
+    max-width: 100%;
   }
 }
 
-/* MOBILE */
-@media (max-width: 950px) {
-  .phones-glass {
-    max-width: 100%;
-    height: 500px; /* FIXES disappearance */
-    padding: 20px;
+/* Mobile */
+@media (max-width: 768px) {
+  .getintouch {
+    padding: 60px 20px;
+  }
+  .glass-form {
+    padding: 25px;
+  }
+  .row {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .form-header h3 {
+    font-size: 2.8rem;
+  }
+  .right-side {
+    display: none;
   }
 }

@@ -30,10 +30,12 @@ const blogs = [
   }
 ];
 
-const FeaturedBlogs = () => {
+// Accept 'sectionLabel' as a prop (defaults to "Trending Now" if not provided)
+const FeaturedBlogs = ({ sectionLabel = "Trending Now" }) => {
   return (
     <section className="featured-section">
-      <span className="section-label">Trending Now</span>
+      {/* Dynamic Title Here */}
+      <span className="section-label">{sectionLabel}</span>
       
       <div className="bento-grid">
         {/* Main Feature (Left) */}

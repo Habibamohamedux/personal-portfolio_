@@ -1,189 +1,247 @@
-.footer {
-  font-family: "Poppins", sans-serif;
-  color: #fff;
-  padding: 50px 100px;
-  /* Removed solid background color to allow glass effect over page background */
-  background: #0c2c63; 
-  position: relative;
+/* --- Variables & Base --- */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --accent-color: #64b5f6; /* A nice blue to match your theme */
+  --text-white: #ffffff;
 }
 
-/* GLASS EFFECT HOLDER */
+.footer {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-white);
+  padding: 80px 5%;
+      background-color: #051129;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Creative Background Elements --- */
+/* A subtle glowing orb behind the glass */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(99, 180, 255, 0.2) 0%, transparent 70%);
+  filter: blur(60px);
+  z-index: 0;
+}
+
+/* --- THE GLASS CARD --- */
 .footer-glass {
   position: relative;
   z-index: 1;
-  /* Stronger blur for better readability since background is removed */
-  backdrop-filter: blur(20px); 
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 60px 30px 30px 30px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px; /* Softer corners */
+  padding: 60px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* FOOTER CONTENT */
+/* --- GRID LAYOUT (The Layout Fix) --- */
 .footer-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
+  display: grid;
+  /* Auto-fit creates columns that wrap automatically based on width */
+  grid-template-columns: 1.5fr 1fr 1.2fr; 
+  gap: 60px;
+  align-items: start;
 }
 
-.footer-column {
-  flex: 1;
-  min-width: 200px;
-}
-
-/* LEFT */
+/* --- LEFT COLUMN --- */
 .footer-name {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #fff, #a1c4fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-desc {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.7;
   opacity: 0.8;
+  max-width: 300px;
 }
 
-/* MIDDLE */
+/* --- MIDDLE COLUMN --- */
 .footer-heading {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  color: var(--accent-color);
 }
 
 .footer-links {
   list-style: none;
   padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .footer-links li a {
   color: #fff;
   text-decoration: none;
-  opacity: 0.85;
-  transition: opacity 0.3s, transform 0.3s;
-  display: inline-block;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  position: relative;
+  width: fit-content;
+}
+
+/* Creative Hover Effect: Sliding Underline */
+.footer-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
 }
 
 .footer-links li a:hover {
   opacity: 1;
-  transform: translateX(5px);
+  padding-left: 5px;
 }
 
-/* RIGHT */
+.footer-links li a:hover::after {
+  width: 100%;
+}
+
+/* --- RIGHT COLUMN & ICONS --- */
 .social-icons {
   display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
 .social-link {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.3s, background 0.3s;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
 }
 
 .social-link:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 20px rgba(100, 181, 246, 0.3);
 }
 
-.social-link svg {
-  stroke-width: 1.5;
-}
-
-/* SUBSCRIBE FORM */
+/* --- CAPSULE FORM (Clean Design) --- */
 .subscribe-form {
+  position: relative;
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px; /* Capsule shape */
+  padding: 5px;
+  transition: border-color 0.3s;
+}
+
+.subscribe-form:focus-within {
+  border-color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .subscribe-form input {
   flex: 1;
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  border: none;
   outline: none;
-  background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.subscribe-form input::placeholder {
-  color: #aaa;
-}
-
-.subscribe-form input:focus {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  font-size: 14px;
 }
 
 .subscribe-form button {
-  padding: 8px 15px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: var(--accent-color);
+  border: none;
+  border-radius: 30px;
+  padding: 10px 25px;
+  color: #0c2c63;
+  font-weight: 700;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  transition: background 0.3s, transform 0.3s;
+  transition: transform 0.2s;
 }
 
 .subscribe-form button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  transform: scale(1.05);
 }
 
-/* BACK TO TOP */
+/* --- UTILS --- */
+.footer-copy {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.5;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 25px;
+}
+
 .back-top-btn {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
-  padding: 8px 16px;
-  border-radius: 25px;
+  top: 40px;
+  right: 40px;
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
   color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 12px;
-  transition: background 0.3s, transform 0.3s;
+  transition: all 0.3s;
 }
 
 .back-top-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-2px);
+  background: #fff;
+  color: #0c2c63;
 }
 
-/* FOOTER COPY */
-.footer-copy {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.6;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 20px;
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+/* Tablet (Landscape & small laptops) */
+@media (max-width: 1024px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr; /* Switch to 2 columns */
+    gap: 40px;
+  }
+  
+  /* Make the "Right" column span full width on tablet */
+  .footer-column.right {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .subscribe-form {
+    width: 100%;
+    max-width: 500px;
+  }
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
+/* Mobile */
+@media (max-width: 768px) {
   .footer {
-    padding: 30px 20px;
+    padding: 40px 15px; /* Less padding on sides */
   }
 
   .footer-glass {
@@ -191,14 +249,40 @@
   }
 
   .footer-content {
+    display: flex; /* Stack everything */
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .footer-column.right {
+    grid-column: auto; /* Reset grid */
+    align-items: center;
   }
 
+  /* Center alignment adjustments */
+  .footer-desc {
+    margin: 0 auto;
+  }
+  
+  .footer-links {
+    align-items: center; /* Center links */
+  }
+
+  .footer-links li a:hover {
+    padding-left: 0;
+    transform: scale(1.05); /* Zoom instead of slide on mobile */
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+  
   .back-top-btn {
-    position: static;
-    margin-top: 20px;
-    display: block;
-    width: fit-content;
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-bottom: 20px;
+    display: inline-block;
   }
 }

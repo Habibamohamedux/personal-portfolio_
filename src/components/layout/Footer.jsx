@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link for routing
+import { Link } from "react-router-dom";
 import "./Footer.css";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,74 +13,78 @@ export default function Footer() {
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    alert(`Subscribed with ${email}!`);
-    setEmail("");
+    if(email) {
+        alert(`Thanks for subscribing with ${email}!`);
+        setEmail("");
+    }
   };
 
   return (
     <footer className="footer">
-      {/* Glass Holder */}
       <div className="footer-glass">
+        
+        {/* Back to Top (Moved inside content for mobile flow, positioned absolute on desktop) */}
+        <button className="back-top-btn" onClick={scrollToTop}>
+          Back to Top <ArrowUp size={14} style={{marginLeft: '5px', display:'inline'}}/>
+        </button>
+
         <div className="footer-content">
           {/* LEFT */}
           <div className="footer-column left">
             <h2 className="footer-name">Habiba Saad</h2>
             <p className="footer-desc">
-              Crafting digital experiences with passion and precision.
+              Crafting immersive digital experiences with passion, precision, and modern web technologies.
             </p>
           </div>
 
-          {/* MIDDLE - Updated to use Link and match your Router paths */}
+          {/* MIDDLE */}
           <div className="footer-column middle">
-            <h3 className="footer-heading">QUICK LINKS</h3>
+            <h3 className="footer-heading">Explore</h3>
             <ul className="footer-links">
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/about">About</Link></li>
+              <li><Link to="/about">About Me</Link></li>
               <li><Link to="/services">Services</Link></li> 
-              {/* Assuming Portfolio might share the Services page or exist on Home, 
-                  mapped to Services for now based on your Router */}
-              <li><Link to="/Courses">Courses & Tutorials</Link></li>
-              <li><Link to="/blogs">Blogs & News</Link></li>
+              <li><Link to="/Courses">Courses</Link></li>
+              <li><Link to="/blogs">The Journal</Link></li>
               <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 
           {/* RIGHT */}
           <div className="footer-column right">
-            <h3 className="footer-heading">CONNECT & SUBSCRIBE</h3>
+            <h3 className="footer-heading">Stay Connected</h3>
+            
             <div className="social-icons">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" title="GitHub" className="social-link">
-                <Github size={24} />
+              <a href="https://github.com" className="social-link" aria-label="Github">
+                <Github size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn" className="social-link">
-                <Linkedin size={24} />
+              <a href="https://linkedin.com" className="social-link" aria-label="LinkedIn">
+                <Linkedin size={20} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter" className="social-link">
-                <Twitter size={24} />
+              <a href="https://twitter.com" className="social-link" aria-label="Twitter">
+                <Twitter size={20} />
               </a>
-              <a href="mailto:your-email@example.com" title="Email" className="social-link">
-                <Mail size={24} />
+              <a href="mailto:email@example.com" className="social-link" aria-label="Email">
+                <Mail size={20} />
               </a>
             </div>
 
             <form className="subscribe-form" onSubmit={handleSubscribe}>
               <input
                 type="email"
-                placeholder="Your email..."
+                placeholder="Join the newsletter..."
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
-              <button type="submit">Subscribe</button>
+              <button type="submit">Join</button>
             </form>
           </div>
         </div>
 
-        <button className="back-top-btn" onClick={scrollToTop}>
-          ↑ Back to Top
-        </button>
-
-        <p className="footer-copy">© {currentYear} All rights reserved.</p>
+        <div className="footer-copy">
+          <p>© {currentYear} Habiba Saad.</p>
+        </div>
       </div>
     </footer>
   );

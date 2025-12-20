@@ -1,4 +1,4 @@
-:root{
+:root {
   --bg-start: #01070c;
   --bg-end: #071227;
   --bubble-size: 140px;
@@ -6,9 +6,9 @@
 }
 
 /* SECTION WRAPPER */
-.social-section{
+.social-section {
   position: relative;
-  padding:  100px;
+  padding: 100px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -18,7 +18,7 @@
 }
 
 /* screenshot overlay */
-.social-section::before{
+.social-section::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -31,7 +31,7 @@
 }
 
 /* inner container */
-.social-inner{
+.social-inner {
   max-width: 1250px;
   text-align: center;
   position: relative;
@@ -44,8 +44,7 @@
 }
 
 /* titles */
-.social-title{
-
+.social-title {
   font-size: clamp(36px, 6.5vw, 96px);
   letter-spacing: 1px;
   color: #fff;
@@ -53,20 +52,20 @@
   text-transform: uppercase;
 }
 
-.social-sub{
+.social-sub {
   font-family: "league gothic", system-ui, sans-serif;
   font-size: clamp(16px, 2.2vw, 28px);
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 /* fade animation */
-.fade-in{ opacity:1; transform: translateY(0); transition: all 0.55s cubic-bezier(.2,.9,.3,1); }
-.fade-out{ opacity:0; transform: translateY(10px); transition: all 0.45s cubic-bezier(.2,.9,.3,1); }
+.fade-in { opacity: 1; transform: translateY(0); transition: all 0.55s cubic-bezier(.2, .9, .3, 1); }
+.fade-out { opacity: 0; transform: translateY(10px); transition: all 0.45s cubic-bezier(.2, .9, .3, 1); }
 
 /* wrapper */
-.social-row-wrapper{
+.social-row-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +73,7 @@
 }
 
 /* row */
-.social-row{
+.social-row {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -86,7 +85,7 @@
 }
 
 /* arc positions */
-.social-item{
+.social-item {
   position: relative;
   width: var(--bubble-size);
   height: var(--bubble-size);
@@ -96,21 +95,20 @@
   scroll-snap-align: center;
 }
 
-.social-item:nth-child(1){ transform: translateY(24px) scale(.95); }
-.social-item:nth-child(2){ transform: translateY(12px) scale(.98); }
-.social-item:nth-child(3){ transform: translateY(6px) scale(1); }
-.social-item:nth-child(4){ transform: translateY(-6px) scale(1.05); }
-.social-item:nth-child(5){ transform: translateY(6px) scale(1); }
-.social-item:nth-child(6){ transform: translateY(12px) scale(.98); }
-.social-item:nth-child(7){ transform: translateY(20px) scale(.96); }
-
+.social-item:nth-child(1) { transform: translateY(24px) scale(.95); }
+.social-item:nth-child(2) { transform: translateY(12px) scale(.98); }
+.social-item:nth-child(3) { transform: translateY(6px) scale(1); }
+.social-item:nth-child(4) { transform: translateY(-6px) scale(1.05); }
+.social-item:nth-child(5) { transform: translateY(6px) scale(1); }
+.social-item:nth-child(6) { transform: translateY(12px) scale(.98); }
+.social-item:nth-child(7) { transform: translateY(20px) scale(.96); }
 
 
 /* ---------------------------------------------------------------------- */
-/*  ⭐ NEW: CTA-MATCHING GLASS BUBBLES (MERGED CLEANLY INTO YOUR FILE)     */
+/* ⭐ NEW: CTA-MATCHING GLASS BUBBLES                                     */
 /* ---------------------------------------------------------------------- */
 
-.social-bubble{
+.social-bubble {
   display: inline-grid;
   place-items: center;
   width: 100%;
@@ -129,109 +127,160 @@
     0 4px 4px rgba(230, 216, 216, 0.25) inset,
     0 4px 7.7px rgba(0, 0, 0, 0.25);
 
-  transition: all 0.35s cubic-bezier(.2,.9,.3,1);
+  transition: all 0.35s cubic-bezier(.2, .9, .3, 1);
   text-decoration: none;
   position: relative;
   overflow: visible;
 }
 
 /* inner white rim */
-.social-bubble::after{
+.social-bubble::after {
   content: "";
   position: absolute;
   inset: 6%;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
-    inset 0 6px 12px rgba(255,255,255,0.12),
-    inset 0 -10px 20px rgba(0,0,0,0.15);
+    inset 0 6px 12px rgba(255, 255, 255, 0.12),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.15);
   pointer-events: none;
 }
 
 /* icon container */
-.bubble-inner{
+.bubble-inner {
   width: 54%;
   height: 54%;
   display: grid;
   place-items: center;
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.45));
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
+}
+
+/* SAFEGUARD: Prevent icons from growing larger than container,
+   but do NOT force them to stretch to 100% width.
+   This keeps them 48px on desktop, but shrinks them on mobile if needed.
+*/
+.bubble-inner svg,
+.bubble-inner img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* hover */
-.social-bubble:hover{
+.social-bubble:hover {
   transform: translateY(-18px) scale(1.08);
   box-shadow:
-    0 26px 48px rgba(3,12,30,0.6),
-    inset 0 -16px 30px rgba(255,255,255,0.02);
+    0 26px 48px rgba(3, 12, 30, 0.6),
+    inset 0 -16px 30px rgba(255, 255, 255, 0.02);
 }
 
-
-
 /* tooltip */
-.social-tip{
+.social-tip {
   position: absolute;
   bottom: -28px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255, 255, 255, 0.65);
   font-family: "Poppins", sans-serif;
   opacity: 0;
   transition: opacity .28s ease, transform .28s ease;
   pointer-events: none;
 }
 
-.social-item:hover .social-tip{
+.social-item:hover .social-tip {
   opacity: 1;
   transform: translateX(-50%) translateY(-6px);
 }
 
-label{
+label {
   color: #ffffffba;
   text-transform: uppercase;
   font-size: 0.9rem;
   font-family: "league gothic", system-ui, sans-serif;
 }
-input, textarea {
+
+input,
+textarea {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 14px;
   padding: 16px 20px;
   color: white;
   font-size: 1rem;
-  transition: 0.25s 
-ease;
-font-family: "league gothic", system-ui, sans-serif;
-
+  transition: 0.25s ease;
+  font-family: "league gothic", system-ui, sans-serif;
 }
 
-/* RESPONSIVE ----------------------------------------------------------- */
+/* =========================================
+   RESPONSIVE BREAKPOINTS (FIXED)
+   ========================================= */
 
-@media (max-width: 980px){
-  :root{ --bubble-size: 110px; --bubble-gap: 18px; }
-  .social-item:nth-child(4){ transform: translateY(-2px) scale(1.02); }
-  .social-item:nth-child(1){ transform: translateY(18px) scale(.92); }
-}
-
-@media (max-width: 640px){
-  :root{ --bubble-size: 84px; --bubble-gap: 14px; }
-  .social-row{
-    gap: 12px;
-    transform: translateY(0);
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 12px 8px;
-    -webkit-overflow-scrolling: touch;
+@media (max-width: 1024px) {
+  :root {
+    --bubble-size: 110px;
+    --bubble-gap: 20px;
   }
-  .social-row::-webkit-scrollbar{ display:none; }
-  .social-item{ flex: 0 0 auto; }
-  .social-title{ font-size: clamp(22px, 8vw, 44px); }
-  .social-sub{ font-size: clamp(12px, 3.6vw, 16px); }
-  .social-tip{ display:none; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --bubble-size: 84px;
+    --bubble-gap: 14px;
+  }
+
+  /* Reduce padding on mobile so it fits screen */
+  .social-section {
+    padding: 60px 10px;
+  }
+
+  /* 1. ENABLE HORIZONTAL SCROLLING */
+  .social-row-wrapper {
+    width: 100vw;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .social-row-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 2. RESET ROW LAYOUT */
+  .social-row {
+    gap: 12px;
+    transform: translateY(0); /* Remove row offset */
+    flex-wrap: nowrap;
+    padding: 0 30px; /* Padding for start/end visibility */
+    width: max-content; /* Allow row to be wider than screen */
+  }
+
+  /* 3. FLATTEN ARC POSITIONS (Fixes Positioning) */
+  /* This forces all items to sit in a straight line */
+  .social-item:nth-child(n) {
+    transform: none !important;
+    flex: 0 0 auto; /* Prevent items from squashing */
+  }
+
+  .social-title {
+    font-size: clamp(22px, 8vw, 44px);
+  }
+
+  .social-sub {
+    font-size: clamp(12px, 3.6vw, 16px);
+  }
+
+  .social-tip {
+    display: none;
+  }
 }
 
 /* Arabic font helper */
-.arabic{
+.arabic {
   direction: rtl;
   font-family: "Tajawal", "Noto Naskh Arabic", sans-serif;
 }
