@@ -1,237 +1,154 @@
-/* --- Imports --- */
-@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;600&display=swap');
 
-/* --- Core Layout & Reset --- */
-.contact-hero {
+:root {
+  --bg-cv: #020617;
+  --card-bg: #0f1021;
+  --accent-blue: #2e86de;
+  --accent-cyan: #00d2d3;
+  --accent-purple: #a55eea; 
+  --text-white: #ffffff;
+  --text-grey: #a4b0be;
+  --font-header: 'League Gothic', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+.cv-section {
+  background: var(--bg-cv);
+  color: var(--text-white);
+  padding: 6rem 2rem;
+  font-family: var(--font-body);
   position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #050505;
-  color: white;
-  /* UPDATED: Body font is now Poppins */
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
 }
 
-.contact-hero *, 
-.contact-hero *::before, 
-.contact-hero *::after {
-  box-sizing: border-box;
+.cv-header {
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
-/* --- Background Layer --- */
-.contact-hero__bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0.6;
-  pointer-events: none;
+.cv-title {
+  font-family: var(--font-header);
+  font-size: clamp(3rem, 6vw, 5rem);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 2px;
+  background: linear-gradient(to bottom, #fff, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* --- Content Wrapper --- */
-.contact-hero__content {
+.cv-subtitle {
+  color: var(--text-grey);
+  font-size: 1rem;
+  margin-top: 1rem;
+  font-weight: 300;
+}
+
+/* --- THE CARDS --- */
+.cv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cv-card {
   position: relative;
-  z-index: 10;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 3rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease, transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-  padding: 0 20px;
-  width: 100%;
-}
-
-.contact-hero__content.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Header Group --- */
-.contact-hero__header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 0.5rem;
-}
-
-.contact-hero__dot {
-    width: 6px;
-    height: 6px;
-    background-color: #4ade80;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #4ade80;
-    animation: contactHeroPulse 2s infinite;
-}
-
-.contact-hero__subtitle {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
-  margin: 0;
-}
-
-/* --- Main Title (UPDATED) --- */
-.contact-hero__title-wrapper {
-    position: relative;
-    padding: 10px 0;
-}
-
-.contact-hero__title {
-  position: relative;
-  /* UPDATED: League Gothic font */
-  font-family: 'League Gothic', sans-serif;
-  /* UPDATED: Increased size because this font is narrow */
-  font-size: clamp(6rem, 18vw, 13rem);
-  line-height: 0.9;
-  font-weight: 400; /* League Gothic is naturally bold */
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 2px; /* Adds breathing room */
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.5);
-  cursor: default;
-  transition: all 0.5s ease;
-  white-space: nowrap;
-}
-
-.contact-hero__title::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  color: #fff;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
-  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  white-space: nowrap;
-  border-right: 1px solid transparent;
-  -webkit-text-stroke: 0px;
+  group: hover;
 }
 
-.contact-hero__title:hover {
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.2);
+/* Specific Border Glows per role */
+.cv-card.ux:hover { border-color: var(--accent-blue); box-shadow: 0 0 30px rgba(46, 134, 222, 0.2); }
+.cv-card.frontend:hover { border-color: var(--accent-cyan); box-shadow: 0 0 30px rgba(0, 210, 211, 0.2); }
+.cv-card.creative:hover { border-color: var(--accent-purple); box-shadow: 0 0 30px rgba(165, 94, 234, 0.2); }
+
+/* The Icon Circle */
+.cv-icon-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.4s ease, background 0.4s ease;
+  color: var(--text-white);
 }
 
-.contact-hero__title:hover::before {
-  width: 100%;
-  border-right-color: #fff;
+/* --- COLORED SVGS --- */
+.cv-svg-icon {
+  width: 40px;
+  height: 40px;
+  fill: currentColor; /* Inherits text color */
+  transition: fill 0.4s ease;
 }
 
-/* --- Description --- */
-.contact-hero__desc {
-  margin-top: 2rem;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 500px;
-  font-weight: 300;
+/* Default Colors (before hover) */
+.cv-card.ux .cv-svg-icon { fill: var(--accent-blue); }
+.cv-card.frontend .cv-svg-icon { fill: var(--accent-cyan); }
+.cv-card.creative .cv-svg-icon { fill: var(--accent-purple); }
+
+.cv-card:hover .cv-icon-box {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Text Styling */
+.role-title {
+  font-family: var(--font-header);
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+.role-desc {
+  font-size: 0.9rem;
+  color: var(--text-grey);
+  margin-bottom: 2rem;
   line-height: 1.6;
 }
 
-/* --- Action Button --- */
-.contact-hero__actions {
-    margin-top: 3.5rem;
-}
-
-.contact-hero__btn {
+/* Download Button */
+.download-btn {
+  margin-top: auto;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px 36px;
-  border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  -webkit-tap-highlight-color: transparent;
+  gap: 0.5rem;
+  text-decoration: none;
 }
 
-.contact-hero__btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-3px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
+.cv-card.ux:hover .download-btn { background: var(--accent-blue); border-color: var(--accent-blue); }
+.cv-card.frontend:hover .download-btn { background: var(--accent-cyan); border-color: var(--accent-cyan); color: #000; }
+.cv-card.creative:hover .download-btn { background: var(--accent-purple); border-color: var(--accent-purple); }
 
-.contact-hero__btn.success {
-  background: #ffffff;
-  color: #000;
-  border-color: #fff;
+.btn-arrow {
+  transition: transform 0.3s ease;
 }
-
-.contact-hero__btn-icon {
-    display: flex;
-    align-items: center;
-}
-
-/* --- Scroll Indicator --- */
-.contact-hero__scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0.5;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.contact-hero__mouse {
-  width: 26px;
-  height: 42px;
-  border: 2px solid #fff;
-  border-radius: 20px;
-  position: relative;
-}
-
-.contact-hero__mouse::before {
-  content: '';
-  width: 4px;
-  height: 4px;
-  background: #fff;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  animation: contactHeroScroll 2s infinite;
-}
-
-/* --- Animations --- */
-@keyframes contactHeroPulse {
-    0% { transform: scale(0.95); opacity: 0.5; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(0.95); opacity: 0.5; }
-}
-
-@keyframes contactHeroScroll {
-  0% { transform: translateX(-50%) translateY(0); opacity: 1; }
-  100% { transform: translateX(-50%) translateY(15px); opacity: 0; }
-}
-
-/* --- Mobile Adjustments --- */
-@media (max-width: 768px) {
-    .contact-hero__title {
-        white-space: normal;
-        font-size: 18vw;
-        line-height: 0.85;
-    }
+.download-btn:hover .btn-arrow {
+  transform: translateY(3px);
 }
