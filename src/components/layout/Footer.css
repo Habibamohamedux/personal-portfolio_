@@ -2,7 +2,7 @@
 :root {
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
-  --accent-color: #64b5f6; /* A nice blue to match your theme */
+  --accent-color: #64b5f6;
   --text-white: #ffffff;
 }
 
@@ -10,13 +10,12 @@
   font-family: "Poppins", sans-serif;
   color: var(--text-white);
   padding: 80px 5%;
-      background-color: #051129;
+  background-color: #051129;
   position: relative;
   overflow: hidden;
 }
 
 /* --- Creative Background Elements --- */
-/* A subtle glowing orb behind the glass */
 .footer::before {
   content: '';
   position: absolute;
@@ -37,15 +36,14 @@
   -webkit-backdrop-filter: blur(25px);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
-  border-radius: 30px; /* Softer corners */
+  border-radius: 30px;
   padding: 60px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* --- GRID LAYOUT (The Layout Fix) --- */
+/* --- GRID LAYOUT --- */
 .footer-content {
   display: grid;
-  /* Auto-fit creates columns that wrap automatically based on width */
   grid-template-columns: 1.5fr 1fr 1.2fr; 
   gap: 60px;
   align-items: start;
@@ -81,6 +79,7 @@
 .footer-links {
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -133,7 +132,7 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy effect */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .social-link:hover {
@@ -143,16 +142,17 @@
   box-shadow: 0 10px 20px rgba(100, 181, 246, 0.3);
 }
 
-/* --- CAPSULE FORM (Clean Design) --- */
+/* --- CAPSULE FORM --- */
 .subscribe-form {
   position: relative;
   display: flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50px; /* Capsule shape */
+  border-radius: 50px;
   padding: 5px;
   transition: border-color 0.3s;
+  width: 100%;
 }
 
 .subscribe-form:focus-within {
@@ -168,6 +168,8 @@
   color: #fff;
   padding: 10px 20px;
   font-size: 14px;
+  width: 100%;
+  min-width: 0;
 }
 
 .subscribe-form button {
@@ -179,6 +181,7 @@
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.2s;
+  white-space: nowrap;
 }
 
 .subscribe-form button:hover {
@@ -193,6 +196,7 @@
   opacity: 0.5;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 25px;
+  width: 100%; /* Ensure full width border */
 }
 
 .back-top-btn {
@@ -207,6 +211,9 @@
   cursor: pointer;
   font-size: 12px;
   transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .back-top-btn:hover {
@@ -216,73 +223,88 @@
 
 /* --- RESPONSIVE BREAKPOINTS --- */
 
-/* Tablet (Landscape & small laptops) */
+/* Tablet */
 @media (max-width: 1024px) {
   .footer-content {
-    grid-template-columns: 1fr 1fr; /* Switch to 2 columns */
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
   
-  /* Make the "Right" column span full width on tablet */
   .footer-column.right {
     grid-column: span 2;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
   }
   
   .subscribe-form {
-    width: 100%;
-    max-width: 500px;
+    max-width: 400px;
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .footer {
-    padding: 40px 15px; /* Less padding on sides */
+    padding: 40px 15px;
   }
 
   .footer-glass {
-    padding: 30px 20px;
+    padding: 40px 20px;
+    /* FIX: Make the card a flex container to center everything */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
   }
 
   .footer-content {
-    display: flex; /* Stack everything */
+    display: flex;
     flex-direction: column;
     gap: 40px;
     text-align: center;
+    width: 100%; /* Ensure content takes full width */
+    align-items: center;
   }
   
-  .footer-column.right {
-    grid-column: auto; /* Reset grid */
+  .footer-column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
 
-  /* Center alignment adjustments */
+  .footer-column.right {
+    grid-column: auto;
+    align-items: center;
+  }
+
   .footer-desc {
     margin: 0 auto;
+    text-align: center;
   }
   
   .footer-links {
-    align-items: center; /* Center links */
+    align-items: center;
+    width: 100%;
+    padding: 0;
   }
 
   .footer-links li a:hover {
     padding-left: 0;
-    transform: scale(1.05); /* Zoom instead of slide on mobile */
+    transform: scale(1.05); 
   }
 
   .social-icons {
     justify-content: center;
   }
   
+  .subscribe-form {
+    width: 100%;
+  }
+  
+  /* FIX: Button is now a flex child of footer-glass, so align-self works */
   .back-top-btn {
-    position: relative;
-    top: auto;
-    right: auto;
-    margin-bottom: 20px;
-    display: inline-block;
+    position: static;
+    margin-bottom: 30px;
+    align-self: center; /* Explicitly center this item */
   }
 }

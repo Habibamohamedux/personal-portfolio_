@@ -196,3 +196,55 @@
 .course-list li:last-child {
   border-bottom: none;
 }
+/* ... keep all your previous CSS exactly the same ... */
+
+/* Tablet: 2 Columns */
+@media (min-width: 768px) {
+  .timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* First card (Year 1) spans both columns */
+  .timeline-grid > .card-spotlight:first-child {
+    grid-column: span 2;
+  }
+}
+
+/* Desktop: 3 Columns (The Fix) */
+@media (min-width: 1200px) {
+  .timeline-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 1. The Container: spans 3 columns and adds padding */
+  .timeline-grid > .card-spotlight:first-child {
+    grid-column: span 3;
+    padding: 3.5rem;
+  }
+  
+  /* 2. THE FIX: Apply Flexbox to .card-content, NOT the main card div */
+  /* This ensures the Title and List sit side-by-side inside the wrapper */
+  .timeline-grid > .card-spotlight:first-child .card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 4rem;
+    width: 100%;
+  }
+  
+  /* 3. The Title Group (Left Side) */
+  .timeline-grid > .card-spotlight:first-child .card-header-group {
+    flex: 0 0 300px; /* Keep fixed width on the left */
+    margin-bottom: 0; /* Remove bottom margin to align perfectly */
+  }
+
+  /* 4. The List (Right Side) */
+  .timeline-grid > .card-spotlight:first-child .course-list {
+    flex: 1; /* Expand to fill the empty gap */
+    columns: 2; /* Split the long list into 2 columns */
+    column-gap: 3rem;
+    margin-top: 0.5rem; /* Optical alignment with the title */
+  }
+}
+
+/* ... keep the rest of your card styling below ... */

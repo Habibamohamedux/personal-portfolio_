@@ -46,17 +46,14 @@ const certifications = [
   }
 ];
 
-// --- UPDATED LINKEDIN DATA (Only 2 Posts) ---
 const linkedInPosts = [
   {
     id: 1,
-    // "CIB Summer Internship" Post
     embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:activity:7369434422175088642", 
     height: "600"
   },
   {
     id: 2,
-    // "Wameed Short Film" Post
     embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:activity:7366718771362758656",
     height: "600"
   }
@@ -67,18 +64,18 @@ const Achievements = () => {
     <section className="achievements-container">
       <div className="max-width-wrapper">
         
-        {/* Main Header */}
+        {/* --- NEW HEADER (Academic Journey Style) --- */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="section-header"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="header-section"
         >
-          <h1 className="big-title">Achievements<br />& ExtraCurriculars</h1>
-          <p className="header-desc">
-            As a person with evolving interests, I pursue focus on specific storytelling mediums and professional milestones.
-          </p>
+          <h1 className="main-title">ACHIEVEMENTS</h1>
+          <p className="subtitle">
+Beyond academics, I actively pursue extracurriculars and creative work, <br /> driven by my love for art, storytelling, and continuous self-expression.          </p>
         </motion.div>
+        {/* ------------------------------------------ */}
 
         {/* --- SECTION 1: CREATIVE MEDIA --- */}
         <div className="category-block">

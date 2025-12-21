@@ -23,9 +23,9 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-glass">
         
-        {/* Back to Top (Moved inside content for mobile flow, positioned absolute on desktop) */}
+        {/* On desktop, this is absolute. On mobile, CSS makes it static/centered */}
         <button className="back-top-btn" onClick={scrollToTop}>
-          Back to Top <ArrowUp size={14} style={{marginLeft: '5px', display:'inline'}}/>
+          Back to Top <ArrowUp size={14} style={{marginLeft: '5px'}}/>
         </button>
 
         <div className="footer-content">

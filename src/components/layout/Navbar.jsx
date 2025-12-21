@@ -126,9 +126,6 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="fullscreen-footer">
-            <p>© 2025 Habiba Saad. All Rights Reserved.</p>
-          </div>
         </div>
       </div>
     </>

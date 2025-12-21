@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-  --bg-cv: linear-gradient(180deg, rgba(1, 8, 16, 0.9), rgba(13, 46, 103, 0.95));
+  --bg-cv: linear-gradient(180deg, rgba(1, 8, 16, 0.9), rgb(5 17 41));
   --card-bg: #0f1021;
   --accent-blue: #2e86de;
-  --accent-cyan: #00d2d3; /* Adjusted cyan for better visibility */
+  --accent-cyan: #00d2d3; 
   --accent-purple: #a55eea;
   --text-white: #ffffff;
   --text-grey: #a4b0be;
@@ -18,11 +18,13 @@
   padding: 6rem 2rem;
   font-family: var(--font-body);
   position: relative;
+  min-height: 100vh; /* Ensures full height on large screens */
 }
 
 .cv-header {
   text-align: center;
   margin-bottom: 4rem;
+  padding: 0 1rem;
 }
 
 .cv-title {
@@ -34,6 +36,7 @@
   background: linear-gradient(to bottom, #fff, #888);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  line-height: 1;
 }
 
 .cv-subtitle {
@@ -46,10 +49,12 @@
 /* --- THE CARDS --- */
 .cv-grid {
   display: grid;
+  /* Auto-fit with minmax ensures responsive wrapping */
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .cv-card {
@@ -71,7 +76,7 @@
 .cv-card.frontend:hover { border-color: var(--accent-cyan); box-shadow: 0 0 30px rgba(0, 210, 211, 0.2); }
 .cv-card.creative:hover { border-color: var(--accent-purple); box-shadow: 0 0 30px rgba(165, 94, 234, 0.2); }
 
-/* The Icon Circle (Updated for SVG) */
+/* The Icon Circle */
 .cv-icon-box {
   width: 80px;
   height: 80px;
@@ -88,7 +93,7 @@
 .cv-icon-box svg {
   width: 40px;
   height: 40px;
-  fill: currentColor; /* Inherits text color */
+  fill: currentColor;
 }
 
 .cv-card:hover .cv-icon-box {
@@ -162,6 +167,7 @@
   z-index: 1000;
   opacity: 0;
   animation: fadeIn 0.3s forwards;
+  padding: 1rem; /* Prevents edge touching on small screens */
 }
 
 .modal-content {
@@ -171,7 +177,7 @@
   border-radius: 20px;
   text-align: center;
   max-width: 400px;
-  width: 90%;
+  width: 100%;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
   transform: scale(0.9);
   animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -219,3 +225,39 @@
 
 @keyframes fadeIn { to { opacity: 1; } }
 @keyframes popIn { to { transform: scale(1); } }
+
+/* =========================================
+   RESPONSIVE / MOBILE OPTIMIZATION
+   ========================================= */
+
+@media (max-width: 768px) {
+  /* Reduce excessive padding on mobile */
+  .cv-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .cv-header {
+    margin-bottom: 3rem;
+  }
+
+  /* Force grid to 1 column on mobile to prevent squashing */
+  .cv-grid {
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+  }
+
+  /* Tighten card padding for small screens */
+  .cv-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  /* Modal Adjustments for Mobile */
+  .modal-content {
+    padding: 2rem;
+    width: 90%;
+  }
+
+  .modal-title {
+    font-size: 2rem;
+  }
+}

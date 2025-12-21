@@ -2,7 +2,7 @@
 
 :root {
     --accent-blue: #2e86de;
-    --accent-cyan: #00d2d3;
+    --accent-cyan: #2e86de;
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.08);
     --text-white: #ffffff;
@@ -90,7 +90,7 @@
     font-size: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--accent-cyan);
+    color: var(--accent-blue);
     margin-bottom: 0.5rem;
     padding-left: 1rem;
     /* ENSURED: Line is blue */

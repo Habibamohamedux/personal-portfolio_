@@ -2,8 +2,8 @@
 
 :root {
   --bg-dark: #050511;
+  /* UPDATED: Primary accent set to #2e86de */
   --accent-blue: #2e86de;
-  --accent-cyan: #00d2d3; /* Added for the AI/Medical vibe */
   --text-white: #ffffff;
   --text-grey: #a4b0be;
   --font-header: 'League Gothic', sans-serif;
@@ -34,17 +34,19 @@
   color: var(--text-grey);
   margin-bottom: 1rem;
   display: block;
-  border-left: 3px solid var(--accent-cyan);
+  /* Switched to accent-blue */
+  border-left: 3px solid var(--accent-blue);
   padding-left: 1rem;
 }
 
 .big-title {
   font-family: var(--font-header);
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-size: clamp(3rem, 5vw, 5rem); 
   line-height: 0.9;
   text-transform: uppercase;
   margin: 0 0 4rem 0;
-  background: linear-gradient(to right, #fff, var(--text-grey));
+  /* Switched to accent-blue */
+  background: linear-gradient(to right, #fff, var(--accent-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -52,12 +54,11 @@
 /* --- MAIN PROJECT LAYOUT --- */
 .project-split {
   display: grid;
-  grid-template-columns: 1fr 1.2fr; /* Text is slightly smaller than image */
+  grid-template-columns: 1fr 1.2fr;
   gap: 4rem;
   align-items: center;
 }
 
-/* Left Side: Text */
 .project-info {
   display: flex;
   flex-direction: column;
@@ -81,8 +82,8 @@
   line-height: 1;
   color: var(--text-white);
   letter-spacing: 5px;
-  /* The "Heartbeat" text effect */
-  text-shadow: 0 0 20px rgba(0, 210, 211, 0.3);
+  /* Shadow uses Blue RGB (46, 134, 222) derived from #2e86de */
+  text-shadow: 0 0 20px rgba(46, 134, 222, 0.3);
   animation: pulseText 3s infinite ease-in-out;
 }
 
@@ -91,7 +92,8 @@
   font-size: 1rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--accent-cyan);
+  /* Switched to accent-blue */
+  color: var(--accent-blue);
   margin-top: -10px;
 }
 
@@ -161,13 +163,14 @@
 }
 
 .tech-card:hover {
-  background: rgba(0, 210, 211, 0.1);
-  border-color: var(--accent-cyan);
+  /* Hover background uses Blue RGB (46, 134, 222) */
+  background: rgba(46, 134, 222, 0.1);
+  border-color: var(--accent-blue);
   transform: translateY(-5px);
 }
 
 .tech-card h4 {
-  color: var(--accent-cyan);
+  color: var(--accent-blue);
   margin: 0 0 0.5rem 0;
   font-size: 1.2rem;
 }
@@ -180,8 +183,8 @@
 
 /* --- ANIMATIONS --- */
 @keyframes pulseText {
-  0%, 100% { text-shadow: 0 0 20px rgba(0, 210, 211, 0.2); }
-  50% { text-shadow: 0 0 40px rgba(0, 210, 211, 0.6); }
+  0%, 100% { text-shadow: 0 0 20px rgba(46, 134, 222, 0.2); }
+  50% { text-shadow: 0 0 40px rgba(46, 134, 222, 0.6); }
 }
 
 /* --- RESPONSIVE --- */
@@ -202,6 +205,7 @@
     font-size: 5rem;
   }
 }
+
 .divider-line {
   width: 100%;
   height: 1px;
@@ -247,7 +251,6 @@
   transform: translateY(-5px);
 }
 
-/* Background Typography (FR, DE, ES) */
 .lang-bg-code {
   position: absolute;
   top: -15px;
@@ -275,11 +278,9 @@
   display: block;
 }
 
-/* Status Colors */
-.lang-card.active .lang-status { color: var(--accent-cyan); }
+.lang-card.active .lang-status { color: var(--accent-blue); }
 .lang-card.locked .lang-status { color: var(--text-grey); }
 
-/* The Progress Bar for Active Languages */
 .progress-track {
   width: 100%;
   height: 4px;
@@ -290,11 +291,10 @@
 
 .progress-fill {
   height: 100%;
-  background: var(--accent-cyan);
+  background: var(--accent-blue);
   border-radius: 4px;
 }
 
-/* Special Style for "Next" (Spanish) */
 .lang-card.locked {
   border-style: dashed;
   opacity: 0.7;
@@ -303,15 +303,15 @@
 .lang-card.locked:hover {
   opacity: 1;
   border-style: solid;
-  border-color: var(--accent-cyan);
+  border-color: var(--accent-blue);
 }
-/* --- UPDATES FOR LANGUAGE CARDS --- */
 
 .lang-meta {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; /* Align text to bottom of the big number */
+  align-items: flex-end;
   margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 .lang-level {
@@ -324,10 +324,9 @@
   font-family: var(--font-header);
   font-size: 3rem;
   line-height: 0.8;
-  color: var(--accent-cyan);
+  color: var(--accent-blue);
 }
 
-/* The "Currently Reading" Section */
 .current-read {
   margin-top: 1.5rem;
   padding-top: 1rem;
@@ -365,9 +364,9 @@
   color: #fff;
   line-height: 1.2;
 }
-/* --- NEW: Language Name Styles --- */
+
 .lang-title-group {
-  margin: 1rem 0; /* Space between status and percentage */
+  margin: 1rem 0;
 }
 
 .lang-title-group h3 {
@@ -386,13 +385,4 @@
   color: var(--text-grey);
   font-style: italic;
   font-weight: 300;
-}
-
-/* Adjust the meta section to sit below the title */
-.lang-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 0.5rem;
-  padding-top: 0.5rem;
 }

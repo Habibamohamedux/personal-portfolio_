@@ -56,7 +56,7 @@ const Newsletter = () => {
 
                                     <div className="form-footer">
                                         <p className="privacy-text">
-                                            Join a community of professional developers.
+                                            Join The Inner Circle. No spam, ever. Unsubscribe anytime.
                                         </p>
                                         <div className="cta-container">
                                             <Calltoaction cta={status === 'submitting' ? "..." : "Subscribe"} />

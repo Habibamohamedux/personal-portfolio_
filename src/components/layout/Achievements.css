@@ -266,3 +266,90 @@
     max-width: 100%;
   }
 }
+/* =========================================
+   RESPONSIVE OPTIMIZATION
+   Paste this at the very bottom of your CSS
+   ========================================= */
+
+/* --- TABLET / SMALL LAPTOP (Max Width: 1024px) --- */
+@media (max-width: 1024px) {
+  
+  /* 1. Stack the Sidebar and Content */
+  .category-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* 2. Turn the Sidebar label into a horizontal strip */
+  .sticky-label {
+    position: relative;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* 3. Adjust Title Size */
+  .big-title {
+    font-size: 5rem;
+  }
+}
+
+/* --- MOBILE PHONES (Max Width: 768px) --- */
+@media (max-width: 768px) {
+
+  /* 1. Adjust Container Padding */
+  .achievements-container {
+    padding: 3rem 1.5rem;
+  }
+
+  /* 2. Header Layout Stacking */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .header-desc {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .big-title {
+    font-size: 3.5rem;
+  }
+
+  /* 3. Force Cards to Single Column (Prevents Squashing) */
+  /* This overrides the 'minmax' to ensure cards fit on small screens */
+  .creative-grid,
+  .cert-grid,
+  .linkedin-grid-static {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  /* 4. Fix LinkedIn Embed Widths */
+  .li-embed-wrapper {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  /* --- MOBILE INTERACTION FIX --- */
+  /* Since phones don't have "hover", we make the text legible by default */
+  .creative-card .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    /* Dark gradient so white text is readable over the image */
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+  }
+  
+  /* Dim image slightly so text pops */
+  .creative-card .card-img {
+    filter: brightness(0.7);
+  }
+}
