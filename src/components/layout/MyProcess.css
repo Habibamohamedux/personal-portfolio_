@@ -1,318 +1,167 @@
-/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-  --mp-bg-dark: #020617;
-  --mp-accent: #2563eb;
-  --mp-accent-glow: #60a5fa;
-  --mp-glass-bg: rgba(255, 255, 255, 0.03);
-  --mp-glass-border: rgba(255, 255, 255, 0.1);
-  --mp-text-white: #ffffff;
-  --mp-text-gray: #94a3b8;
-}
-
-* {
-  box-sizing: border-box;
+  --studio-bg: #020617;
+  --studio-accent: #3b82f6;
+  --studio-text: #ffffff;
+  --studio-muted: rgba(255, 255, 255, 0.6);
+  --studio-line: rgba(255, 255, 255, 0.1);
 }
 
 .process-section {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-color: var(--mp-bg-dark);
-  display: flex;
-  justify-content: center;
-  padding-block: 100px;
-  overflow: hidden;
+  background-color: var(--studio-bg);
+  padding: 80px 5%; /* Reduced padding for mobile */
   font-family: 'Poppins', sans-serif;
 }
 
-/* --- Animated Background (Subtle Motion) --- */
-.process-bg-blobs {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.blob-p {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.3;
-}
-
-.blob-p-1 {
-  top: 20%;
-  left: -10%;
-  width: 600px;
-  height: 600px;
-  background: var(--mp-accent);
-  animation: floatP 12s infinite ease-in-out alternate;
-}
-
-.blob-p-2 {
-  bottom: 10%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: #7c3aed; /* Purple accent */
-  animation: floatP 15s infinite ease-in-out alternate-reverse;
-}
-
-@keyframes floatP {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(40px); }
-}
-
-/* --- Main Container --- */
 .process-container {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  max-width: 1200px;
-  /* 100px padding from sides constraint */
-  padding-inline: 100px; 
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-/* --- Header --- */
 .process-header {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
+  margin-bottom: 60px;
 }
 
 .process-title {
   font-family: 'League Gothic', sans-serif;
-  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-size: clamp(3rem, 8vw, 6rem); /* Responsive font sizing */
   text-transform: uppercase;
-  color: var(--mp-text-white);
-  line-height: 1;
-  letter-spacing: 0.03em;
+  color: var(--studio-text);
+  letter-spacing: 2px;
   margin: 0;
-  text-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
 }
 
 .process-subtitle {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem;
-  color: var(--mp-text-gray);
+  color: var(--studio-muted);
+  font-size: 1rem;
+  margin-top: 10px;
   max-width: 600px;
-  margin: 0;
+  margin-inline: auto;
 }
 
-/* --- Timeline Structure --- */
+/* Timeline Logic */
 .timeline-wrapper {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 60px; /* Space between steps */
-  padding-block: 20px;
+  margin-top: 40px;
 }
 
-/* The Central Glowing Line */
-.central-line {
+/* The Vertical Spine */
+.timeline-wrapper::before {
+  content: '';
   position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(
-    to bottom, 
-    transparent, 
-    var(--mp-accent), 
-    var(--mp-accent), 
-    transparent
-  );
+  left: 50%; /* Default center */
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--studio-line) 15%, var(--studio-line) 85%, transparent);
   transform: translateX(-50%);
-  z-index: 0;
-  box-shadow: 0 0 15px var(--mp-accent);
 }
 
-/* --- Timeline Row (Flex Logic) --- */
 .timeline-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  margin-bottom: 60px;
   position: relative;
-  z-index: 1;
 }
 
-/* Even items go Left-to-Right */
-.row-left {
-  flex-direction: row;
-}
+.row-left { flex-direction: row; }
+.row-right { flex-direction: row-reverse; }
 
-/* Odd items go Right-to-Left (Zig Zag) */
-.row-right {
-  flex-direction: row-reverse;
-}
-
-/* 1. The Content Card (Width 45%) */
-.timeline-content {
+/* The Card */
+.process-card {
   width: 45%;
-  padding: 30px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
+  padding: 20px;
+  transition: all 0.4s ease;
 }
 
-/* Glass Effect */
-.glass-panel {
-  background: var(--mp-glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--mp-glass-border);
-}
-
-/* Hover Effect on Card */
-.timeline-content:hover {
+.process-card:hover {
   transform: translateY(-5px);
-  border-color: var(--mp-accent);
-  box-shadow: 0 10px 40px -10px rgba(37, 99, 235, 0.3);
-}
-
-/* 2. The Center Node (Width 10% - contains circle) */
-.timeline-node {
-  width: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.node-inner {
-  width: 50px;
-  height: 50px;
-  background: var(--mp-accent);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'League Gothic', sans-serif;
-  font-size: 1.5rem;
-  color: white;
-  z-index: 2;
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
-  border: 4px solid var(--mp-bg-dark); /* Creates separation from line */
-}
-
-/* Pulsing effect behind the node */
-.node-pulse {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--mp-accent);
-  opacity: 0.3;
-  animation: pulseNode 2s infinite;
-  z-index: 1;
-}
-
-@keyframes pulseNode {
-  0% { transform: scale(0.5); opacity: 0; }
-  50% { opacity: 0.5; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-/* 3. The Spacer (Width 45%) */
-.timeline-spacer {
-  width: 45%;
-}
-
-/* --- Card Internal Styling --- */
-.step-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.step-number {
-  font-family: 'League Gothic', sans-serif;
-  font-size: 1.2rem;
-  color: var(--mp-accent);
-  letter-spacing: 1px;
-}
-
-.step-icon-box {
-  color: var(--mp-text-white);
-  opacity: 0.8;
 }
 
 .step-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--mp-text-white);
-  margin: 0;
+  color: var(--text-white);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-wrap {
+  color: var(--studio-accent);
+  display: flex;
+  align-items: center;
 }
 
 .step-desc {
-  font-family: 'Poppins', sans-serif;
+  color: var(--studio-muted);
   font-size: 0.95rem;
-  color: var(--mp-text-gray);
-  line-height: 1.6;
-  margin: 0;
+  line-height: 1.7;
+  font-weight: 300;
 }
 
-/* --- Responsiveness --- */
-
-/* Tablet & Mobile */
-@media (max-width: 900px) {
-  .process-container {
-    padding-inline: 40px;
-  }
+/* The Integrated Number (Anchor) */
+.node {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
 }
 
-@media (max-width: 768px) {
-  .process-container {
-    padding-inline: 20px;
-    gap: 40px;
+.node-number {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 3rem;
+  color: var(--studio-bg);
+  -webkit-text-stroke: 1px var(--studio-accent);
+  transition: all 0.4s ease;
+  background: var(--studio-bg);
+  padding: 0 10px;
+}
+
+.spacer { width: 45%; }
+
+/* --- RESPONSIVE BREAKPOINT --- */
+@media (max-width: 850px) {
+  .timeline-wrapper::before {
+    left: 20px; /* Move line to the left */
+    transform: none;
   }
 
-  .process-title {
-    font-size: 3rem;
+  .timeline-row {
+    flex-direction: row !important; /* Force left-to-right */
+    padding-left: 50px;
+    text-align: left;
+    margin-bottom: 40px;
   }
 
-  /* Linearize the timeline */
-  .central-line {
-    left: 25px; /* Move line to left side */
-  }
-
-  .timeline-row, .row-left, .row-right {
-    flex-direction: row; /* Always Row on mobile */
-    justify-content: flex-start;
-    gap: 20px;
-  }
-
-  .timeline-spacer {
-    display: none; /* Hide spacer on mobile */
-  }
-
-  .timeline-node {
-    width: auto;
-    flex-shrink: 0;
-  }
-
-  .timeline-content {
-    width: 100%; /* Card takes full remaining width */
-  }
-  
-  .node-inner {
+  .node {
+    position: absolute;
+    left: 0;
     width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
+    justify-content: flex-start;
+  }
+
+  .node-number {
+    font-size: 2.2rem;
+    padding: 0;
+  }
+
+  .process-card {
+    width: 100%;
+    padding: 0;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  .step-title {
+    font-size: 1.1rem;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
   }
 }

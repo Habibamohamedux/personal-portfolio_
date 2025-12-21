@@ -1,44 +1,82 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import AddIcon from '@mui/icons-material/Add';
 import './FAQ.css';
-
-// FAQ Data from your screenshot
+/* --- FAQ DATA --- */
 const faqData = [
   {
-    question: 'How do I enroll in a course?',
-    answer: 'Simply click on the course you are interested in, click the "Enroll Now" button, and follow the checkout process. You will get immediate access upon payment.'
+    question: 'What services do you offer?',
+    answer: 'I offer UI/UX design, website design, front-end development (HTML, CSS, basic React), branding basics, motion graphics, and design support for student or startup projects. I also help with redesigns, portfolios, and concept development.'
   },
   {
-    question: 'Do I need previous skills to start learning?',
-    answer: 'It depends on the course. Our "Beginner" level courses are designed for complete novices, while "Intermediate" courses assume some prior knowledge.'
+    question: 'Are you a student or a professional designer?',
+    answer: 'I am a senior Digital Arts student with strong practical experience. This means I work professionally on real projects while still learning, experimenting, and growing as a junior designer.'
   },
   {
-    question: 'Can I get a refund?',
-    answer: 'Yes, we offer a 30-day money-back guarantee if you are not satisfied with the course content, provided you have not completed more than 30% of the material.'
+    question: 'Do you offer courses or learning packages?',
+    answer: 'Yes. I offer beginner-friendly design and creative courses. The course package starts at $25 and is designed to be affordable, practical, and easy to follow.'
   },
   {
-    question: 'Do you offer certificates?',
-    answer: 'Yes! Upon successfully completing a course and its assessments, you will receive a digital certificate of completion to showcase on your portfolio or LinkedIn.'
+    question: 'How does your project pricing work?',
+    answer: 'Project pricing depends on the size, timeline, and type of work needed. Smaller tasks are more affordable, while larger or more complex projects are priced accordingly after discussing requirements.'
   },
   {
-    question: 'How long do I have access to course materials?',
-    answer: 'You have lifetime access to any course you purchase, including all future updates to the content.'
+    question: 'How long does it usually take to finish a project?',
+    answer: 'Small tasks usually take 1–3 days, while full design or website projects can take 1–2 weeks depending on complexity and feedback speed.'
   },
   {
-    question: 'Are the courses live or pre-recorded?',
-    answer: 'Most courses are pre-recorded so you can learn at your own pace. Private 1-on-1 sessions are live video calls.'
+    question: 'Can you collaborate with other designers or developers?',
+    answer: 'Yes! I enjoy collaborating with other designers and developers, whether on school projects, passion projects, or real client work.'
   },
   {
-    question: 'What if I need help while learning?',
-    answer: 'You can ask questions in the course community forum, or if you purchased a bundle with mentorship, you can message your instructor directly.'
+    question: 'Who do you usually work with?',
+    answer: 'I usually work with students, small businesses, startups, content creators, and anyone who needs thoughtful design without agency-level pricing.'
   },
   {
-    question: 'Can I switch between courses?',
-    answer: 'We typically do not allow direct switching, but reach out to support within 7 days of purchase and we can help you find the right fit.'
+    question: 'Why should I work with you?',
+    answer: 'You get a designer who is detail-oriented, flexible, up-to-date with design trends, and genuinely invested in learning and delivering quality work — not just finishing a task.'
   }
 ];
+/* --- Animation Variants --- */
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    transition: { staggerChildren: 0.05, delayChildren: 0.2 * i },
+  }),
+  hover: {
+    scale: 1.02,
+    transition: { duration: 0.3 }
+  }
+};
+
+const childVariants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      type: "spring",
+      damping: 12,
+      stiffness: 100,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    y: 50,
+    rotateX: -90,
+    transition: {
+      type: "spring",
+      damping: 12,
+      stiffness: 100,
+    },
+  },
+  hover: {
+    color: "#3b82f6", // Blue accent on hover
+    y: -5,
+    transition: { duration: 0.2 }
+  }
+};
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -47,32 +85,77 @@ const FAQ = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const formatIndex = (i) => (i + 1).toString().padStart(2, '0');
+
+  // Helper to animate text
+  const AnimatedText = ({ text }) => {
+    // Split text into letters
+    const letters = Array.from(text);
+
+    return (
+      <motion.div
+        style={{ display: "inline-block", overflow: "hidden", whiteSpace: "nowrap" }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        whileHover="hover"
+        viewport={{ once: true }}
+      >
+        {letters.map((letter, index) => (
+          <motion.span 
+            key={index} 
+            variants={childVariants} 
+            style={{ display: "inline-block" }}
+          >
+            {letter === " " ? "\u00A0" : letter}
+          </motion.span>
+        ))}
+      </motion.div>
+    );
+  };
+
   return (
     <section id="faq-section">
       <div className="faq-container">
         
-        {/* Header */}
-        <div className="faq-header">
-          <h2 className="section-title">FREQUENTLY ASKED QUESTIONS</h2>
-          <p className="section-subtitle">Everything you need to know about our courses</p>
+        {/* LEFT: Animated Gothic Title */}
+        <div className="faq-title-col">
+          <div className="sticky-wrapper">
+            <div className="gothic-title-wrapper">
+              <AnimatedText text="FREQUENTLY" />
+              <br />
+              <AnimatedText text="ASKED" />
+              <br />
+              <AnimatedText text="QUESTIONS" />
+            </div>
+            
+            <motion.div className="title-decoration-line"></motion.div>
+
+            <motion.p 
+              className="faq-intro"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            >
+              Curated answers to help you master your learning journey.
+            </motion.p>
+          </div>
         </div>
 
-        {/* Accordion List */}
-        <div className="faq-list">
+        {/* RIGHT: List */}
+        <div className="faq-list-col">
           {faqData.map((item, index) => (
             <div 
               key={index} 
               className={`faq-item ${activeIndex === index ? 'active' : ''}`}
               onClick={() => toggleFAQ(index)}
             >
-              <div className="faq-question">
-                <span>{item.question}</span>
-                <span className="faq-icon">
-                  {activeIndex === index ? (
-                    <RemoveCircleOutlineIcon style={{ fontSize: '1.8rem', color: '#4fc3f7' }} />
-                  ) : (
-                    <AddCircleOutlineIcon style={{ fontSize: '1.8rem', color: '#263b68' }} />
-                  )}
+              <div className="faq-question-row">
+                <span className="faq-number">{formatIndex(index)}</span>
+                <h3 className="faq-question-text">{item.question}</h3>
+                <span className="faq-icon-wrapper">
+                  <AddIcon className="faq-trigger-icon" />
                 </span>
               </div>
               
@@ -82,22 +165,15 @@ const FAQ = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="faq-answer-wrapper"
+                    transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    className="faq-answer-container"
                   >
-                    <p className="faq-answer">{item.answer}</p>
+                    <p className="faq-answer-text">{item.answer}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
           ))}
-        </div>
-
-        {/* Bottom Contact Card */}
-        <div className="contact-card">
-          <h3>Still have questions?</h3>
-          <p>Can't find the answer you're looking for? Our support team is here to help.</p>
-          <button className="contact-btn">Contact Support</button>
         </div>
 
       </div>

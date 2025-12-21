@@ -1,232 +1,250 @@
-/* --- Variables & Fonts --- */
+/* --- Imports --- */
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-  --neon-blue: #4fc3f7;
-  --neon-glow: rgba(79, 195, 247, 0.5);
-  --card-bg: rgba(13, 25, 66, 0.7);
-  --bg-gradient: radial-gradient(circle at center, #0a1942 0%, #020213 100%);
-  --transition-speed: 0.4s;
+  --ep-accent-blue: #3b82f6;
+  --ep-glass-bg: rgba(255, 255, 255, 0.03);
+  --ep-glass-border: rgba(255, 255, 255, 0.1);
+  --ep-text-white: #ffffff;
+  --ep-text-gray: #94a3b8;
 }
 
-/* --- Main Section --- */
 #explore-paths {
   position: relative;
-  min-height: 80vh;
-  padding:  50px 100px;
-  background: var(--bg-gradient);
-  color: #fff;
-  overflow: hidden;
-  
-  /* Flex Center the whole section content */
+  width: 100%;
+  padding: 100px 20px;
+  /* Transparent background so it sits on top of parent layers */
+  background: transparent;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
-.explore-paths-container {
+#explore-paths * {
+  box-sizing: border-box;
+}
+
+.explore-paths__container {
   width: 100%;
   max-width: 1200px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4rem; /* Space between header and grid */
+  gap: 4rem;
 }
 
-/* --- Header Section --- */
-.section-header {
+/* --- Header Section (Left Aligned) --- */
+.explore-paths__header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1rem;
-  animation: fadeInDown 1s ease-out;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 800px;
 }
 
-.section-title {
+.explore-paths__title {
   font-family: 'League Gothic', sans-serif;
-  font-size: 4.5rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #fff;
+  font-size: clamp(3.5rem, 6vw, 5rem);
+  letter-spacing: 2px;
   line-height: 1;
-  text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+  color: var(--ep-text-white);
   margin: 0;
+  text-transform: uppercase;
 }
 
-.section-subtitle {
+.explore-paths__divider {
+  width: 60px;
+  height: 4px;
+  background: var(--ep-accent-blue);
+  margin: 1.5rem 0;
+}
+
+.explore-paths__subtitle {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 600px;
+  color: var(--ep-text-gray);
+  max-width: 500px;
+  margin: 0;
 }
 
-/* --- Flex Grid --- */
-.paths-grid {
+/* --- Grid Layout --- */
+.explore-paths__grid {
   display: flex;
-  flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
-  justify-content: center;
-  gap: 2.5rem;
+  flex-wrap: wrap;
+  gap: 2rem;
   width: 100%;
 }
 
 /* --- Card Styling --- */
-.path-card {
-  /* Flex Layout */
+.explore-paths__card {
+  /* Desktop: 3 cards per row */
+  flex: 0 0 calc(33.333% - 1.35rem);
+  
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
+  text-align: left;
   
-  /* Sizing */
-  flex: 1 1 300px; /* Grow, Shrink, Basis */
-  max-width: 380px;
-  padding: 3rem 2.5rem;
-  
-  /* Appearance */
-  background: var(--card-bg);
-  border: 1px solid rgba(79, 195, 247, 0.1);
-  border-radius: 24px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  
-  /* Animation Properties */
+  padding: 2.5rem;
+  background: var(--ep-glass-bg);
+  border: 1px solid var(--ep-glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
   cursor: pointer;
-  transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
+  transition: border-color 0.3s ease, background 0.3s ease;
 }
 
-/* Hover Effect: Card Lift & Glow */
-.path-card:hover {
-  transform: translateY(-12px);
-  border-color: var(--neon-blue);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 
-              0 0 30px var(--neon-glow),
-              inset 0 0 20px rgba(79, 195, 247, 0.1);
+.explore-paths__card:hover {
+  border-color: var(--ep-accent-blue);
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* --- Icon Styling --- */
-.icon-container {
+/* Icons */
+.explore-paths__icon-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 70px;
-  border-radius: 18px;
-  background: rgba(79, 195, 247, 0.1);
+  width: 60px;
+  height: 60px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 12px;
   margin-bottom: 1.5rem;
-  transition: all var(--transition-speed) ease;
+  color: var(--ep-accent-blue);
+  transition: all 0.3s ease;
 }
 
-.path-icon {
+.explore-paths__icon {
   font-size: 2rem !important;
-  color: var(--neon-blue);
-  transition: transform var(--transition-speed) ease;
 }
 
-/* Hover Effect: Icon Glow & Scale */
-.path-card:hover .icon-container {
-  background: var(--neon-blue);
-  box-shadow: 0 0 25px var(--neon-glow);
-  transform: scale(1.1);
+.explore-paths__card:hover .explore-paths__icon-box {
+  background: var(--ep-accent-blue);
+  color: white;
 }
 
-.path-card:hover .path-icon {
-  color: #020213; /* Icon turns dark when background lights up */
-  transform: scale(1.1);
-}
-
-/* --- Text Styling --- */
-.path-title {
+/* Text */
+.explore-paths__card-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 0.8rem;
-  color: #fff;
-  transition: color 0.3s ease;
+  color: var(--ep-text-white);
+  margin: 0 0 0.75rem 0;
 }
 
-.path-description {
+.explore-paths__card-desc {
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--ep-text-gray);
   line-height: 1.6;
-  transition: color 0.3s ease;
+  margin: 0 0 1.5rem 0;
 }
 
-.path-card:hover .path-title {
-  color: var(--neon-blue);
+/* Arrow Icon at bottom */
+.explore-paths__arrow {
+  margin-top: auto;
+  color: var(--ep-accent-blue);
+  opacity: 0.5;
+  transition: all 0.3s ease;
 }
 
-.path-card:hover .path-description {
-  color: rgba(255, 255, 255, 0.9);
+.explore-paths__card:hover .explore-paths__arrow {
+  opacity: 1;
+  transform: translateX(5px);
 }
 
-/* --- Animations --- */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .section-title { font-size: 3.5rem; }
-  .path-card { 
-    max-width: 100%; /* Full width on mobile */
-    align-items: center; /* Center content on mobile */
-    text-align: center;
-  }
-}
-/* --- Flex Grid Container --- */
-.paths-grid {
-  display: flex;
-  flex-wrap: wrap;          /* Allows items to wrap to next line */
-  justify-content: center;  /* Centers items if they don't fill the row */
-  gap: 2rem;                /* Gap between columns and rows */
+/* --- Modal Popup Styles --- */
+.explore-paths__modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-/* --- Card Styling (Desktop: 3 per line) --- */
-.path-card {
-  /* FLEX LOGIC FOR 3 ITEMS */
-  /* Calculation: (100% space / 3 items) - (Gap Adjustment) */
-  flex: 0 0 calc(33.333% - 1.4rem); 
-  
-  /* Flex Layout for internal content */
+.explore-paths__modal-content {
+  background: #0f172a;
+  border: 1px solid var(--ep-glass-border);
+  border-radius: 20px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  
-  /* Visuals */
-  padding: 3rem 2.5rem;
-  background: var(--card-bg);
-  border: 1px solid rgba(79, 195, 247, 0.1);
-  border-radius: 24px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  
-  /* Animation */
-  cursor: pointer;
-  transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
-/* --- Responsive (Mobile/Tablet: 1 per line) --- */
-/* We use a higher breakpoint (992px) to switch directly from 3 to 1 */
-@media (max-width: 992px) {
-  .paths-grid {
-    gap: 1.5rem; /* Slightly smaller gap on mobile */
-  }
+.explore-paths__close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: var(--ep-text-gray);
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s;
+}
 
-  .path-card {
-    /* FORCE 1 ITEM PER LINE */
-    flex: 0 0 100%; 
-    max-width: 500px; /* Optional: Stops cards from getting too huge on tablets */
+.explore-paths__close-btn:hover {
+  color: white;
+}
+
+.explore-paths__modal-icon {
+  color: var(--ep-accent-blue);
+  transform: scale(1.5);
+  margin-bottom: 1.5rem;
+}
+
+.explore-paths__badge {
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--ep-accent-blue);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.explore-paths__modal-text {
+  color: var(--ep-text-gray);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 992px) {
+  .explore-paths__card {
+    /* Tablet: 2 cards per row */
+    flex: 0 0 calc(50% - 1rem); 
+  }
+}
+
+@media (max-width: 768px) {
+  .explore-paths__title {
+    font-size: 3rem;
+  }
+  
+  .explore-paths__grid {
+    gap: 1.5rem;
+  }
+  
+  .explore-paths__card {
+    /* Mobile: 1 card per row */
+    flex: 0 0 100%;
   }
 }

@@ -1,38 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-// Icons for the "What We Offer" section
-import SchoolIcon from '@mui/icons-material/School'; // For University Programs
-import DescriptionIcon from '@mui/icons-material/Description'; // For Comprehensive Curriculum
-import CloudDownloadIcon from '@mui/icons-material/CloudDownload'; // For Flexible Delivery
-// Icons for the buttons
+import SchoolIcon from '@mui/icons-material/School';
+import GroupsIcon from '@mui/icons-material/Groups';
+import HandshakeIcon from '@mui/icons-material/Handshake';
 import EmailIcon from '@mui/icons-material/Email';
-import DownloadIcon from '@mui/icons-material/Download';
-
 import './InstitutionalPackage.css';
 
-// Data for the left column offerings, extracted from the image
+// Updated data to focus on Personal/Guest offerings
 const offeringsData = [
   {
     id: 1,
-    icon: <SchoolIcon />,
-    title: 'University Programs',
-    description: 'Semester-long courses with structured syllabi and student progress tracking',
+    icon: <SchoolIcon className="inst-collab__icon" />,
+    title: 'University Guest Lectures',
+    description: 'I can visit your campus to deliver industry-focused talks and bridge the gap between theory and practice.',
   },
   {
     id: 2,
-    icon: <DescriptionIcon />,
-    title: 'Comprehensive Curriculum',
-    description: 'Detailed course materials, projects, and assessments included',
+    icon: <GroupsIcon className="inst-collab__icon" />,
+    title: 'Team Workshops',
+    description: 'Hands-on creative sessions designed to upskill your design or development team.',
   },
   {
     id: 3,
-    icon: <CloudDownloadIcon />,
-    title: 'Flexible Delivery',
-    description: 'On-site, remote, or hybrid learning options to fit your organization',
+    icon: <HandshakeIcon className="inst-collab__icon" />,
+    title: 'Curriculum Advisory',
+    description: 'Collaborating with faculties to modernize syllabi and project requirements.',
   },
 ];
 
-// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -47,45 +42,37 @@ const itemVariants = {
 };
 
 const InstitutionalPackage = () => {
-  // State for form fields
-  const [formData, setFormData] = useState({
-    organizationName: '',
-    contactPerson: '',
-    emailAddress: '',
-    teamSize: '',
-    needs: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleEmailClick = () => {
+    window.location.href = "mailto:contact@habibasaad.com?subject=Institutional Collaboration Inquiry";
   };
 
   return (
-    <section id="institutional-package">
+    <section id="inst-collab">
       <motion.div
-        className="institutional-container"
+        className="inst-collab__container"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        {/* Section Header */}
-        <div className="institutional-header">
-          <h2 className="section-title">INSTITUTIONAL & TEAM PACKAGES</h2>
-          <p className="section-subtitle">
-            Comprehensive learning solutions for organizations, universities, and teams
+        {/* Header */}
+        <div className="inst-collab__header">
+          <h2 className="inst-collab__title">INSTITUTIONAL COLLABORATIONS</h2>
+          <div className="inst-collab__divider"></div>
+          <p className="inst-collab__subtitle">
+            Empowering the next generation of creatives through academic partnerships and professional training.
           </p>
         </div>
 
-        <div className="institutional-content">
-          {/* Left Column: What We Offer */}
-          <motion.div className="offerings-column" variants={itemVariants}>
-            <h3 className="column-title">WHAT WE OFFER ORGANIZATIONS</h3>
-            <div className="offerings-list">
+        <div className="inst-collab__content">
+          
+          {/* Left Column: What You Do */}
+          <motion.div className="inst-collab__left" variants={itemVariants}>
+            <div className="inst-collab__list">
               {offeringsData.map((item) => (
-                <div key={item.id} className="offering-item">
-                  <div className="offering-icon-wrapper">{item.icon}</div>
-                  <div className="offering-text">
+                <div key={item.id} className="inst-collab__item">
+                  <div className="inst-collab__icon-box">{item.icon}</div>
+                  <div className="inst-collab__text">
                     <h4>{item.title}</h4>
                     <p>{item.description}</p>
                   </div>
@@ -94,89 +81,32 @@ const InstitutionalPackage = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Request Form Card */}
-          <motion.div className="form-column" variants={itemVariants}>
-            <div className="form-card">
-              <h3 className="form-title">Request Information</h3>
-              <form>
-                <div className="form-group">
-                  <label htmlFor="organizationName">Organization Name</label>
-                  <input
-                    type="text"
-                    id="organizationName"
-                    name="organizationName"
-                    placeholder="Your organization"
-                    value={formData.organizationName}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="contactPerson">Contact Person</label>
-                  <input
-                    type="text"
-                    id="contactPerson"
-                    name="contactPerson"
-                    placeholder="Your name"
-                    value={formData.contactPerson}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="emailAddress">Email Address</label>
-                  <input
-                    type="email"
-                    id="emailAddress"
-                    name="emailAddress"
-                    placeholder="your@email.com"
-                    value={formData.emailAddress}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="teamSize">Team Size</label>
-                  <input
-                    type="text"
-                    id="teamSize"
-                    name="teamSize"
-                    placeholder=""
-                    value={formData.teamSize}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="needs">Tell us about your needs</label>
-                  <textarea
-                    id="needs"
-                    name="needs"
-                    rows="4"
-                    placeholder="What skills are you looking to develop?"
-                    value={formData.needs}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
+          {/* Right Column: Call to Action Card */}
+          <motion.div className="inst-collab__right" variants={itemVariants}>
+            <div className="inst-collab__cta-card">
+              <h3 className="inst-collab__cta-title">Let's Work Together</h3>
+              
+              <p className="inst-collab__cta-desc">
+                Whether you need a semester-long partner, a one-off masterclass, 
+                or an on-site corporate training session, I am available to travel 
+                or present remotely.
+              </p>
+              
+              <p className="inst-collab__cta-desc">
+                Let's discuss how we can bring value to your students or team.
+              </p>
 
-                {/* Request Bulk Pricing Button */}
-                <motion.button
-                  className="request-btn"
-                  type="button"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <EmailIcon className="btn-icon" /> Request Bulk Pricing
-                </motion.button>
-
-                {/* Download Sample Curriculum Button */}
-                <motion.button
-                  className="download-btn"
-                  type="button"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <DownloadIcon className="btn-icon" /> Download Sample Curriculum (PDF)
-                </motion.button>
-              </form>
+              <motion.button
+                className="inst-collab__btn"
+                onClick={handleEmailClick}
+                // Removed framer-motion props here as the CSS transition handles the hover better for glass buttons
+              >
+                <EmailIcon className="inst-collab__btn-icon" /> 
+                Get in Touch
+              </motion.button>
             </div>
           </motion.div>
+
         </div>
       </motion.div>
     </section>

@@ -1,12 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import "./Courses.css";
-
 import Navbar from "../components/layout/Navbar.jsx";
 import CoursesHero from "../components/layout/CoursesHero";
 import ExplorePaths from "../components/layout/ExplorePaths";
 import FreeTutorials from "../components/layout/FreeTutorials";
-import ReadyMadeCourses from "../components/layout/ReadyMadeCourses";
 import PrivateSessions from "../components/layout/PrivateSessions";
 import InstitutionalPackage from "../components/layout/InstitutionalPackage";
 import Notes from "../components/layout/Notes";
@@ -66,7 +64,6 @@ const Courses = () => {
       <CoursesHero />
       <ExplorePaths />
       <FreeTutorials />
-      <ReadyMadeCourses />
       <PrivateSessions />
       <InstitutionalPackage />
       <Notes />

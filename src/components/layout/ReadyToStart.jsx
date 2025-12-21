@@ -1,83 +1,63 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'; // Sparkle icon
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive'; // Infinity symbol
 import './ReadyToStart.css';
 
-// Animation Variants
+// Simple fade-up animation
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut', staggerChildren: 0.2 }
   }
 };
 
 const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
-  visible: { 
-    y: 0, 
-    opacity: 1, 
-    transition: { duration: 0.6, ease: 'easeOut' } 
-  }
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
 const ReadyToStart = () => {
   return (
     <section id="ready-to-start">
       <motion.div 
-        className="ready-container"
+        className="rts-container"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.5 }}
       >
         
-        {/* Top Glowing Icon */}
-        <motion.div className="icon-wrapper" variants={itemVariants}>
-          <div className="glow-circle">
-            <AutoAwesomeIcon className="start-icon" />
-          </div>
-        </motion.div>
-
-        {/* Text Content */}
-        <motion.h2 className="cta-title" variants={itemVariants}>
-          READY TO START YOUR CREATIVE JOURNEY?
-        </motion.h2>
-
-        <motion.p className="cta-subtitle" variants={itemVariants}>
-          Transform your creative skills through curated courses and personalized mentorship. 
-          Start learning today and unlock your full potential.
+        {/* Tiny Title */}
+        <motion.p className="rts-tiny-title" variants={itemVariants}>
+          OVERVIEW
         </motion.p>
 
-        {/* Buttons */}
-        <motion.div className="cta-buttons" variants={itemVariants}>
-          <button className="join-btn">
-            Join Now <ArrowForwardIcon className="btn-arrow" />
-          </button>
-          <button className="browse-btn">
-            Browse Free Content
-          </button>
-        </motion.div>
+        {/* Stats Grid */}
+        <motion.div className="rts-stats-grid" variants={itemVariants}>
+          
+          <div className="rts-stat-item">
+            <span className="rts-stat-value">3</span>
+            <span className="rts-stat-label">Courses Available</span>
+          </div>
+          
+          <div className="rts-stat-divider"></div>
 
-        {/* Divider Line */}
-        <motion.div className="cta-divider" variants={itemVariants}></motion.div>
+          <div className="rts-stat-item">
+            <span className="rts-stat-value">100%</span>
+            <span className="rts-stat-label">Quality Content</span>
+          </div>
 
-        {/* Bottom Stats */}
-        <motion.div className="cta-stats" variants={itemVariants}>
-          <div className="stat-item">
-            <span className="stat-value">6</span>
-            <span className="stat-label">Courses Available</span>
+          <div className="rts-stat-divider"></div>
+
+          <div className="rts-stat-item">
+            <span className="rts-stat-value">
+              <AllInclusiveIcon className="rts-infinity-icon" />
+            </span>
+            <span className="rts-stat-label">Lifetime Access</span>
           </div>
-          <div className="stat-item">
-            <span className="stat-value">100%</span>
-            <span className="stat-label">Quality Content</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-value"><AllInclusiveIcon className="infinity-icon" /></span>
-            <span className="stat-label">Lifetime Access</span>
-          </div>
+
         </motion.div>
 
       </motion.div>

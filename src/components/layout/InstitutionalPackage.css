@@ -1,231 +1,219 @@
 /* --- Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
 
-/* --- Main Section Container --- */
-#institutional-package {
-  padding: 50px 100px;
-  /* Deep dark blue background matching the image */
-  background: radial-gradient(circle at top right, #0d1536 0%, #050a1f 100%);
-  color: #fff;
+:root {
+  --ic-accent-blue: #3b82f6;
+  --ic-text-white: #ffffff;
+  --ic-text-gray: #94a3b8;
+  --ic-glass-bg: rgba(255, 255, 255, 0.03);
+  --ic-glass-border: rgba(255, 255, 255, 0.1);
 }
 
-.institutional-container {
-  max-width: 1200px;
-  margin: 0 auto;
+#inst-collab {
+  width: 100%;
+  padding: 100px 20px;
+  /* Background removed to be transparent */
+  background: transparent;
+  color: var(--ic-text-white);
+  display: flex;
+  justify-content: center;
 }
 
-/* --- Header Styling --- */
-.institutional-header {
+.inst-collab__container {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* --- Header --- */
+.inst-collab__header {
   text-align: center;
   margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.section-title {
+.inst-collab__title {
   font-family: 'League Gothic', sans-serif;
-  font-size: 4rem;
+  font-size: clamp(3rem, 5vw, 4.5rem);
   letter-spacing: 2px;
-  margin-bottom: 1rem;
-  color: #fff;
+  margin: 0;
+  color: var(--ic-text-white);
   text-transform: uppercase;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
-.section-subtitle {
+.inst-collab__divider {
+  width: 60px;
+  height: 4px;
+  background: var(--ic-accent-blue);
+  margin: 1.5rem 0;
+}
+
+.inst-collab__subtitle {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
-  color: #a0aaff;
+  color: var(--ic-text-gray);
   font-weight: 300;
-  max-width: 700px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 0;
+  line-height: 1.6;
 }
 
-/* --- Content Layout (Two Columns) --- */
-.institutional-content {
+/* --- Content Grid --- */
+.inst-collab__content {
   display: flex;
   gap: 4rem;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* --- Left Column: Offerings --- */
-.offerings-column {
+.inst-collab__left {
   flex: 1;
 }
 
-.column-title {
-  font-family: 'League Gothic', sans-serif;
-  font-size: 2.5rem;
-  letter-spacing: 1px;
-  margin-bottom: 3rem;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.offerings-list {
+.inst-collab__list {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 }
 
-.offering-item {
+.inst-collab__item {
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
 }
 
-.offering-icon-wrapper {
+.inst-collab__icon-box {
   flex-shrink: 0;
-  padding: 1rem;
-  background: rgba(79, 195, 247, 0.1); /* Light blue background */
+  width: 60px;
+  height: 60px;
+  background: rgba(59, 130, 246, 0.1);
   border-radius: 12px;
-  color: #4fc3f7; /* Bright blue icon color */
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 15px rgba(79, 195, 247, 0.2);
+  color: var(--ic-accent-blue);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
 }
 
-.offering-icon-wrapper svg {
-  font-size: 2rem;
+.inst-collab__icon {
+  font-size: 2rem !important;
 }
 
-.offering-text h4 {
+.inst-collab__text h4 {
   font-family: 'Poppins', sans-serif;
   font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #fff;
+  margin: 0 0 0.5rem 0;
+  color: var(--ic-text-white);
 }
 
-.offering-text p {
+.inst-collab__text p {
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
-  color: #a0aaff;
+  color: var(--ic-text-gray);
   font-weight: 300;
   line-height: 1.6;
+  margin: 0;
 }
 
-/* --- Right Column: Form Card --- */
-.form-column {
-  flex: 1;
-  max-width: 500px;
+/* --- Right Column: CTA Card --- */
+.inst-collab__right {
+  flex: 0 0 450px;
 }
 
-.form-card {
-  background: #0b102b; /* Dark card background */
-  border: 1px solid rgba(79, 195, 247, 0.15);
-  border-radius: 20px;
-  padding: 2.5rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+.inst-collab__cta-card {
+  background: var(--ic-glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--ic-glass-border);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
-.form-title {
+.inst-collab__cta-title {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin: 0 0 1.5rem 0;
+  color: var(--ic-text-white);
+  text-transform: uppercase;
+}
+
+.inst-collab__cta-desc {
   font-family: 'Poppins', sans-serif;
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
-  color: #fff;
-}
-
-.form-group {
+  font-size: 1rem;
+  color: var(--ic-text-gray);
+  line-height: 1.7;
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
-  display: block;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
-  color: #e0e6ff;
-  margin-bottom: 0.5rem;
-}
-
-.form-group input,
-.form-group textarea {
+/* --- Glass Email Button (UPDATED) --- */
+.inst-collab__btn {
   width: 100%;
-  padding: 1rem;
-  background: #050a1f; /* Darker input background */
-  border: 1px solid rgba(79, 195, 247, 0.2);
-  border-radius: 10px;
-  color: #fff;
+  margin-top: 1rem;
+  padding: 16px;
+  /* Rounded pill shape standard for glass buttons */
+  border-radius: 100px; 
   font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #5f6a8f;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #4fc3f7;
-}
-
-/* --- Buttons --- */
-.request-btn,
-.download-btn {
-  width: 100%;
-  padding: 1rem;
-  border-radius: 10px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-  border: none;
+  gap: 0.8rem;
+  
+  /* Glass Styles */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.btn-icon {
+.inst-collab__btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--ic-accent-blue); /* Highlight border blue on hover */
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.inst-collab__btn-icon {
   font-size: 1.3rem !important;
-}
-
-/* Primary Request Button */
-.request-btn {
-  background: linear-gradient(to right, #29b6f6, #4fc3f7); /* Bright blue gradient */
-  color: #050a1f;
-  margin-bottom: 1rem;
-  box-shadow: 0 5px 15px rgba(79, 195, 247, 0.3);
-}
-
-.request-btn:hover {
-  box-shadow: 0 8px 20px rgba(79, 195, 247, 0.5);
-}
-
-/* Secondary Download Button */
-.download-btn {
-  background: transparent;
-  border: 1px solid rgba(79, 195, 247, 0.4);
-  color: #e0e6ff;
-}
-
-.download-btn:hover {
-  background: rgba(79, 195, 247, 0.1);
-  border-color: #4fc3f7;
+  color: var(--ic-accent-blue); /* Icon color */
 }
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 968px) {
-  .institutional-content {
+  .inst-collab__content {
     flex-direction: column;
     gap: 4rem;
   }
 
-  .offerings-column,
-  .form-column {
+  .inst-collab__right {
+    flex: 1;
     width: 100%;
-    max-width: none;
+    max-width: 500px;
   }
 
-  .column-title {
-    text-align: center;
-  }
-
-  .form-card {
+  .inst-collab__cta-card {
     padding: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .inst-collab__header {
+    margin-bottom: 3rem;
+  }
+  
+  .inst-collab__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 }

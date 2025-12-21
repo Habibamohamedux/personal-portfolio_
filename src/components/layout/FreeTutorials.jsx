@@ -1,9 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import CloseIcon from '@mui/icons-material/Close';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import './FreeTutorials.css';
 
-// Real images sourced from Unsplash to match the creative/tech theme
 const tutorialsData = [
   {
     id: 1,
@@ -12,25 +13,6 @@ const tutorialsData = [
     views: '8.2K views',
     duration: '45 min',
     image: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80',
-    categoryColor: '#4fc3f7'
-  },
-  {
-    id: 2,
-    title: 'Movie Editing Fundamentals',
-    level: 'Intermediate',
-    views: '12.4K views',
-    duration: '1h 15min',
-    image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44c?auto=format&fit=crop&w=800&q=80',
-    categoryColor: '#7b4ff7'
-  },
-  {
-    id: 3,
-    title: 'Writing Your First Script',
-    level: 'Beginner',
-    views: '6.7K views',
-    duration: '50 min',
-    image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e63?auto=format&fit=crop&w=800&q=80',
-    categoryColor: '#4fc3f7'
   },
   {
     id: 4,
@@ -39,7 +21,6 @@ const tutorialsData = [
     views: '15.3K views',
     duration: '55 min',
     image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80',
-    categoryColor: '#4fc3f7'
   },
   {
     id: 5,
@@ -48,16 +29,6 @@ const tutorialsData = [
     views: '18.9K views',
     duration: '1h 20min',
     image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80',
-    categoryColor: '#4fc3f7'
-  },
-  {
-    id: 6,
-    title: 'Your Freelancing Journey',
-    level: 'Intermediate',
-    views: '9.1K views',
-    duration: '40 min',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80',
-    categoryColor: '#7b4ff7'
   }
 ];
 
@@ -82,11 +53,20 @@ const cardVariants = {
   }
 };
 
+// Modal Animation
+const modalVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { type: "spring", damping: 25, stiffness: 300 } },
+  exit: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } }
+};
+
 const FreeTutorials = () => {
+  const [selectedTutorial, setSelectedTutorial] = useState(null);
+
   return (
     <section id="free-tutorials">
       <motion.div 
-        className="tutorials-container"
+        className="ft-container"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -94,56 +74,86 @@ const FreeTutorials = () => {
       >
         
         {/* Header Section */}
-        <div className="tutorials-header">
-          <h2 className="section-title">FEATURED FREE TUTORIALS</h2>
-          <p className="section-subtitle">Start learning today with our most popular YouTube content</p>
+        <div className="ft-header">
+          <h2 className="ft-title">FEATURED FREE TUTORIALS</h2>
+          <p className="ft-subtitle">Start learning today with our most popular YouTube content</p>
         </div>
 
         {/* Grid of Cards */}
-        <div className="tutorials-grid">
+        <div className="ft-grid">
           {tutorialsData.map((tutorial) => (
             <motion.div 
               key={tutorial.id} 
-              className="tutorial-card"
+              className="ft-card"
               variants={cardVariants}
               whileHover="hover"
+              onClick={() => setSelectedTutorial(tutorial)}
             >
-              <div className="card-image-wrapper">
-                <img src={tutorial.image} alt={tutorial.title} className="card-bg-image" />
-                <div className="overlay-gradient"></div>
+              <div className="ft-image-wrapper">
+                <img src={tutorial.image} alt={tutorial.title} className="ft-bg-image" />
+                <div className="ft-overlay">
+                    <PlayCircleOutlineIcon className="ft-play-icon" />
+                </div>
                 
-                <div className="duration-badge">
+                <div className="ft-duration-badge">
                   <AccessTimeIcon style={{ fontSize: '14px', marginRight: '4px' }} />
                   {tutorial.duration}
                 </div>
               </div>
 
-              <div className="card-content">
-                <div className="meta-row">
-                  <span className={`level-badge ${tutorial.level.toLowerCase()}`}>
+              <div className="ft-content">
+                <div className="ft-meta-row">
+                  <span className={`ft-level-badge ${tutorial.level.toLowerCase()}`}>
                     {tutorial.level}
                   </span>
-                  <span className="views-count">{tutorial.views}</span>
+                  <span className="ft-views-count">{tutorial.views}</span>
                 </div>
                 
-                <h3 className="card-title">{tutorial.title}</h3>
+                <h3 className="ft-card-title">{tutorial.title}</h3>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom Button */}
-        <div className="tutorials-footer">
-          <motion.button 
-            className="view-all-btn"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View All Tutorials
-          </motion.button>
-        </div>
-
       </motion.div>
+
+      {/* Pop-up Modal */}
+      <AnimatePresence>
+        {selectedTutorial && (
+          <motion.div 
+            className="ft-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedTutorial(null)}
+          >
+            <motion.div 
+              className="ft-modal-content"
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="ft-close-btn" onClick={() => setSelectedTutorial(null)}>
+                <CloseIcon />
+              </button>
+              
+              <div className="ft-modal-body">
+                <div className="ft-modal-icon">
+                    <AccessTimeIcon style={{ fontSize: '3rem' }} />
+                </div>
+                <h3 className="ft-modal-title">{selectedTutorial.title}</h3>
+                <span className="ft-modal-badge">COMING SOON</span>
+                <p className="ft-modal-desc">
+                    We are currently polishing this tutorial. 
+                    Subscribe to the channel to get notified when it drops!
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

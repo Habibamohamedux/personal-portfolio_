@@ -1,204 +1,111 @@
-/* Import Fonts (if not already imported globally) */
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-  --w-bg-dark: #020617;
-  --w-accent: #3b82f6;
-  --w-glass-bg: rgba(255, 255, 255, 0.03);
-  --w-glass-border: rgba(255, 255, 255, 0.08);
-  --w-text-white: #ffffff;
-  --w-text-gray: #94a3b8;
+  --bg-dark: #020617;
+  --accent-blue: #3b82f6;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --text-main: #ffffff;
+  --text-muted: #94a3b8;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.why-section-grid {
-  position: relative;
-  width: 100%;
+.why-section {
+  background-color: var(--bg-dark);
+  padding: 100px 5%;
   min-height: 100vh;
-  background-color: var(--w-bg-dark);
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-block: 100px;
-  overflow: hidden;
   font-family: 'Poppins', sans-serif;
 }
 
-/* --- Animated Background Blobs (Subtle) --- */
-.why-bg-blobs {
-  position: absolute;
-  top: 0;
-  left: 0;
+.why-container {
+  max-width: 1200px;
   width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
 }
 
-.blob-w {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.25;
-}
-
-.blob-w-1 {
-  top: -10%;
-  right: -5%;
-  width: 500px;
-  height: 500px;
-  background: var(--w-accent);
-  animation: floatW 15s infinite alternate ease-in-out;
-}
-
-.blob-w-2 {
-  bottom: -10%;
-  left: -5%;
-  width: 600px;
-  height: 600px;
-  background: #6366f1; /* Indigo */
-  animation: floatW 20s infinite alternate-reverse ease-in-out;
-}
-
-@keyframes floatW {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(40px, 40px); }
-}
-
-/* --- Container --- */
-.why-container-grid {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  /* Padding 100px from sides constraint */
-  padding-inline: 100px;
-  max-width: 1400px;
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-}
-
-/* --- Header --- */
 .why-header {
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto; /* Center the header block */
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
+  margin-bottom: 80px;
 }
 
-.why-title-grid {
+.why-title {
   font-family: 'League Gothic', sans-serif;
-  font-size: clamp(3.5rem, 6vw, 5rem);
+  font-size: clamp(3rem, 8vw, 5rem);
   text-transform: uppercase;
-  color: var(--w-text-white);
-  line-height: 1;
-  letter-spacing: 0.03em;
-  margin: 0;
-  /* Subtle glow text shadow */
-  text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  color: var(--text-main);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
 }
 
-.why-subtitle-grid {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.125rem;
-  color: var(--w-text-gray);
+.why-subtitle {
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 1.1rem;
   line-height: 1.6;
-  max-width: 600px;
-  margin: 0;
 }
 
-/* --- Grid Layout --- */
-.cards-grid {
+/* Grid Layout: Exactly 3 columns */
+.why-grid {
   display: grid;
-  /* Auto-fit creates responsive columns (3 columns on desktop) */
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-/* --- Card Design --- */
-.glass-card {
-  background: var(--w-glass-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--w-glass-border);
-  border-radius: 20px;
-  padding: 40px 30px;
+.why-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 24px;
+  transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-  overflow: hidden;
 }
 
-/* Hover Effect: Lift and Glow */
-.glass-card:hover {
+.why-card:hover {
   transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 
-              0 0 20px rgba(59, 130, 246, 0.2);
+  border-color: var(--accent-blue);
+  background: rgba(59, 130, 246, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Icon Box */
-.card-icon-box {
-  width: 60px;
-  height: 60px;
+.icon-wrapper {
+  width: 56px;
+  height: 56px;
   background: rgba(59, 130, 246, 0.1);
-  border-radius: 12px;
+  color: var(--accent-blue);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--w-accent);
-  transition: all 0.3s ease;
+  border-radius: 12px;
+  transition: 0.3s ease;
 }
 
-.glass-card:hover .card-icon-box {
-  background: var(--w-accent);
+.why-card:hover .icon-wrapper {
+  background: var(--accent-blue);
   color: white;
-  transform: scale(1.1) rotate(-5deg);
 }
 
-/* Typography */
 .card-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: var(--w-text-white);
-  margin: 0;
+  color: var(--text-main);
 }
 
-.card-desc {
-  font-family: 'Poppins', sans-serif;
+.card-description {
+  color: var(--text-muted);
   font-size: 0.95rem;
-  color: var(--w-text-gray);
-  line-height: 1.6;
-  margin: 0;
+  line-height: 1.7;
 }
 
-/* --- Responsiveness --- */
+/* Responsive: 2 columns on tablets, 1 on mobile */
 @media (max-width: 1024px) {
-  .why-container-grid {
-    padding-inline: 40px;
-  }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  .why-container-grid {
-    padding-inline: 20px;
-    gap: 40px;
-  }
-  
-  .why-title-grid {
-    font-size: 3rem;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr; /* Stack cards on mobile */
-  }
+  .why-grid { grid-template-columns: 1fr; }
+  .why-section { padding: 60px 20px; }
 }

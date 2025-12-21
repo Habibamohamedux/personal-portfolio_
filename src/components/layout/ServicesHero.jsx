@@ -1,54 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ServicesHero.css';
-import { Sparkles, ArrowRight, MessageSquare } from 'lucide-react';
 
 const ServicesHero = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section className="hero-section">
+    <section className="services-hero">
       
-      {/* 1. The Moving Blobs (Background) */}
-      <div className="hero-background">
-        <div className="hero-blob blob-1"></div>
-        <div className="hero-blob blob-2"></div>
-        <div className="hero-blob blob-3"></div>
+      {/* 1. RESTORED: The Vibrant Animated Background */}
+      <div className="services-hero__bg">
+        <div className="services-hero__blob blob-1"></div>
+        <div className="services-hero__blob blob-2"></div>
+        <div className="services-hero__blob blob-3"></div>
       </div>
 
-      {/* 2. The Dark Gradient Overlay (Middle Layer) */}
-      {/* This ensures the bottom stays dark and readable */}
-      <div className="hero-overlay"></div>
+      {/* Dark Overlay to keep text readable */}
+      <div className="services-hero__overlay"></div>
 
-      {/* 3. The Content (Top Layer) */}
-      <div className="hero-container">
-        <div className="content-center">
-          
-          <div className="glass-badge">
-            <Sparkles size={16} className="text-blue-400" />
-            <span>Multidisciplinary Creative Services</span>
-          </div>
-
-          <h1 className="hero-title">
-            Creative Services for<br />
-            Brands, Creators,<br />
-            and Personal Projects
-          </h1>
-
-          <p className="hero-description">
-            From concept to execution, I help clients communicate, design, 
-            and build digital experiences that resonate and perform.
-          </p>
-
-          <div className="button-group">
-            <button className="btn btn-glass">
-              View Services <ArrowRight size={22} style={{ marginLeft: '6px' }} />
-            </button>
-            
-            <button className="btn btn-solid">
-              <MessageSquare size={22} style={{ marginRight: '8px' }} /> Contact Me
-            </button>
-          </div>
-
+      {/* 2. Content Layer */}
+      <div className={`services-hero__content ${mounted ? "fade-in" : ""}`}>
+        
+        <div className="services-hero__header">
+          <span className="services-hero__dot"></span>
+          <p className="services-hero__subtitle">Multidisciplinary</p>
         </div>
+
+        <div className="services-hero__title-wrapper">
+          <h1 className="services-hero__title" data-text="EXPERTISE">
+            EXPERTISE
+          </h1>
+        </div>
+
+        <p className="services-hero__desc">
+          From concept to execution, I help brands communicate, design, 
+          and build digital experiences that resonate.
+        </p>
+
       </div>
+
+      {/* 3. Scroll Indicator */}
+      <div className="services-hero__scroll">
+        <div className="services-hero__mouse"></div>
+      </div>
+
     </section>
   );
 };

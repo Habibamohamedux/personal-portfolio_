@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Navbar from "../components/layout/Navbar.jsx";
 import Contacthero from "../components/layout/Contacthero.jsx";
+import FAQ from "../components/layout/FAQ.jsx";
 import Socialmedia from "../components/layout/Socialmedia.jsx";
 import Getintouch from "../components/layout/Getintouch.jsx";
 import Newsletter from "../components/layout/Newsletter.jsx";
@@ -57,6 +58,7 @@ const Contact = () => {
 
       <Navbar />
       <Contacthero />
+      <FAQ />
       <Socialmedia />
       <Getintouch />
       <Newsletter />

@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
-  --ti-bg-dark: #020617;
   --ti-accent: #2563eb;
   --ti-text-white: #ffffff;
   --ti-text-gray: #94a3b8;
@@ -23,9 +22,8 @@
 .ti-section {
   position: relative;
   width: 100%;
-  /* Ensure it has height but fits content */
   padding-block: 100px;
-  background-color: var(--ti-bg-dark);
+  background-color: #020617;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,7 +168,6 @@
 .design-glow:hover { border-color: var(--glow-design); box-shadow: 0 4px 15px -5px var(--glow-design); }
 .video-glow:hover { border-color: var(--glow-video); box-shadow: 0 4px 15px -5px var(--glow-video); }
 .dev-glow:hover { border-color: var(--glow-dev); box-shadow: 0 4px 15px -5px var(--glow-dev); }
-.3d-glow:hover { border-color: var(--glow-3d); box-shadow: 0 4px 15px -5px var(--glow-3d); }
 
 .tool-icon-placeholder {
   width: 32px;

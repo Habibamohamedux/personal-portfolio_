@@ -1,275 +1,151 @@
 /* --- Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
 
-/* --- Section Container --- */
-#private-sessions {
-  padding: 50px 100px;
-  background-color: #050a1f; /* Deep dark blue */
-  /* Gradient wash to separate from previous section */
-  background-image: radial-gradient(circle at 50% 50%, #0d1536 0%, #050a1f 70%);
-  color: #fff;
+:root {
+  --ut-accent: #3b82f6; /* Blue Accent */
+  --ut-text-white: #ffffff;
+  --ut-text-gray: #94a3b8;
+  --ut-glass-bg: rgba(255, 255, 255, 0.03);
+  --ut-glass-border: rgba(255, 255, 255, 0.1);
 }
 
-.private-container {
+#upcoming-topics {
+  width: 100%;
+  padding: 80px 20px;
+  background: transparent; /* Allows parent background to show */
+  color: var(--ut-text-white);
+  display: flex;
+  justify-content: center;
+}
+
+.upcoming-topics__container {
+  width: 100%;
   max-width: 1100px;
-  margin: 0 auto;
 }
 
-/* --- Headers --- */
-.private-header {
+/* --- Header --- */
+.upcoming-topics__header {
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.section-title {
-  font-family: 'League Gothic', sans-serif;
-  font-size: 4rem;
-  letter-spacing: 2px;
-  color: #fff;
+.upcoming-topics__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--ut-accent);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
   margin-bottom: 1rem;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
-.section-subtitle {
+.upcoming-topics__title {
+  font-family: 'League Gothic', sans-serif;
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  letter-spacing: 2px;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  color: var(--ut-text-white);
+}
+
+.upcoming-topics__subtitle {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
-  color: #a0aaff;
+  color: var(--ut-text-gray);
   font-weight: 300;
   max-width: 600px;
-  margin: 0 auto;
-}
-
-.sub-title {
-  font-family: 'League Gothic', sans-serif;
-  font-size: 2.5rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  letter-spacing: 1.5px;
-  color: #e0e6ff;
-}
-
-.sub-section {
-  margin-bottom: 6rem;
-}
-
-/* --- 1. Why Choose Grid --- */
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  text-align: center;
-}
-
-.benefit-card {
-  padding: 1rem;
-}
-
-.icon-wrapper {
-  display: inline-flex;
-  padding: 1.2rem;
-  border-radius: 16px;
-  background: rgba(79, 195, 247, 0.1);
-  margin-bottom: 1.5rem;
-  box-shadow: 0 0 20px rgba(79, 195, 247, 0.2);
-}
-
-.benefit-icon {
-  font-size: 2.5rem !important;
-  color: #4fc3f7;
-}
-
-.benefit-card h4 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-}
-
-.benefit-card p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  color: #8892b0;
   line-height: 1.6;
 }
 
-/* --- 2. Subjects Grid --- */
-.subjects-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.subject-card {
-  background: #0d1233;
-  border: 1px solid rgba(79, 195, 247, 0.15);
-  border-radius: 12px;
-  width: 150px;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.subject-card:hover {
-  background: rgba(79, 195, 247, 0.1);
-  border-color: #4fc3f7;
-  transform: translateY(-5px);
-}
-
-.subject-icon {
-  color: #4fc3f7;
-  margin-bottom: 1rem;
-}
-
-.subject-icon svg {
-  font-size: 2rem;
-}
-
-.subject-card span {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
-  text-align: center;
-  color: #e0e6ff;
-}
-
-/* --- 3. Pricing Cards --- */
-.pricing-grid {
+/* --- Grid Layout --- */
+.upcoming-topics__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive Grid */
   gap: 2rem;
-  align-items: center; /* Aligns cards if heights differ */
 }
 
-.pricing-card {
-  background: #0b0f29;
-  border: 1px solid rgba(79, 195, 247, 0.2);
-  border-radius: 16px;
-  padding: 3rem 2rem;
-  position: relative;
+/* --- Card Styling --- */
+.upcoming-topics__card {
+  background: var(--ut-glass-bg);
+  border: 1px solid var(--ut-glass-border);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column; /* Icon on top, text below */
+  align-items: flex-start;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.upcoming-topics__card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon Wrapper */
+.upcoming-topics__icon-wrapper {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.05));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ut-accent);
+  margin-bottom: 1.5rem;
   transition: transform 0.3s ease;
 }
 
-/* Specific styling for the middle "Popular" card */
-.popular-card {
-  background: #0e153a; /* Slightly lighter bg */
-  border: 2px solid #4fc3f7; /* Highlight border */
-  box-shadow: 0 0 30px rgba(79, 195, 247, 0.15);
-  transform: scale(1.05);
-  z-index: 2;
-}
-
-/* Most Popular Badge */
-.popular-badge {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #4fc3f7;
-  color: #050a1f;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  padding: 6px 16px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  box-shadow: 0 4px 10px rgba(79, 195, 247, 0.4);
-}
-
-.plan-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.plan-price {
-  font-family: 'League Gothic', sans-serif;
-  font-size: 4rem;
-  color: #4fc3f7;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.plan-subtitle {
-  font-family: 'Poppins', sans-serif;
-  color: #8892b0;
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
-}
-
-/* Features List */
-.plan-features {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2.5rem 0;
-  text-align: left;
-}
-
-.plan-features li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 1rem;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem;
-  color: #d1d9f0;
-}
-
-.check-dot {
-  color: #00bcd4; /* Cyan dot */
-  font-size: 14px !important; /* Small solid dot look */
-}
-
-/* Buttons */
-.book-btn {
-  width: 100%;
-  padding: 1rem;
-  border-radius: 8px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-}
-
-/* Outline Button Style */
-.outline-btn {
-  background: transparent;
-  border: 1px solid rgba(79, 195, 247, 0.4);
+.upcoming-topics__card:hover .upcoming-topics__icon-wrapper {
+  transform: scale(1.1);
   color: #fff;
+  background: var(--ut-accent);
 }
 
-.outline-btn:hover {
-  background: rgba(79, 195, 247, 0.1);
-  border-color: #4fc3f7;
+.upcoming-topics__icon-wrapper svg {
+  font-size: 1.8rem;
 }
 
-/* Solid Button Style (Popular) */
-.solid-btn {
-  background: #29b6f6; /* Bright Cyan */
-  border: none;
-  color: #050a1f; /* Dark text for contrast */
+/* Text Content */
+.upcoming-topics__card-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25rem;
   font-weight: 600;
+  color: var(--ut-text-white);
+  margin: 0 0 0.5rem 0;
 }
 
-.solid-btn:hover {
-  background: #4fc3f7;
-  box-shadow: 0 0 20px rgba(79, 195, 247, 0.4);
+.upcoming-topics__card-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ut-text-gray);
+  line-height: 1.6;
+  margin: 0;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .popular-card {
-    transform: scale(1);
-    margin: 1rem 0;
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .upcoming-topics__title {
+    font-size: 3rem;
+  }
+  
+  .upcoming-topics__grid {
+    grid-template-columns: 1fr; /* Stack cards on mobile */
+    gap: 1.5rem;
+  }
+  
+  .upcoming-topics__card {
+    align-items: center; /* Center content on mobile */
+    text-align: center;
   }
 }

@@ -1,58 +1,66 @@
 /* --- Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600&display=swap');
 
-/* --- Section Container --- */
-#free-tutorials {
-  padding:  25px 100px;
-  /* Deep dark blue background similar to the screenshot */
-  background: radial-gradient(circle at center, #0a1942 0%, #020213 100%);
-  color: #fff;
+:root {
+  --ft-accent: #4fc3f7;
+  --ft-text-white: #ffffff;
+  --ft-text-gray: #a0aaff;
+  --ft-card-bg: #0b0f29;
+  --ft-border: rgba(79, 195, 247, 0.1);
 }
 
-.tutorials-container {
+/* --- Section Container --- */
+#free-tutorials {
+  width: 100%;
+  padding: 80px 20px;
+  background: transparent;
+  color: var(--ft-text-white);
+  display: flex;
+  justify-content: center;
+}
+
+.ft-container {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
 }
 
 /* --- Header --- */
-.tutorials-header {
+.ft-header {
   text-align: center;
   margin-bottom: 4rem;
 }
 
-.tutorials-header .section-title {
+.ft-title {
   font-family: 'League Gothic', sans-serif;
-  font-size: 4.5rem;
+  font-size: clamp(3rem, 5vw, 4.5rem);
   letter-spacing: 2px;
   margin-bottom: 1rem;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--ft-text-white);
   text-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
 }
 
-.tutorials-header .section-subtitle {
+.ft-subtitle {
   font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
-  color: #a0aaff;
+  color: var(--ft-text-gray);
   font-weight: 300;
 }
 
 /* --- Grid Layout --- */
-.tutorials-grid {
+.ft-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-  margin-bottom: 4rem;
 }
 
 /* --- Card Styling --- */
-.tutorial-card {
-  background: #0b0f29; /* Dark card background */
+.ft-card {
+  background: var(--ft-card-bg);
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  /* Subtle border glow */
-  border: 1px solid rgba(79, 195, 247, 0.1); 
+  border: 1px solid var(--ft-border); 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   display: flex;
@@ -60,35 +68,51 @@
 }
 
 /* Image Area */
-.card-image-wrapper {
+.ft-image-wrapper {
   position: relative;
   height: 200px;
   overflow: hidden;
 }
 
-.card-bg-image {
+.ft-bg-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.tutorial-card:hover .card-bg-image {
+.ft-card:hover .ft-bg-image {
   transform: scale(1.1);
 }
 
-/* Overlay gradient on image to make text readable if needed */
-.overlay-gradient {
+.ft-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Duration Badge (Top Right) */
-.duration-badge {
+/* Play Icon (Hidden by default, shown on hover) */
+.ft-play-icon {
+    font-size: 3rem !important;
+    color: white;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.ft-card:hover .ft-play-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Duration Badge */
+.ft-duration-badge {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -105,7 +129,7 @@
 }
 
 /* --- Card Content --- */
-.card-content {
+.ft-content {
   padding: 1.5rem;
   flex-grow: 1;
   display: flex;
@@ -113,7 +137,7 @@
   justify-content: space-between;
 }
 
-.meta-row {
+.ft-meta-row {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -123,74 +147,126 @@
 }
 
 /* Level Badges */
-.level-badge {
+.ft-level-badge {
   padding: 4px 12px;
   border-radius: 20px;
   font-weight: 500;
 }
 
-.level-badge.beginner {
+.ft-level-badge.beginner {
   background: rgba(79, 195, 247, 0.15);
-  color: #4fc3f7; /* Light Blue */
+  color: var(--ft-accent); 
   border: 1px solid rgba(79, 195, 247, 0.3);
 }
 
-.level-badge.intermediate {
-  background: rgba(123, 79, 247, 0.15);
-  color: #9d7bf7; /* Purple */
-  border: 1px solid rgba(123, 79, 247, 0.3);
-}
-
-.views-count {
+.ft-views-count {
   color: #8892b0;
 }
 
 /* Card Title */
-.card-title {
+.ft-card-title {
   font-family: 'Poppins', sans-serif;
   font-size: 1.3rem;
   font-weight: 600;
   line-height: 1.4;
-  color: #fff;
+  color: var(--ft-text-white);
   margin: 0;
-}
-
-/* Hover Effect on Title */
-.tutorial-card:hover .card-title {
-  color: #4fc3f7;
   transition: color 0.3s ease;
 }
 
-/* --- Footer Button --- */
-.tutorials-footer {
-  text-align: center;
+.ft-card:hover .ft-card-title {
+  color: var(--ft-accent);
 }
 
-.view-all-btn {
-  background: rgba(13, 25, 66, 0.8);
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  padding: 12px 30px;
-  border-radius: 30px;
-  border: 1px solid rgba(79, 195, 247, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(79, 195, 247, 0.1);
+/* --- Modal / Popup Styles --- */
+.ft-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.view-all-btn:hover {
-  background: rgba(79, 195, 247, 0.15);
-  border-color: #4fc3f7;
-  box-shadow: 0 0 20px rgba(79, 195, 247, 0.4);
+.ft-modal-content {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.ft-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.ft-close-btn:hover {
+    color: white;
+}
+
+.ft-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ft-modal-icon {
+    color: var(--ft-accent);
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(79, 195, 247, 0.1);
+    border-radius: 50%;
+}
+
+.ft-modal-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    margin: 0 0 1rem 0;
+}
+
+.ft-modal-badge {
+    background: rgba(79, 195, 247, 0.15);
+    color: var(--ft-accent);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.ft-modal-desc {
+    font-family: 'Poppins', sans-serif;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0;
 }
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .tutorials-header .section-title {
+  .ft-title {
     font-size: 3rem;
   }
-  .tutorials-grid {
+  .ft-grid {
     grid-template-columns: 1fr;
     padding: 0 1rem;
   }
