@@ -24,26 +24,19 @@ const RoutingApp = () => {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          
-          {/* Blog Routes */}
           <Route path="/blogs" element={<Blog />} />
           <Route path="/blog-category" element={<Blogcategory />} />
           <Route path="/blog/inside" element={<InsideBlog />} />
-          
-          {/* Course Routes - Lowercased 'c' is better standard */}
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/inside" element={<Coursesinside />} />
-          
-          {/* Services Routes */}
           <Route path="/services" element={<Services />} />
           
-          {/* CRITICAL FIX: Changed from '/services/inside' to '/services/details' 
-             to match the navigate() function in ServicesCards.jsx */}
+
           <Route path="/services/inside" element={<InsideServices />} />
           
           <Route path="/portfolio" element={<Portfolio />} />
           
-          {/* 404 Catch-all */}
+   
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
