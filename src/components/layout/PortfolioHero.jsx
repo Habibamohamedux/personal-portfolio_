@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./PortfolioHero.css";
-
 // --- IMPORTS ---
-// Using your specific paths
 import TextParagraph from "../common/Textparagraph.jsx"; 
 import Arrowbtndown from "../common/Arrowbtndown.jsx";
-import VideoMotion from "../../assets/motiongraphics/HabibaSaad_MOTIONGRAPHICS_Y3_SHOWREEL01_001.mp4";
+import VideoMotion from "../../assets/motiongraphics/HabibaSaad_MOTIONGRAPHICS_Y2_SHOWREEL03_003.mp4";
 
 const PortfolioHero = () => {
-  // Data configuration
   const categories = [
     {
       id: 1,
@@ -52,15 +49,12 @@ const PortfolioHero = () => {
   const [fade, setFade] = useState(true);
 
   useEffect(() => {
-    // Timer to switch categories every 4 seconds
     const interval = setInterval(() => {
-      setFade(false); // Start fade out
-      
+      setFade(false); 
       setTimeout(() => {
-        setIndex((prev) => (prev + 1) % categories.length); // Change text
-        setFade(true); // Start fade in
-      }, 500); // Wait for fade out
-      
+        setIndex((prev) => (prev + 1) % categories.length); 
+        setFade(true); 
+      }, 500); 
     }, 4000); 
 
     return () => clearInterval(interval);
@@ -70,33 +64,27 @@ const PortfolioHero = () => {
 
   return (
     <div className="portfolio-hero-container">
-      {/* Background Video */}
-      <video
-        className="portfolio-hero-video"
+      {/* 1. Background Video (Static) */}
+      <video 
+        className="portfolio-hero-video" 
         src={VideoMotion} 
-        autoPlay
-        loop
-        muted
+        autoPlay 
+        loop 
+        muted 
         playsInline
-      />
+      ></video>
 
-      {/* Dark Overlay */}
-      <div className="portfolio-hero-overlay-dark"></div>
-
-      {/* Content */}
-      <div className="portfolio-hero-content-wrapper">
-        <div className="text-generation-container">
-          <div className="text-generation-content">
-            <h1
-              className={`text-generation-title ${fade ? "fade-in" : "fade-out"}`}
-            >
+      {/* 2. Content Overlay (::after handles the dark tint) */}
+      <div className="portfolio-hero-overlay">
+        
+        {/* 3. Inner Container with "Design Effect" (Glass Box) */}
+        <div className="portfolio-glass-container">
+          <div className="portfolio-text-content">
+            <h1 className={`portfolio-title ${fade ? "fade-in" : "fade-out"}`}>
               {current.title}{" "}
               <span
-                className="text-generation-star"
-                style={{ 
-                  color: current.color, 
-                  textShadow: `0 0 20px ${current.color}` 
-                }}
+                className="portfolio-star"
+                style={{ color: current.color, textShadow: `0 0 20px ${current.color}` }}
               >
                 *
               </span>
@@ -109,6 +97,7 @@ const PortfolioHero = () => {
             />
           </div>
         </div>
+
       </div>
 
       <Arrowbtndown />

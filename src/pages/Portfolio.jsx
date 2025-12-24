@@ -4,6 +4,8 @@ import "./Home.css";
 import Navbar from "../components/layout/Navbar.jsx";
 import Footer from "../components/layout/Footer.jsx";
 import PortfolioHero from "../components/layout/PortfolioHero.jsx";
+import PortfolioUx from "../components/layout/PortfolioUx.jsx"
+import Portfolioweb from '../components/layout/Portfolioweb.jsx';
 const Portfolio = () => {
     return (
         <>
@@ -21,6 +23,8 @@ const Portfolio = () => {
             </Helmet>
             <Navbar />
             <PortfolioHero />
+<PortfolioUx />
+<Portfolioweb />
             <Footer />
         </>
     );

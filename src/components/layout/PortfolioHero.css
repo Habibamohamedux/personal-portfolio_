@@ -1,18 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* --- Main Container --- */
+/* --- 1. Main Container (Matches Herohome exactly) --- */
 .portfolio-hero-container {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #000; /* Fallback color */
+  font-family: "Poppins", sans-serif;
 }
 
-/* --- Background Video --- */
+/* --- 2. Video (Matches Herohome exactly) --- */
 .portfolio-hero-video {
   position: absolute;
   top: 0;
@@ -21,55 +18,108 @@
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  transition: opacity 0.5s ease-in-out;
 }
 
-
-/* --- Dark Overlay (Between Video and Text) --- */
-.portfolio-hero-overlay-dark {
+/* --- 3. Dark Tint (Matches Herohome exactly) --- */
+/* This creates the black overlay on top of the video */
+.portfolio-hero-container::after {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.65); /* Darkens video so white text pops */
+  background: rgba(0, 0, 0, 0.7); /* Adjust opacity here */
   z-index: 1;
-  pointer-events: none;
 }
 
-/* --- Content Wrapper (Centers the glass box) --- */
-.portfolio-hero-content-wrapper {
+/* --- 4. Content Overlay (Matches Herohome exactly) --- */
+.portfolio-hero-overlay {
   position: relative;
-  z-index: 2;
-  width: 100%;
+  z-index: 2; /* Above video and dark tint */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  backdrop-filter: blur(2px); /* Matches your optional glass effect */
+
 }
 
+/* --- 5. Inner Glass Container (The Design Effect) --- */
+.portfolio-glass-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  /* The Design Effect Properties */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.12), 0 15px 45px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  padding: 40px 20px;
+  transition: all 0.5s ease-in-out;
+  animation: glassPulse 6s ease-in-out infinite alternate;
+}
+
+.portfolio-glass-container:hover {
+  transform: scale(1.02);
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.15), 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Typography --- */
+.portfolio-text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.portfolio-title {
+  color: #ffffff;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.portfolio-star {
+  font-size: 1.1em;
+  margin-left: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  transition: color 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+}
+
+/* --- Animations --- */
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(15px);
+}
 
 @keyframes glassPulse {
-  0% {
-    box-shadow:
-      inset 0 0 10px rgba(255, 255, 255, 0.05),
-      0 10px 30px rgba(0, 0, 0, 0.2);
-  }
-  100% {
-    box-shadow:
-      inset 0 0 20px rgba(255, 255, 255, 0.1),
-      0 10px 50px rgba(0, 0, 0, 0.35);
-  }
+  0% { box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05), 0 10px 30px rgba(0, 0, 0, 0.2); }
+  100% { box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1), 0 10px 50px rgba(0, 0, 0, 0.35); }
 }
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .text-generation-container {
-    padding: 30px 15px;
-    width: 95%;
-  }
-  
-  .text-generation-title {
+  .portfolio-title {
     font-size: clamp(28px, 7vw, 40px);
+  }
+  .portfolio-glass-container {
+    padding: 30px 15px;
   }
 }

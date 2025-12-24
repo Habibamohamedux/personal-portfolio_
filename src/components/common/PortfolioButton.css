@@ -1,0 +1,32 @@
+/* components/common/PortfolioButton.css */
+
+.portfolio-btn4 {
+  color: #FFF;
+  font-family: "League Gothic", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 150%;
+  border: none;
+  display: flex;
+  padding: 10px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  border-radius: 30px;
+  /* Default shadow */
+  box-shadow: 0 4px 4px 0 rgba(230, 216, 216, 0.25) inset, 0 4px 7.7px 0 rgba(0, 0, 0, 0.25);
+}
+
+.portfolio-btn4:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile Adjustment */
+@media (max-width: 768px) {
+  .portfolio-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
