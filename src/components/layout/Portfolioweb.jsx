@@ -1,70 +1,108 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import this for navigation
+import { useNavigate } from "react-router-dom";
 import "./Portfolioweb.css";
-import PortfolioText from "../common/PortfolioText"; 
 
-const Portfolioweb = () => {
+// 1. Import Reusable Component
+import PortfolioText from "../common/PortfolioText";
+
+// 2. Import Images
+import web04_1 from "../../assets/coding/web04_1.jpg";
+import web04_2 from "../../assets/coding/web04_2.jpg";
+import web05_1 from "../../assets/coding/web05_1.jpg";
+import web05_2 from "../../assets/coding/web05_2.jpg";
+import web06_1 from "../../assets/coding/web06_1.jpg";
+import web06_2 from "../../assets/coding/web06_2.jpg";
+
+const PortfolioWeb = () => {
   const navigate = useNavigate();
+
+  // Updated Project Data
+  const projects = [
+    {
+      id: 1,
+      title: "MEDVED",
+      description: "A Russian competition gaming website designed for high-energy esports events.",
+      imgDefault: web04_1,
+      imgHover: web04_2,
+      tech: "HTML • CSS",
+      path: "/projects/medved"
+    },
+    {
+      id: 2,
+      title: "THE LAND OF RANDOMS",
+      description: "An entertainment website with a quirky alien vibe and interactive elements.",
+      imgDefault: web05_1,
+      imgHover: web05_2,
+      tech: "HTML • CSS • JavaScript",
+      path: "/projects/land-of-randoms"
+    },
+    {
+      id: 3,
+      title: "THE UNLIVING SOCIETY",
+      description: "A fictional immersive website designed specifically for vampire lovers.",
+      imgDefault: web06_1,
+      imgHover: web06_2,
+      tech: "React.js",
+      path: "/projects/unliving-society"
+    }
+  ];
 
   return (
     <section className="web-section">
-      
-      {/* --- Decorative Chrome Shapes --- */}
-      <div className="web-shapes">
-        <img 
-          src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop" 
-          alt="Chrome Shape Top Right" 
-          className="web-shape-tr floating-slow" 
-        />
-        <img 
-          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" 
-          alt="Chrome Shape Bottom Left" 
-          className="web-shape-bl floating-fast" 
-        />
-      </div>
-
       <div className="web-container">
         
-        <PortfolioText 
-          subtitle="Transforming Designs Into Interactive Reality"
-          title="WEB & APP DEVELOPMENT PROJECTS"
-          description="Transforming designs into clean, responsive, and accessible digital experiences. Focused on delivering seamless usability and consistent performance across all devices."
-          btnGradient="linear-gradient(90deg, #22d3ee 0%, #0ea5e9 100%)"
-          subtitleColor="#a8ddec"
-          // Add this so the button works!
-          onBtnClick={() => navigate('/projects/web')} 
-        />
+        {/* --- LEFT SIDE: STICKY TEXT --- */}
+        <div className="web-text-content">
+          <PortfolioText 
+            subtitle="Web & App Development Services"
+            title="TRANSFORMING DESIGNS INTO INTERACTIVE REALITY"
+            description="Transforming designs into clean, responsive, and accessible digital experiences. Focused on delivering seamless usability and consistent performance across all devices — blending functionality, aesthetics, and precision."
+            // Cyan/Blue Gradient
+            btnGradient="linear-gradient(90deg, #17DEF4 0%, #0F74BC 100%)"
+            onBtnClick={() => navigate('/projects/web-dev')}
+          />
+        </div>
 
-        {/* --- RIGHT COLUMN: Device Mockups --- */}
-        <div className="web-visuals-column">
-          <div className="devices-group">
-            
-            {/* 1. Laptop (Back Layer) */}
-            <div className="device-laptop">
-              <img 
-                src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?q=80&w=2574&auto=format&fit=crop" 
-                alt="Laptop Website" 
-              />
-              <div className="screen-overlay"></div>
+        {/* --- RIGHT SIDE: ZIG-ZAG BROWSER STACK --- */}
+        <div className="web-projects-stack">
+          {projects.map((project) => (
+            <div key={project.id} className="web-card" onClick={() => navigate(project.path)}>
+              
+              {/* Browser/Code Window Header */}
+              <div className="browser-bar">
+                <div className="window-controls">
+                  <span className="control red"></span>
+                  <span className="control yellow"></span>
+                  <span className="control green"></span>
+                </div>
+                {/* Fake URL bar based on tech stack */}
+                <div className="address-bar">
+                   <span>localhost:3000/{project.tech.split(' ')[0].toLowerCase()}</span>
+                </div>
+              </div>
+
+              <div className="web-img-wrapper">
+                <img 
+                  src={project.imgDefault} 
+                  alt={project.title} 
+                  className="web-img default-view"
+                />
+                <img 
+                  src={project.imgHover} 
+                  alt={`${project.title} Detail`} 
+                  className="web-img hover-view"
+                />
+              </div>
+
+              <div className="web-card-overlay">
+                <div className="web-card-text">
+                  <h4>{project.title}</h4>
+                  <span className="web-tech">{project.tech}</span>
+                  <p className="web-description">{project.description}</p>
+                </div>
+              </div>
             </div>
-
-            {/* 2. Tablet (Middle Layer - Left) */}
-            <div className="device-tablet">
-              <img 
-                src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=2671&auto=format&fit=crop" 
-                alt="Tablet Website" 
-              />
-            </div>
-
-            {/* 3. Phone (Front Layer - Center) */}
-            <div className="device-phone">
-              <img 
-                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2670&auto=format&fit=crop" 
-                alt="Mobile Website" 
-              />
-            </div>
-
-          </div>
+          ))}
         </div>
 
       </div>
@@ -72,4 +110,4 @@ const Portfolioweb = () => {
   );
 };
 
-export default Portfolioweb;
+export default PortfolioWeb;

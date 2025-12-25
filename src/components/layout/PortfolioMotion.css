@@ -1,0 +1,214 @@
+/* --- SECTION BACKGROUND --- */
+.motion-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 8%;
+  background: linear-gradient(135deg, #022c24 0%, #07846D 100%);
+  overflow: hidden;
+  color: #fff;
+}
+
+.motion-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 80px;
+  position: relative;
+}
+
+/* --- LEFT SIDE: STICKY TEXT --- */
+.motion-text-content {
+  flex: 0.8; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: sticky;
+  top: 150px;
+  height: fit-content;
+  z-index: 10;
+}
+
+/* --- RIGHT SIDE: HOLOGRAPHIC WRAPPER --- */
+.motion-display-wrapper {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* The Main Hologram Unit */
+.hologram-unit {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  aspect-ratio: 16/9;
+  cursor: pointer; /* Indicates it's clickable */
+  transition: transform 0.4s ease;
+}
+
+.hologram-unit:hover {
+  transform: scale(1.02);
+}
+
+/* --- 1. THE SCREEN --- */
+.holo-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 20, 20, 0.6); /* Dark Tech Glass */
+  border: 1px solid rgba(3, 49, 42, 0.3); /* Subtle Teal Border */
+  overflow: hidden;
+  /* The Hologram Glow */
+  box-shadow: 
+    0 0 20px rgba(23, 244, 211, 0.1),
+    inset 0 0 60px rgba(23, 244, 211, 0.05);
+  backdrop-filter: blur(4px); /* Slight blur for depth */
+}
+
+/* The Video */
+.holo-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85; /* Makes it look projected/transparent */
+  filter: contrast(1.1) brightness(1.1);
+  mix-blend-mode: screen; /* Blends video with background for hologram feel */
+}
+
+/* --- 2. HOLOGRAPHIC OVERLAY EFFECTS --- */
+.holo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none; /* Allows clicking through to the main div */
+}
+
+/* Scanline Beam Animation */
+.holo-scanline {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, rgba(23, 244, 211, 0.4), transparent);
+  animation: scan 4s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes scan {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+/* Subtle Grid Pattern */
+.holo-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(23, 244, 211, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 244, 211, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+}
+
+/* --- 3. CORNER BRACKETS (DECORATIVE) --- */
+.holo-corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: #17F4D3; /* Bright Teal */
+  border-style: solid;
+  z-index: 10;
+  box-shadow: 0 0 10px #17F4D3;
+  transition: all 0.3s ease;
+}
+
+.hologram-unit:hover .holo-corner {
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 0 20px #17F4D3; /* Glow brighter on hover */
+}
+
+.corner-tl { top: -10px; left: -10px; border-width: 3px 0 0 3px; }
+.corner-tr { top: -10px; right: -10px; border-width: 3px 3px 0 0; }
+.corner-bl { bottom: -10px; left: -10px; border-width: 0 0 3px 3px; }
+.corner-br { bottom: -10px; right: -10px; border-width: 0 3px 3px 0; }
+
+/* --- 4. HUD TEXT (Floating UI) --- */
+.holo-hud-top {
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  right: 25px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #17F4D3;
+  text-shadow: 0 0 5px rgba(23, 244, 211, 0.6);
+}
+
+.hud-rec {
+  animation: blinkText 1.5s infinite;
+}
+
+.holo-hud-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: rgba(23, 244, 211, 0.7);
+}
+
+@keyframes blinkText {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --- 5. EMITTER GLOW (Bottom Light) --- */
+.holo-emitter-glow {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 40px;
+  background: radial-gradient(ellipse at center, rgba(23, 244, 211, 0.4) 0%, transparent 70%);
+  filter: blur(15px);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) scaleX(1); }
+  50% { opacity: 0.6; transform: translateX(-50%) scaleX(1.1); }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .motion-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .motion-text-content {
+    align-items: center;
+    text-align: center;
+    position: relative;
+    top: 0;
+    width: 100%;
+  }
+
+  .hologram-unit {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+}

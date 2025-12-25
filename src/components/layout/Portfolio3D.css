@@ -1,0 +1,256 @@
+/* --- SECTION BACKGROUND --- */
+.three-d-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 8%;
+  /* Default BG Color if image fails */
+  background-color: #1a1103; 
+  background-size: cover;
+  background-position: center;
+  /* Smooth transition when the background image changes */
+  transition: background-image 0.6s ease-in-out;
+  overflow: hidden;
+  color: #fff;
+}
+
+.three-d-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- LEFT SIDE: STICKY TEXT --- */
+.three-d-text-content {
+  flex: 0.7; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: sticky;
+  top: 150px;
+  height: fit-content;
+  /* Add a glass backing to text for readability over dynamic BG */
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- RIGHT SIDE: CLEAN SLIDER --- */
+.clean-slider-wrapper {
+  flex: 1.5;
+  display: flex;
+  height: 550px; /* Taller for cinematic feel */
+  gap: 12px;
+  width: 100%;
+}
+
+/* --- THE SLIDE --- */
+.clean-slide {
+  position: relative;
+  flex: 1; /* Collapsed state */
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  background: #000;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* ACTIVE STATE */
+.clean-slide.active {
+  flex: 5; /* Expands massively */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* --- IMAGE --- */
+.slide-img-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5; /* Dimmed by default */
+  filter: grayscale(100%);
+  transition: all 0.7s ease;
+  transform: scale(1.1); /* Slight zoom initially */
+}
+
+.clean-slide.active .slide-img {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1); /* Reset zoom on active */
+}
+
+/* --- SHINE EFFECT --- */
+.shine-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.clean-slide:hover .shine-effect {
+  left: 200%;
+  transition: left 0.7s ease;
+}
+
+/* --- LABELS (Collapsed) --- */
+.slide-label-vertical {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse; /* Text starts at bottom */
+  align-items: center;
+  padding-bottom: 40px;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.slide-label-vertical h3 {
+  writing-mode: vertical-rl; /* Vertical Text */
+  transform: rotate(180deg); /* Fix orientation */
+  font-family: 'League Gothic', sans-serif;
+  font-size: 32px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.slide-label-vertical span {
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #F49817;
+}
+
+.clean-slide.active .slide-label-vertical {
+  opacity: 0; /* Hide when expanded */
+}
+
+/* --- CONTENT (Expanded) --- */
+.slide-content-expanded {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease 0.2s; /* Delay */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.clean-slide.active .slide-content-expanded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-type {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #F49817;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.slide-title {
+  font-family: 'League Gothic', sans-serif;
+  font-size: 64px;
+  line-height: 0.9;
+  color: #fff;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+.slide-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.clean-slide:hover .slide-cta {
+  opacity: 1;
+  color: #F49817;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .three-d-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .three-d-text-content {
+    position: relative;
+    top: 0;
+    width: 100%;
+    /* Remove glass effect on mobile text to keep it simple */
+    background: none;
+    border: none;
+    backdrop-filter: none;
+    padding: 0;
+  }
+
+  .clean-slider-wrapper {
+    flex-direction: column;
+    height: auto;
+    gap: 10px;
+  }
+
+  .clean-slide {
+    width: 100%;
+    height: 60px; /* Thin strips */
+    flex: none;
+  }
+
+  .clean-slide.active {
+    height: 350px; /* Expand height */
+  }
+
+  /* Reset Vertical text for mobile strips */
+  .slide-label-vertical {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 30px;
+    align-items: center;
+  }
+
+  .slide-label-vertical h3 {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 24px;
+  }
+  
+  .slide-label-vertical span {
+    margin: 0;
+  }
+}
