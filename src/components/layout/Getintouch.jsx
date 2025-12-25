@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Getintouch.css";
+// --- 1. Added Supabase Import (Corrected Path) ---
+import { supabase } from "../../supabaseClient";
 
 import Secondrytitle from "../common/Secondrytitle.jsx";
 import Calltoaction from "../common/Calltoaction.jsx";
@@ -36,17 +38,50 @@ export default function Getintouch() {
     });
   };
 
-  const handleSubmit = (e) => {
+  // --- 2. Updated Handle Submit to use Supabase ---
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (!formData.agree) {
       alert("Please agree to the privacy policy.");
       return;
     }
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      // Send data to the 'messages' table
+      const { error } = await supabase
+        .from('messages')
+        .insert([
+          {
+            name: formData.name,
+            phone: formData.phone,
+            subject: formData.inquiry,
+            email: formData.email,
+            body: formData.message,
+            is_read: false
+          }
+        ]);
+
+      if (error) throw error;
+
+      // If successful, show success animation
       setIsSubmitted(true);
-      console.log("Form Data:", formData);
-    }, 500);
+      console.log("Form Data Submitted:", formData);
+      
+      // Reset form fields
+      setFormData({
+        name: "",
+        phone: "",
+        inquiry: "",
+        email: "",
+        message: "",
+        agree: false,
+      });
+
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   return (
